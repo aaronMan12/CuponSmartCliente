@@ -57,7 +57,7 @@
                               <Image url="@../componentes/user.png" />
                            </image>
                         </ImageView>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
+                        <TextField fx:id="tfCorreo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
                      </children>
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="240.0" GridPane.rowIndex="3">
@@ -70,12 +70,12 @@
                               <Insets />
                            </HBox.margin>
                         </ImageView>
-                        <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Contraseña" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
+                        <PasswordField fx:id="tfContrasenia" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Contraseña" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
-            <Button layoutX="98.0" layoutY="392.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Ingresar" textFill="#171717">
+            <Button layoutX="98.0" layoutY="392.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Ingresar" textFill="#171717">
                <font>
                   <Font size="18.0" />
                </font>
