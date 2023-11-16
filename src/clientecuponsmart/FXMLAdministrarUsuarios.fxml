@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdministrarUsuariosController">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="900.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: ;">
+                     <children>
+                        <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnEliminarUsuario" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #00D100; -fx-border-color: #171717; -fx-border-radius: 5px;" text="Agregar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="410.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnEditarUsuario" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #00BFB2; -fx-border-color: #171717; -fx-border-radius: 5px;" text="Editar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="520.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnEliminarUsuario" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #DB592A; -fx-border-color: #171717; -fx-border-radius: 5px;" text="Eliminar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Pane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 2px 0px 0px 0px;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="329.0" layoutY="57.0" text="GESTIÓN USUARIOS" textFill="#171717">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../componentes/bx_user.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="135.0" text="C1" />
+                <TableColumn prefWidth="121.0" text="C2" />
+                  <TableColumn prefWidth="147.0" text="Column X" />
+                  <TableColumn prefWidth="185.0" text="Column X" />
+                  <TableColumn prefWidth="211.0" text="Column X" />
+              </columns>
+            </TableView>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
