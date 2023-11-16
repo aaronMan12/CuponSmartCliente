@@ -11,7 +11,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLLogingController">
    <children>
       <Pane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FEDB39;">
@@ -55,7 +54,7 @@
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../componentes/usuario.png" />
+                              <Image url="@../componentes/user.png" />
                            </image>
                         </ImageView>
                         <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
@@ -65,7 +64,7 @@
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../componentes/candado.png" />
+                              <Image url="@../componentes/lock.png" />
                            </image>
                            <HBox.margin>
                               <Insets />
