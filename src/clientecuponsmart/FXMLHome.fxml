@@ -8,29 +8,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdministradorController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdministradorController">
    <children>
-      <Pane prefHeight="513.0" prefWidth="740.0">
+      <Pane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #FEDB39;">
          <children>
-            <Pane prefHeight="120.0" prefWidth="740.0" style="-fx-background-color: #FEDB39;">
+            <Pane prefHeight="120.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 10px;">
                <children>
                   <Label layoutX="26.0" layoutY="14.0" text="Nombre: ">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
+                  <Button layoutX="628.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #FEDB39;" text="Cerrar Sesion">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Button layoutX="22.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" />
             <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="28.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../componentes/usuario.png" />
+                  <Image url="@../componentes/bx_user.png" />
                </image></ImageView>
             <Label layoutX="46.0" layoutY="356.0" text="Modulo Usuario" />
             <Button layoutX="203.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" />
-            <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="203.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="210.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../componentes/edificio-de-oficinas.png" />
+                  <Image url="@../componentes/bx_buildings.png" />
                </image></ImageView>
             <Label layoutX="225.0" layoutY="356.0" text="Modulo Empresa" />
             <Button layoutX="398.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" />
