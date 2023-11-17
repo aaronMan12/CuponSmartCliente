@@ -43,13 +43,13 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="512.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre comercial de la Empresa" />
+      <TextField layoutX="512.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el email de la Empresa" />
       <Label layoutX="81.0" layoutY="247.0" text="Nombre Comercial:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="72.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el email de la Empresa" />
+      <TextField layoutX="72.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre comercial de la Empresa" />
       <Label layoutX="521.0" layoutY="247.0" text="Telefono:">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -61,13 +61,13 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el email de la Empresa" />
+      <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar la pagina web de la Empresa" />
       <Label layoutX="527.0" layoutY="321.0" text="RFC:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="512.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el telefono de la Empresa" />
+      <TextField layoutX="512.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el RFC de la Empresa" />
       <ComboBox layoutX="72.0" layoutY="423.0" prefWidth="423.0" />
       <Label layoutX="83.0" layoutY="402.0" text="Estatus:">
          <font>
