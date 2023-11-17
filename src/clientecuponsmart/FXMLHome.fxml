@@ -24,6 +24,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Label layoutX="26.0" layoutY="67.0" text="Rol: ">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Button layoutX="22.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" />
