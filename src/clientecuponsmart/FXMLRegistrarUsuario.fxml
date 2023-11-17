@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLActualizarEmpresaController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0">
+         <children>
+            <Pane prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
+               <children>
+                  <Label layoutX="449.0" layoutY="14.0" text="Administrador">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="391.0" layoutY="47.0" text="Datos del administrador">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../componentes/logoCuponSmartRedondo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label layoutX="81.0" layoutY="166.0" text="Nombre:">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="72.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre del Administrador" />
+            <Label layoutX="520.0" layoutY="166.0" text="Apellido Paterno">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="512.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el apellido paterno del administrador" />
+            <Label layoutX="81.0" layoutY="247.0" text="Apellido Materno">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="72.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el apellido materno del administrador" />
+            <Label layoutX="521.0" layoutY="247.0" text="CURP">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="512.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el CURP" />
+            <Label layoutX="81.0" layoutY="321.0" text="Email">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar la pagina web de la Empresa" />
+            <Label layoutX="527.0" layoutY="321.0" text="Usuario:">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="512.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre de usuario del administrador" />
+            <Label layoutX="80.0" layoutY="390.0" text="Contraseña">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="734.0" layoutY="490.0" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el correo electronico del administrador" />
+            <PasswordField layoutX="72.0" layoutY="422.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresa la contraseña del administrador" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
