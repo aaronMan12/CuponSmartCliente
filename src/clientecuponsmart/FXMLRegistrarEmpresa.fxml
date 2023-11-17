@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
    <children>
       <Pane prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
          <children>
@@ -20,7 +19,7 @@
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="391.0" layoutY="47.0" text="Datos de la Empresa">
+            <Label layoutX="327.0" layoutY="47.0" text="Registrar datos de la Empresa">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -68,7 +67,7 @@
          </font>
       </Label>
       <TextField layoutX="512.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el RFC de la Empresa" />
-      <ComboBox layoutX="72.0" layoutY="423.0" prefWidth="423.0" />
+      <ComboBox layoutX="72.0" layoutY="423.0" prefWidth="423.0" promptText="                                                           Activo" style="-fx-background-color: #FEDB39;" />
       <Label layoutX="83.0" layoutY="402.0" text="Estatus:">
          <font>
             <Font name="Arial Bold" size="18.0" />
