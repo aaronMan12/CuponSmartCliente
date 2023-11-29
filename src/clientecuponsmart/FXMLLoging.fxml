@@ -15,9 +15,9 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FEDB39;">
          <children>
-            <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="75.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="291.0" fitWidth="307.0" layoutX="55.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../componentes/logoCuponSmart.png" />
+                  <Image url="@../componentes/logoRedondo.png" />
                </image>
             </ImageView>
          </children>
@@ -29,57 +29,35 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <GridPane layoutX="58.0" layoutY="156.0" prefHeight="200.0" prefWidth="280.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Correo" textFill="#171717">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label text="Contraseña" textFill="#171717" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="40.0" prefWidth="240.0" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../componentes/user.png" />
-                           </image>
-                        </ImageView>
-                        <TextField fx:id="tfCorreo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="40.0" prefWidth="240.0" GridPane.rowIndex="3">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../componentes/lock.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                        <PasswordField fx:id="tfContrasenia" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Contraseña" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
-            <Button layoutX="98.0" layoutY="392.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Ingresar" textFill="#171717">
+            <Button layoutX="94.0" layoutY="413.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Ingresar" textFill="#171717">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Label layoutX="45.0" layoutY="202.0" text="Correo" textFill="#171717">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfCorreo" layoutX="94.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="50.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/user.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbValidacionCorreo" layoutX="94.0" layoutY="267.0" prefHeight="25.0" prefWidth="200.0" />
+            <PasswordField fx:id="tfContrasenia" layoutX="98.0" layoutY="339.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Contraseña" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="50.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/lock.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="52.0" layoutY="314.0" text="Contraseña" textFill="#171717">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbValidacionContrasenia" layoutX="100.0" layoutY="379.0" prefHeight="25.0" prefWidth="200.0" />
          </children>
       </Pane>
    </children>
