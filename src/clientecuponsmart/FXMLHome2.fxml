@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLHomelController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLHomelController2">
    <children>
       <Pane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #FEDB39;">
          <children>
@@ -22,23 +22,22 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Label layoutX="26.0" layoutY="67.0" text="Rol: ">
+                  <Label layoutX="26.0" layoutY="67.0" prefHeight="21.0" prefWidth="50.0" text="Rol:">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="76.0" layoutY="67.0" prefHeight="21.0" prefWidth="138.0" text="General">
+                  <Label layoutX="66.0" layoutY="67.0" prefHeight="21.0" prefWidth="147.0" text="Comercial">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button layoutX="51.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionUsuarios" prefHeight="120.0" prefWidth="138.0" text="Modulo Usuario" />
-            <Button layoutX="226.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionEmpresas" prefHeight="120.0" prefWidth="138.0" text="Moduulo Empresa" />
-            <Button layoutX="393.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionSucursales" prefHeight="120.0" prefWidth="138.0" text="Modulo Sucursal" />
-            <Button layoutX="581.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionPromociones" prefHeight="120.0" prefWidth="138.0" text="Modulo Promocion" />
-            <Button layoutX="306.0" layoutY="386.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Cupon" />
+            <Button layoutX="22.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Empresa" />
+            <Button layoutX="203.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Sucursal" />
+            <Button layoutX="398.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Promocion" />
+            <Button layoutX="581.0" layoutY="226.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Cupon" />
          </children>
       </Pane>
    </children>

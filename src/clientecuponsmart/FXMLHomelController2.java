@@ -5,18 +5,23 @@
  */
 package clientecuponsmart;
 
+import clientecuponsmart.modelo.pojo.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
- * @author aaron
+ * @author Oscar
  */
-public class FXMLAdministrarUsuariosController implements Initializable {
+public class FXMLHomelController2 implements Initializable {
 
-    private int idUsuario;
+    private Usuario usuarioSesion;
+    @FXML
+    private Label lbNombreUsuario;
     /**
      * Initializes the controller class.
      */
@@ -25,8 +30,9 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         // TODO
     }    
     
-    public void inicializarInformacion(int idUsuario) {
-        this.idUsuario = idUsuario;
-        
+    public void inicializarHome2(Usuario usuarioSesion){
+    this.usuarioSesion = usuarioSesion;
+    lbNombreUsuario.setText(usuarioSesion.getNombre()+" "
+    +usuarioSesion.getApellidoPaterno()+" "+usuarioSesion.getApellidoMaterno());
     }
 }
