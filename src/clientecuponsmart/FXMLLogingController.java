@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
 public class FXMLLogingController implements Initializable {
 
     @FXML
-    private TextField tfCorreo;
+    private TextField tfUserName;
     @FXML
     private PasswordField tfContrasenia;
     @FXML
@@ -44,42 +44,40 @@ public class FXMLLogingController implements Initializable {
 
     @FXML
     private void btnIniciarSesion(ActionEvent event) {
-        String correo = tfCorreo.getText();
+        String userName = tfUserName.getText();
         String contrasenia = tfContrasenia.getText();
         
-        if (validarLoging(correo, contrasenia)){
-            
-            loging(correo, contrasenia);
+        if (validarLoging(userName, contrasenia)){
+            loging(userName, contrasenia);
         }
     }
     
-    private boolean validarLoging(String correo, String contrasenia){
+    private boolean validarLoging(String userName, String contrasenia){
         boolean validacion = true;
+        lbValidacionCorreo.setText("");
+        lbValidacionContrasenia.setText("");
         
-        if (correo == null || correo.isEmpty()){
+        if (userName.isEmpty()){
             validacion = false;
-            lbValidacionCorreo.setText("campo invalido");
+            lbValidacionCorreo.setText("Campos vacios");
         }
         
-        if (contrasenia == null || contrasenia.isEmpty()){
+        if (contrasenia.isEmpty()){
             validacion = false;
-            lbValidacionContrasenia.setText("campo invalido");
-
+            lbValidacionContrasenia.setText("Campos vacios");
         }
         
         return validacion;
     }
     
-    
-    
-    private void loging(String correo, String contrasenia){
-        
-        RespuestaLogin respuestaLogin =LoginDAO.iniciarSesion(correo,contrasenia);
+    private void loging(String userName, String contrasenia){
+        RespuestaLogin respuestaLogin =LoginDAO.iniciarSesion(userName,contrasenia);
         
         if (respuestaLogin.getError() == false){
-           Utilidades.mostrarAlertaSimple("campos Correctos", respuestaLogin.getContenido(), Alert.AlertType.INFORMATION);
+           Utilidades.mostrarAlertaSimple("Campos correctos", respuestaLogin.getContenido(), Alert.AlertType.INFORMATION);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error", respuestaLogin.getContenido(), Alert.AlertType.ERROR);
         }
-    
     }
     
 }

@@ -34,18 +34,18 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="45.0" layoutY="202.0" text="Correo" textFill="#171717">
+            <Label layoutX="45.0" layoutY="202.0" text="User name" textFill="#171717">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="tfCorreo" layoutX="94.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Correo" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
+            <TextField fx:id="tfUserName" layoutX="94.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="User name" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="50.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../componentes/user.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbValidacionCorreo" layoutX="94.0" layoutY="267.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label fx:id="lbValidacionCorreo" layoutX="94.0" layoutY="267.0" prefHeight="25.0" prefWidth="200.0" textFill="#ea0a0a" />
             <PasswordField fx:id="tfContrasenia" layoutX="98.0" layoutY="339.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Contraseña" style="-fx-border-radius: 5; -fx-border-color: #171717;" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="50.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lbValidacionContrasenia" layoutX="100.0" layoutY="379.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label fx:id="lbValidacionContrasenia" layoutX="100.0" layoutY="379.0" prefHeight="25.0" prefWidth="200.0" textFill="#ea0a0a" />
          </children>
       </Pane>
    </children>
