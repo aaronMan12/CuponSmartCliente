@@ -53,7 +53,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     
     private void consultarInformacionUsuarios(){
     //hacer usuarioDAO un metodo para obtener todos los usuarios, ejemplo obtenerUsuariosPorIdUsuario
-    
+   
     }
 
     @FXML
@@ -70,5 +70,5 @@ public class FXMLAdministrarUsuariosController implements Initializable {
 
     @FXML
     private void btnFormularioBuscar(ActionEvent event) {
-    }
+    }  
 }
