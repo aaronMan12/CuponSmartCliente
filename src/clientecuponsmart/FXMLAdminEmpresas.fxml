@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdminUsuariosController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdminEmpresasController">
    <children>
       <Pane prefHeight="700.0" prefWidth="994.0" style="-fx-background-color: white;">
          <children>
             <Pane layoutX="-2.0" prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
                <children>
-                  <Label layoutX="334.0" layoutY="34.0" text="Modulo de Usuarios">
+                  <Label layoutX="334.0" layoutY="34.0" text="Modulo de Empresas">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -29,36 +29,42 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button layoutX="327.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: #FEDB39;" text="Registrar">
+            <Button layoutX="490.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" style="-fx-background-color: #FEDB39;" text="Registrar">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="492.0" layoutY="157.0" mnemonicParsing="false" style="-fx-background-color: #FEDB39;" text="Editar">
+            <Button layoutX="675.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnFormularioEditar" style="-fx-background-color: #FEDB39;" text="Editar">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="630.0" layoutY="157.0" mnemonicParsing="false" style="-fx-background-color: #FEDB39;" text="Eliminar">
+            <Button layoutX="830.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" style="-fx-background-color: #FEDB39;" text="Eliminar">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <TextField layoutX="46.0" layoutY="157.0" promptText="Buscar Usuario">
+            <TextField layoutX="46.0" layoutY="157.0" promptText="Buscar Empresa">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TableView layoutX="1.0" layoutY="226.0" prefHeight="476.0" prefWidth="994.0">
+            <TableView fx:id="tvEmpresas" layoutX="1.0" layoutY="226.0" prefHeight="476.0" prefWidth="994.0">
               <columns>
-                <TableColumn prefWidth="159.0" text="Nombre" />
-                  <TableColumn prefWidth="118.0" text="Apellido Paterno" />
-                  <TableColumn prefWidth="210.0" text="Apellido Materno" />
-                  <TableColumn prefWidth="160.0" text="CURP" />
-                  <TableColumn prefWidth="160.0" text="Correo Electronico" />
-                  <TableColumn minWidth="0.0" prefWidth="185.0" text="Nombre de Usuario" />
+                <TableColumn fx:id="colNombre" prefWidth="97.0" text="Nombre" />
+                  <TableColumn fx:id="colNombreComercial" prefWidth="109.0" text="Nombre Comercial" />
+                  <TableColumn fx:id="colEmail" prefWidth="136.0" text="Correo Electronico" />
+                  <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Telefono" />
+                  <TableColumn fx:id="colPaginaWeb" prefWidth="202.0" text="Pagina Web" />
+                  <TableColumn fx:id="colRfc" minWidth="0.0" prefWidth="135.0" text="RFC" />
+                  <TableColumn fx:id="colNomRepresentante" minWidth="0.0" prefWidth="204.0" text="Nombre Representante" />
               </columns>
             </TableView>
+            <Button layoutX="270.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnFormularioBuscar" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #FEDB39;" text="Buscar">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

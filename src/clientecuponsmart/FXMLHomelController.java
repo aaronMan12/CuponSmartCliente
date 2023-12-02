@@ -5,6 +5,7 @@
  */
 package clientecuponsmart;
 
+import clientecuponsmart.modelo.pojo.Empresa;
 import clientecuponsmart.modelo.pojo.Usuario;
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,8 @@ import javafx.stage.Stage;
 public class FXMLHomelController implements Initializable {
 
     private Usuario usuarioSesion;
+    private Empresa empresaSesion;
+    
     @FXML
     private Label lbNombreUsuario;
     /**
@@ -67,13 +70,31 @@ public class FXMLHomelController implements Initializable {
 
     @FXML
     private void btnGestionEmpresas(ActionEvent event) {
+       try{
+        FXMLLoader vistaLoad =
+                new FXMLLoader(getClass().getResource("FXMLAdminEmpresas.fxml"));
+        Parent vistaEmpresa = vistaLoad.load();
+        FXMLAdminEmpresasController controlador = vistaLoad.getController(); //este no va en sucursales/promociones
+        controlador.inicializarInformacion(usuarioSesion); //ni este
+        Stage stage = new Stage();
+        Scene escenaEmpresa = new Scene(vistaEmpresa);
+        stage.setScene(escenaEmpresa);
+        stage.setTitle("Empresas");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        
+        }catch(IOException e){
+        e.printStackTrace();
+        } 
     }
 
     @FXML
     private void btnGestionSucursales(ActionEvent event) {
+        
     }
 
     @FXML
     private void btnGestionPromociones(ActionEvent event) {
+        
     }
 }

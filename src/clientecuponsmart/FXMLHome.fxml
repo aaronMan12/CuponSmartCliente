@@ -35,7 +35,7 @@
                </children>
             </Pane>
             <Button layoutX="51.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionUsuarios" prefHeight="120.0" prefWidth="138.0" text="Modulo Usuario" />
-            <Button layoutX="226.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionEmpresas" prefHeight="120.0" prefWidth="138.0" text="Moduulo Empresa" />
+            <Button layoutX="226.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionEmpresas" prefHeight="120.0" prefWidth="138.0" text="Modulo Empresa" />
             <Button layoutX="393.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionSucursales" prefHeight="120.0" prefWidth="138.0" text="Modulo Sucursal" />
             <Button layoutX="581.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionPromociones" prefHeight="120.0" prefWidth="138.0" text="Modulo Promocion" />
             <Button layoutX="306.0" layoutY="386.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Cupon" />
