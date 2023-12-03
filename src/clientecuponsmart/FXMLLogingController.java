@@ -90,17 +90,16 @@ public class FXMLLogingController implements Initializable {
         }
     }
 
-   
     private void irPantallaPrincipal(Usuario usuario) {
         if (usuario.getIdRollUsuario() == Constantes.ID_ROL_GENERAL) {
             try {
                 Stage stage = (Stage) tfUserName.getScene().getWindow();
 
-                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHome.fxml"));
+                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHomeGeneral.fxml"));
                 Parent vista = loadVista.load();
 
-                FXMLHomelController controladorHome = loadVista.getController();
-                controladorHome.inicializarHome(usuario);
+                FXMLHomeGeneralController controladorHome = loadVista.getController();
+                controladorHome.inicializarHomeGeneral(usuario);
 
                 Scene scene = new Scene(vista);
                 stage.setScene(scene);
@@ -110,15 +109,15 @@ public class FXMLLogingController implements Initializable {
             } catch (IOException e) {
                 Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
             }
-        } else if(usuario.getIdRollUsuario() == Constantes.ID_ROL_COMERCIAL){
+        } else if (usuario.getIdRollUsuario() == Constantes.ID_ROL_COMERCIAL) {
             try {
                 Stage stage = (Stage) tfUserName.getScene().getWindow();
 
-                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHome2.fxml"));
+                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHomeComercial.fxml"));
                 Parent vista = loadVista.load();
 
-                FXMLHomelController2 controladorHome = loadVista.getController();
-                controladorHome.inicializarHome2(usuario);
+                FXMLHomeComercialController controladorHome = loadVista.getController();
+                controladorHome.inicializarHomeComercial(usuario);
 
                 Scene scene = new Scene(vista);
                 stage.setScene(scene);
@@ -132,5 +131,4 @@ public class FXMLLogingController implements Initializable {
 
     }
 
-    
 }

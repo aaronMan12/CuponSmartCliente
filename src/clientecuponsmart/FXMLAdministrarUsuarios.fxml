@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,45 +16,45 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdministrarUsuariosController">
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLAdministrarUsuariosController">
    <children>
-      <Pane prefHeight="700.0" prefWidth="994.0" style="-fx-background-color: white;">
+      <Pane prefHeight="653.0" prefWidth="994.0" style="-fx-background-color: white;">
          <children>
-            <Pane layoutX="-2.0" prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
+            <Pane layoutX="-2.0" prefHeight="93.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 5px;">
                <children>
-                  <Label layoutX="334.0" layoutY="34.0" text="Modulo de Usuario">
+                  <Label layoutX="392.0" layoutY="29.0" text="Modulo de Usuario">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="40.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="39.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../componentes/logoRedondo.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button layoutX="486.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" style="-fx-background-color: #FEDB39;" text="Registrar">
+            <Button layoutX="585.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FEDB39;" text="Registrar">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="660.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnFormularioEditar" style="-fx-background-color: #FEDB39;" text="Editar">
+            <Button layoutX="722.0" layoutY="119.0" mnemonicParsing="false" onAction="#btnFormularioEditar" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #FEDB39;" text="Editar">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="823.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" style="-fx-background-color: #FEDB39;" text="Eliminar">
+            <Button layoutX="860.0" layoutY="119.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #FEDB39;" text="Eliminar">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <TextField layoutX="46.0" layoutY="157.0" promptText="Buscar Usuario">
+            <TextField layoutX="31.0" layoutY="117.0" prefHeight="39.0" prefWidth="224.0" promptText="Buscar Usuario">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TableView fx:id="tvUsuarios" layoutX="1.0" layoutY="226.0" prefHeight="476.0" prefWidth="994.0">
+            <TableView fx:id="tvUsuarios" layoutY="176.0" prefHeight="476.0" prefWidth="994.0">
               <columns>
                 <TableColumn fx:id="colNombre" prefWidth="159.0" text="Nombre" />
                   <TableColumn fx:id="colApellidoPaterno" prefWidth="169.0" text="Apellido Paterno" />
@@ -59,11 +64,12 @@
                   <TableColumn fx:id="colUsuario" minWidth="0.0" prefWidth="178.0" text="Usuario" />
               </columns>
             </TableView>
-            <Button layoutX="270.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnFormularioBuscar" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #FEDB39;" text="Buscar">
+            <Button layoutX="447.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnFormularioBuscar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FEDB39;" text="Buscar">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Button>
+            <ComboBox fx:id="cbBusqueda" layoutX="275.0" layoutY="117.0" prefHeight="39.0" prefWidth="150.0" promptText="Buscar por..." style="-fx-background-color: #FEDB39;" />
          </children>
       </Pane>
    </children>

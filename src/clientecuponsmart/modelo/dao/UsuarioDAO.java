@@ -17,22 +17,19 @@ import java.net.HttpURLConnection;
  * @author Oscar
  */
 public class UsuarioDAO {
-    
-    public static RespuestaUsuarioEscritorio buscarPorUserName(String userName){
-    RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
-    String url = Constantes.URL_WS +"usuarios/buscarPorUserName/" + userName;
-    CodigoHTTP codigoRespuesta = ConexionHTTP.peticionGET(url);
-    if(codigoRespuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
-    respuesta.setError(false);
-    Gson gson = new Gson();
-    respuesta = gson.fromJson(codigoRespuesta.getContenido(), RespuestaUsuarioEscritorio.class);
-    
-    }else{
-        
-    respuesta.setError(true);
-    respuesta.setContenido(url);
-    
-    }
-    return respuesta;
+
+    public static RespuestaUsuarioEscritorio buscarPorUserName(String userName) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "usuarios/buscarPorUserName/" + userName;
+        CodigoHTTP codigoRespuesta = ConexionHTTP.peticionGET(url);
+        if (codigoRespuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoRespuesta.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+        return respuesta;
     }
 }

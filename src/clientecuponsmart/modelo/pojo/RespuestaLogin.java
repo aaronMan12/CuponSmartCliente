@@ -4,16 +4,14 @@ public class RespuestaLogin {
     private Boolean error;
     private String contenido;
     private Usuario usuarioSesion;
-    private Empresa empresaSesion;
 
     public RespuestaLogin() {
     }
 
-    public RespuestaLogin(Boolean error, String contenido, Usuario usuarioSesion, Empresa empresaSesion) {
+    public RespuestaLogin(Boolean error, String contenido, Usuario usuarioSesion) {
         this.error = error;
         this.contenido = contenido;
         this.usuarioSesion = usuarioSesion;
-        this.empresaSesion = empresaSesion;
     }
 
     public Boolean getError() {
@@ -36,18 +34,8 @@ public class RespuestaLogin {
         return usuarioSesion;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuarioSesion(Usuario usuarioSesion) {
         this.usuarioSesion = usuarioSesion;
     }
-
-    public Empresa getEmpresaSesion() {
-        return empresaSesion;
-    }
-
-    public void setEmpresaSesion(Empresa empresaSesion) {
-        this.empresaSesion = empresaSesion;
-    }
-    
-    
     
 }

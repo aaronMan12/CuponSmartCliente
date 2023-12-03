@@ -17,22 +17,23 @@ import javafx.scene.control.Label;
  *
  * @author Oscar
  */
-public class FXMLHomelController2 implements Initializable {
+public class FXMLHomeComercialController implements Initializable {
 
     private Usuario usuarioSesion;
     @FXML
     private Label lbNombreUsuario;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    public void inicializarHome2(Usuario usuarioSesion){
-    this.usuarioSesion = usuarioSesion;
-    lbNombreUsuario.setText(usuarioSesion.getNombre()+" "
-    +usuarioSesion.getApellidoPaterno()+" "+usuarioSesion.getApellidoMaterno());
+    }
+
+    public void inicializarHomeComercial(Usuario usuarioSesion) {
+        this.usuarioSesion = usuarioSesion;
+        lbNombreUsuario.setText(usuarioSesion.getNombre() + " "
+                + usuarioSesion.getApellidoPaterno() + " " + usuarioSesion.getApellidoMaterno());
     }
 }

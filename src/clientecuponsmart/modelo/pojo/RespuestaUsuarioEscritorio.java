@@ -6,15 +6,15 @@ import java.util.List;
 public class RespuestaUsuarioEscritorio {
     private boolean error;
     private String contenido;
-    private List <Usuario> usuario;
-
+    private List<Usuario> usuarios;
+    
     public RespuestaUsuarioEscritorio() {
     }
 
-    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuario) {
+    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios) {
         this.error = error;
         this.contenido = contenido;
-        this.usuario = usuario;
+        this.usuarios = usuarios;
     }
 
     public boolean isError() {
@@ -33,14 +33,12 @@ public class RespuestaUsuarioEscritorio {
         this.contenido = contenido;
     }
 
-    public List<Usuario> getUsuario() {
-        return usuario;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
-    
-    
-    
+
 }

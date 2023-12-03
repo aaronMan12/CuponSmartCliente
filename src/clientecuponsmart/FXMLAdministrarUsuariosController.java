@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -23,6 +24,7 @@ import javafx.scene.control.TableView;
 public class FXMLAdministrarUsuariosController implements Initializable {
 
     private int idUsuario;
+    
     private ObservableList<Usuario> usuariosEmpresa;
     @FXML
     private TableView<Usuario> tvUsuarios;
@@ -38,6 +40,8 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private TableColumn colEmail;
     @FXML
     private TableColumn colUsuario;
+    @FXML
+    private ComboBox cbBusqueda;
     /**
      * Initializes the controller class.
      */
