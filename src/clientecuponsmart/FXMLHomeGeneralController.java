@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clientecuponsmart;
 
-import clientecuponsmart.modelo.pojo.Empresa;
 import clientecuponsmart.modelo.pojo.Usuario;
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +45,6 @@ public class FXMLHomeGeneralController implements Initializable {
             stage.setTitle("Usuarios");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

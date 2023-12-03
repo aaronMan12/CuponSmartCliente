@@ -61,7 +61,7 @@
                   <TableColumn fx:id="colApellidoMaterno" prefWidth="156.0" text="Apellido Materno" />
                   <TableColumn fx:id="colCurp" prefWidth="147.0" text="CURP" />
                   <TableColumn fx:id="colEmail" prefWidth="184.0" text="Correo Electronico" />
-                  <TableColumn fx:id="colUsuario" minWidth="0.0" prefWidth="178.0" text="Usuario" />
+                  <TableColumn fx:id="colUserName" minWidth="0.0" prefWidth="178.0" text="User name" />
               </columns>
             </TableView>
             <Button layoutX="447.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnFormularioBuscar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FEDB39;" text="Buscar">

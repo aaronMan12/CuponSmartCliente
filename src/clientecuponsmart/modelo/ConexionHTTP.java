@@ -12,9 +12,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ConexionHTTP {
-    
-    
-      public static CodigoHTTP peticionPOST(String url, String parametros) {
+
+    public static CodigoHTTP peticionPOST(String url, String parametros) {
         CodigoHTTP respuesta = new CodigoHTTP();
         try {
             URL urlServicio = new URL(url);
@@ -50,24 +49,8 @@ public class ConexionHTTP {
         return respuesta;
 
     }
-    
-    
-    
-    
-     private static String convertirContenido(InputStream contenido) throws IOException {
-        InputStreamReader inputLectura = new InputStreamReader(contenido);
-        BufferedReader buffer = new BufferedReader(inputLectura);
-        String cadenaEntrada;
-        StringBuffer cadenaBuffer = new StringBuffer();
-        while ((cadenaEntrada = buffer.readLine()) != null) {
-            cadenaBuffer.append(cadenaEntrada);
-        }
-        buffer.close();
-        return cadenaBuffer.toString();
 
-    }
-     
-     public static CodigoHTTP peticionGET(String url) {
+    public static CodigoHTTP peticionGET(String url) {
         CodigoHTTP respuesta = new CodigoHTTP();
         try {
             URL urlServicio = new URL(url);
@@ -93,4 +76,19 @@ public class ConexionHTTP {
         return respuesta;
     }
     
+     private static String convertirContenido(InputStream contenido) throws IOException {
+        InputStreamReader inputLectura = new InputStreamReader(contenido);
+        
+        BufferedReader buffer = new BufferedReader(inputLectura);
+        String cadenaEntrada;
+        StringBuffer cadenaBuffer = new StringBuffer();
+        
+        while ((cadenaEntrada = buffer.readLine()) != null) {
+            cadenaBuffer.append(cadenaEntrada);
+        }
+        
+        buffer.close();
+        return cadenaBuffer.toString();
+    }
+
 }

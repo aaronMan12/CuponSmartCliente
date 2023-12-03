@@ -32,4 +32,21 @@ public class UsuarioDAO {
         }
         return respuesta;
     }
+
+    public static RespuestaUsuarioEscritorio buscarTodosLosUsuarios() {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "usuarios/buscarUsuarios";
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+
+        return respuesta;
+    }
 }
