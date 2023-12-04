@@ -12,59 +12,63 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLLogingController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLLogingController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FEDB39;">
+      <Pane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;">
          <children>
-            <ImageView fitHeight="291.0" fitWidth="307.0" layoutX="55.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="600.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../componentes/logoRedondo.png" />
+                  <Image url="@../componentes/bgLogin.png" />
                </image>
             </ImageView>
-         </children>
-      </Pane>
-      <Pane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #fff;">
-         <children>
             <Label layoutX="109.0" layoutY="54.0" text="CUPON SMART" textFill="#171717">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Button layoutX="81.0" layoutY="451.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #FEDB39;" text="INGRESAR" textFill="#171717">
+            <Button layoutX="81.0" layoutY="449.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #FEDB39;" text="INGRESAR" textFill="#171717">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <effect>
-                  <DropShadow color="#17171734" height="11.5" offsetY="3.0" radius="2.375" width="0.0" />
-               </effect>
             </Button>
-            <Label layoutX="27.0" layoutY="188.0" text="User name" textFill="#171717">
+            <Label layoutX="25.0" layoutY="180.0" text="User name" textFill="#171717">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="tfUserName" layoutX="67.0" layoutY="219.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="User name" style="-fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: #fff;" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="26.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="tfUserName" layoutX="65.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="User name" style="-fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: #fff;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="24.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../componentes/user.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbValidacionCorreo" layoutX="70.0" layoutY="263.0" prefHeight="25.0" prefWidth="278.0" textFill="#ea0a0a" />
-            <PasswordField fx:id="tfContrasenia" layoutX="70.0" layoutY="339.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="Contraseña" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="29.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="lbValidacionCorreo" layoutX="68.0" layoutY="251.0" prefHeight="25.0" prefWidth="278.0" textFill="#171717" />
+            <PasswordField fx:id="tfContrasenia" layoutX="68.0" layoutY="331.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="Contraseña" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="27.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../componentes/lock.png" />
                </image>
             </ImageView>
-            <Label layoutX="28.0" layoutY="314.0" text="Contraseña" textFill="#171717">
+            <Label layoutX="26.0" layoutY="306.0" text="Contraseña" textFill="#171717">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lbValidacionContrasenia" layoutX="70.0" layoutY="387.0" prefHeight="25.0" prefWidth="307.0" textFill="#ea0a0a" />
+            <Label fx:id="lbValidacionContrasenia" layoutX="68.0" layoutY="371.0" prefHeight="25.0" prefWidth="307.0" textFill="#171717" />
+            <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="50.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/logoRedondo.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
