@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -10,77 +17,119 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLActualizarEmpresaController">
+<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarUsuarioController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0">
+      <AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="900.0" style="-fx-background-color: #fff;">
          <children>
-            <Pane prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
+            <ImageView fitHeight="387.0" fitWidth="900.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/bgRegistrarUsuario.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="85.0" prefWidth="900.0" style="-fx-background-color: FEDB39;">
                <children>
-                  <Label layoutX="449.0" layoutY="14.0" text="Administrador">
+                  <Label layoutX="292.0" layoutY="16.0" text="Administración de usuarios">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="391.0" layoutY="47.0" text="Datos del administrador">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="46.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../componentes/logoRedondo.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="81.0" layoutY="166.0" text="Nombre:">
+            <Label layoutX="46.0" layoutY="100.0" text="Nombre:">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="72.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre del Administrador" />
-            <Label layoutX="520.0" layoutY="166.0" text="Apellido Paterno">
+            <TextField fx:id="tfNombre" layoutX="46.0" layoutY="117.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Juan" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <Label layoutX="328.0" layoutY="100.0" text="Apellido Paterno">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="512.0" layoutY="194.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el apellido paterno del administrador" />
-            <Label layoutX="81.0" layoutY="247.0" text="Apellido Materno">
+            <TextField fx:id="tfApellidoPaterno" layoutX="328.0" layoutY="117.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Hernandez" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <Label layoutX="605.0" layoutY="100.0" text="Apellido Materno:">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="72.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el apellido materno del administrador" />
-            <Label layoutX="521.0" layoutY="247.0" text="CURP">
+            <TextField fx:id="tfApellidoMaterno" layoutX="605.0" layoutY="117.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Carmona" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <Label layoutX="328.0" layoutY="199.0" text="CURP">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="512.0" layoutY="276.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el CURP" />
-            <Label layoutX="81.0" layoutY="321.0" text="Email">
+            <TextField fx:id="tfCurp" layoutX="328.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. KIXX050505HDFXYZ06" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <Label layoutX="46.0" layoutY="199.0" text="Email:">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar la pagina web de la Empresa" />
-            <Label layoutX="527.0" layoutY="321.0" text="Usuario:">
+            <Label layoutX="605.0" layoutY="199.0" text="User name:">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="512.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre de usuario del administrador" />
-            <Label layoutX="80.0" layoutY="390.0" text="Contraseña">
+            <TextField fx:id="tfUserName" layoutX="605.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. juan45" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <Label layoutX="46.0" layoutY="298.0" text="Contraseña:">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="734.0" layoutY="490.0" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+            <Button layoutX="625.0" layoutY="402.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #FEDB39;" text="GUARDAR">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <TextField layoutX="72.0" layoutY="350.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el correo electronico del administrador" />
-            <PasswordField layoutX="72.0" layoutY="422.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresa la contraseña del administrador" />
+            <TextField fx:id="tfEmail" layoutX="46.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. juan76@gmail.com" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <PasswordField fx:id="tfContrasenia" layoutX="46.0" layoutY="315.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 12345423" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+            <ComboBox fx:id="cbRoll" layoutX="323.0" layoutY="315.0" prefHeight="40.0" prefWidth="250.0" promptText="Seleccionar roll" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <ComboBox fx:id="cbEmpresa" layoutX="605.0" layoutY="315.0" prefHeight="40.0" prefWidth="250.0" promptText="Seleccionar empresa" style="-fx-background-color: #FFF; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Label fx:id="lbNombre" layoutX="46.0" layoutY="157.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbApellidoPaterno" layoutX="328.0" layoutY="157.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbCurp" layoutX="328.0" layoutY="256.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbEmail" layoutX="46.0" layoutY="256.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbUserName" layoutX="605.0" layoutY="257.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbApellidoMaterno" layoutX="605.0" layoutY="158.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbContrasenia" layoutX="46.0" layoutY="355.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbEmpresa" layoutX="605.0" layoutY="356.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+            <Label fx:id="lbRoll" layoutX="328.0" layoutY="355.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
          </children>
       </AnchorPane>
    </children>
