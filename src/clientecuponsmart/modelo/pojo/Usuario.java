@@ -11,7 +11,7 @@ public class Usuario {
   private String userName;
   private String contrasenia;
   private Integer idEmpresa;
-  private Integer idRollUsuario;  
+  private Integer idRollUsuario;
 
     public Usuario() {
     }
