@@ -13,10 +13,6 @@ import clientecuponsmart.utils.Constantes;
 import com.google.gson.Gson;
 import java.net.HttpURLConnection;
 
-/**
- *
- * @author Oscar
- */
 public class UsuarioDAO {
 
     public static RespuestaUsuarioEscritorio buscarPorUserName(String userName) {
@@ -39,6 +35,40 @@ public class UsuarioDAO {
         String url = Constantes.URL_WS + "usuarios/buscarUsuarios/" + idUsuario;
         CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
 
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio buscarRolles() {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "usuarios/buscarRolles";
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio buscarEmpresas() {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "empresas/buscarEmpresas";
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
         if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
             respuesta.setError(false);
             Gson gson = new Gson();
@@ -89,4 +119,43 @@ public class UsuarioDAO {
         }
         return respuesta;
     }
+    
+    public static RespuestaUsuarioEscritorio registrarUsuarioComercial(Usuario usuario) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        
+        String url = Constantes.URL_WS + "usuarios/registrarUsuario";
+        String parametros = String.format("nombre=%s&apellidoPaterno=%s&apellidoMaterno=%s&curp=%s&correo=%s&userName=%s&contrasenia=%s&idRollUsuario=%s&idEmpresa=%s", 
+                usuario.getNombre(), usuario.getApellidoPaterno(), usuario.getApellidoMaterno(), usuario.getCurp(),
+                usuario.getCorreo(), usuario.getUserName(), usuario.getContrasenia(), usuario.getIdRollUsuario(), usuario.getIdEmpresa());
+        CodigoHTTP respuestaWS = ConexionHTTP.peticionPOST(url, parametros);
+        
+        if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(respuestaWS.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Error en la petición para el registrar el usuario.");
+        }
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio registrarUsuarioGeneral(Usuario usuario) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        
+        String url = Constantes.URL_WS + "usuarios/registrarUsuario";
+        String parametros = String.format("nombre=%s&apellidoPaterno=%s&apellidoMaterno=%s&curp=%s&correo=%s&userName=%s&contrasenia=%s&idRollUsuario=%s", 
+                usuario.getNombre(), usuario.getApellidoPaterno(), usuario.getApellidoMaterno(), usuario.getCurp(),
+                usuario.getCorreo(), usuario.getUserName(), usuario.getContrasenia(), usuario.getIdRollUsuario());
+        CodigoHTTP respuestaWS = ConexionHTTP.peticionPOST(url, parametros);
+        
+        if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(respuestaWS.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Error en la petición para el registrar el usuario.");
+        }
+        return respuesta;
+    }
+
 }
