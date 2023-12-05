@@ -157,5 +157,9 @@ public class Empresa {
         this.ciudad = ciudad;
     }
     
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
     
 }
