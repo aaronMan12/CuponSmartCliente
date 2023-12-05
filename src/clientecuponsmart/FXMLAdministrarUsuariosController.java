@@ -2,6 +2,7 @@ package clientecuponsmart;
 
 import clientecuponsmart.modelo.dao.UsuarioDAO;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
+import clientecuponsmart.modelo.pojo.Roll;
 import clientecuponsmart.modelo.pojo.Usuario;
 import clientecuponsmart.utils.Utilidades;
 import java.io.IOException;
@@ -58,8 +59,11 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private void btnFormularioRegistrar(ActionEvent event) {
         try {
             FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
-            Parent vista =  vistaLoad.load();
-            
+            Parent vista = vistaLoad.load();
+
+            FXMLRegistrarUsuarioController controlador = vistaLoad.getController();
+            controlador.inicializarInformacionRegistro();
+
             Stage stage = new Stage();
             Scene scene = new Scene(vista);
             stage.setScene(scene);
@@ -76,14 +80,14 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         int posicionSeleccionada = tvUsuarios.getSelectionModel().getSelectedIndex();
         if (posicionSeleccionada != -1) {
             Usuario usuario = usuarios.get(posicionSeleccionada);
-            
+
             try {
                 FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
                 Parent vista = vistaLoad.load();
-                
+
                 FXMLRegistrarUsuarioController controlador = vistaLoad.getController();
                 controlador.inicializarInformacion(usuario);
-                
+
                 Stage stage = new Stage();
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
@@ -119,7 +123,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     @FXML
     private void btnFormularioBuscar(ActionEvent event) {
     }
-    
+
     public void inicializarInformacion(int idUsuario) {
         consultarInformacionUsuarios(idUsuario);
     }
@@ -144,5 +148,5 @@ public class FXMLAdministrarUsuariosController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
     }
-    
+
 }
