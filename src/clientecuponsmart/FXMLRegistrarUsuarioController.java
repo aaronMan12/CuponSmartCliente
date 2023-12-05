@@ -1,11 +1,19 @@
 package clientecuponsmart;
 
 import clientecuponsmart.modelo.dao.UsuarioDAO;
+import clientecuponsmart.modelo.pojo.Empresa;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
+import clientecuponsmart.modelo.pojo.Roll;
 import clientecuponsmart.modelo.pojo.Usuario;
+import clientecuponsmart.utils.Constantes;
 import clientecuponsmart.utils.Utilidades;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +27,12 @@ import javafx.stage.Stage;
 public class FXMLRegistrarUsuarioController implements Initializable {
 
     private Usuario usuario;
+
+    private ObservableList<Roll> rolles;
+    private ObservableList<Empresa> empresas;
+
+    private Integer idRoll;
+    private Integer idEmpresa;
 
     @FXML
     private TextField tfNombre;
@@ -75,19 +89,34 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                 usuarioEditado.setUserName(this.tfUserName.getText());
                 usuarioEditado.setContrasenia(this.tfContrasenia.getText());
                 usuarioEditado.setIdUsuario(this.usuario.getIdUsuario());
-                
+
                 editarUsuario(usuarioEditado);
             } else {
-                // TODO registrar 
+                Usuario usuarioNuevo = new Usuario();
+                usuarioNuevo.setNombre(this.tfNombre.getText());
+                usuarioNuevo.setApellidoPaterno(this.tfApellidoPaterno.getText());
+                usuarioNuevo.setApellidoMaterno(this.tfApellidoMaterno.getText());
+                usuarioNuevo.setCorreo(this.tfEmail.getText());
+                usuarioNuevo.setCurp(this.tfCurp.getText());
+                usuarioNuevo.setUserName(this.tfUserName.getText());
+                usuarioNuevo.setContrasenia(this.tfContrasenia.getText());
+                usuarioNuevo.setIdRollUsuario(idRoll);
+
+                if (idRoll == Constantes.ID_ROL_COMERCIAL) {
+                    usuarioNuevo.setIdEmpresa(idEmpresa);
+
+                    this.registrarUsuarioComercial(usuarioNuevo);
+                } else {
+                    this.registrarUsuarioGeneral(usuarioNuevo);
+                }
             }
         }
     }
 
-    // Registrar
     private boolean validarCampos() {
         this.limpiarErrores();
-        
-        String errorMensaje = "Campo invalido";
+
+        String errorMensaje = "Campo invalido.";
         boolean isCamposVacios = true;
 
         if (tfNombre.getText().isEmpty()) {
@@ -125,6 +154,16 @@ public class FXMLRegistrarUsuarioController implements Initializable {
             isCamposVacios = false;
         }
 
+        if (idRoll == null) {
+            lbRoll.setText(errorMensaje);
+            isCamposVacios = false;
+        }
+
+        if (idEmpresa == null) {
+            lbEmpresa.setText(errorMensaje);
+            isCamposVacios = false;
+        }
+
         return isCamposVacios;
     }
 
@@ -136,14 +175,51 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         lbCurp.setText("");
         lbUserName.setText("");
         lbContrasenia.setText("");
+        lbEmpresa.setText("");
+        lbRoll.setText("");
     }
 
     public void inicializarInformacion(Usuario usuario) {
         this.usuario = usuario;
+        this.idEmpresa = -1;
+        this.idRoll = -1;
         this.cargarInformacion();
         this.ocultarCampos();
     }
-    
+
+    public void inicializarInformacionRegistro() {
+        this.cargarInformacionRolles();
+        this.configurarSeleccionRoll();
+        this.cargarInformacionEmpresas();
+        this.configurarSeleccionEmpresa();
+    }
+
+    private void cargarInformacionRolles() {
+        rolles = FXCollections.observableArrayList();
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarRolles();
+
+        if (!respuesta.isError()) {
+            List<Roll> roll = respuesta.getRoles();
+            rolles.addAll(roll);
+            cbRoll.setItems(rolles);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al mostrar los rolles.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void cargarInformacionEmpresas() {
+        empresas = FXCollections.observableArrayList();
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarEmpresas();
+
+        if (!respuesta.isError()) {
+            List<Empresa> empresa = respuesta.getEmpresas();
+            empresas.addAll(empresa);
+            cbEmpresa.setItems(empresas);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al mostrar las empresas.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
     private void cargarInformacion() {
         this.tfNombre.setText(this.usuario.getNombre());
         this.tfApellidoPaterno.setText(this.usuario.getApellidoPaterno());
@@ -153,23 +229,69 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         this.tfUserName.setText(this.usuario.getUserName());
         this.tfContrasenia.setText(this.usuario.getContrasenia());
     }
-    
+
     private void ocultarCampos() {
         this.cbRoll.setVisible(false);
         this.cbEmpresa.setVisible(false);
     }
-     
-    private void editarUsuario (Usuario usuario) {
+
+    private void editarUsuario(Usuario usuario) {
         RespuestaUsuarioEscritorio respuesta = UsuarioDAO.editarUsuario(usuario);
-        
+
         if (!respuesta.isError()) {
-            Utilidades.mostrarAlertaSimple("Paciente actualizado", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Usuario actualizado.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
             cerrarPantalla();
         } else {
-            Utilidades.mostrarAlertaSimple("Error al actualizar", respuesta.getContenido(), Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error al actualizar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
     }
-    
+
+    private void registrarUsuarioComercial(Usuario usuario) {
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.registrarUsuarioComercial(usuario);
+
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Usuario registrado.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void registrarUsuarioGeneral(Usuario usuario) {
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.registrarUsuarioGeneral(usuario);
+
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Usuario registrado.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void configurarSeleccionRoll() {
+        cbRoll.valueProperty().addListener(new ChangeListener<Roll>() {
+            @Override
+            public void changed(ObservableValue<? extends Roll> observable, Roll oldValue, Roll newValue) {
+                cbEmpresa.setVisible(true);
+                idRoll = newValue.getIdRollUsuario();
+                idEmpresa = null;
+                if (newValue.getIdRollUsuario() == Constantes.ID_ROL_GENERAL) {
+                    cbEmpresa.setVisible(false);
+                    idEmpresa = -1;
+                }
+            }
+        });
+    }
+
+    private void configurarSeleccionEmpresa() {
+        cbEmpresa.valueProperty().addListener(new ChangeListener<Empresa>() {
+            @Override
+            public void changed(ObservableValue<? extends Empresa> observable, Empresa oldValue, Empresa newValue) {
+                idEmpresa = newValue.getIdEmpresa();
+            }
+        });
+    }
+
     private void cerrarPantalla() {
         Stage stage = (Stage) tfNombre.getScene().getWindow();
         stage.close();
@@ -179,5 +301,5 @@ public class FXMLRegistrarUsuarioController implements Initializable {
     ** EN LA PANTALLA DE MODULO USUARIOS DEBO DE IMPLEMENTAR LAS BUSQUEDAS 
     ** EN LA PANTALLA DE REGISTRAR DEBO DE IMPLEMENTAR LA CARGA DE LOS COMBO BOX
     ** EN LA PANTALLA DE MODULO USUARIOS DEBO DE IMPLEMENTAR EL LLEVADO DE LA BUSQUEDA POR...
-    */
+     */
 }
