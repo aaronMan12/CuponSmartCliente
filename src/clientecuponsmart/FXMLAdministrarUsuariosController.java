@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 public class FXMLAdministrarUsuariosController implements Initializable {
 
     private ObservableList<Usuario> usuarios;
-
+    
     @FXML
     private TableView<Usuario> tvUsuarios;
     @FXML
@@ -137,6 +137,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         colUserName.setCellValueFactory(new PropertyValueFactory("userName"));
         colEmail.setCellValueFactory(new PropertyValueFactory("correo"));
         colCurp.setCellValueFactory(new PropertyValueFactory("curp"));
+        colRoll.setCellValueFactory(new PropertyValueFactory("nombreRol"));
     }
 
     private void consultarInformacionUsuarios(Integer idUsuario) {
