@@ -48,6 +48,8 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private TableColumn colUserName;
     @FXML
     private TextField tfBuscarUsuario;
+    @FXML
+    private TableColumn colRoll;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
