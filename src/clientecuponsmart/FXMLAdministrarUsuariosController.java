@@ -1,6 +1,7 @@
 package clientecuponsmart;
 
 import clientecuponsmart.modelo.dao.UsuarioDAO;
+import clientecuponsmart.modelo.pojo.BusquedaUsuario;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.modelo.pojo.Roll;
 import clientecuponsmart.modelo.pojo.Usuario;
@@ -9,8 +10,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,8 +33,17 @@ import javafx.stage.Stage;
 
 public class FXMLAdministrarUsuariosController implements Initializable {
 
+    // CONSTANTES
+    private final int BUSQUEDA_POR_NOMBRE = 1;
+    private final int BUSQUEDA_POR_USERNAME = 2;
+    private final int BUSQUEDA_POR_ROL = 3;
+
     private ObservableList<Usuario> usuarios;
-    
+    private FilteredList<Usuario> filteredListUsuarios;
+
+    private ObservableList<BusquedaUsuario> usuariosBusqueda;
+    private Integer idBusquedaSeleccion;
+
     @FXML
     private TableView<Usuario> tvUsuarios;
     @FXML
@@ -54,7 +68,11 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuarios = FXCollections.observableArrayList();
+        usuariosBusqueda = FXCollections.observableArrayList();
         this.configurarColumnasTabla();
+        this.cargarInformacionBusqueda();
+        this.configurarSeleccionBusqueda();
+        this.configurartfBuscarUsuario();
     }
 
     @FXML
@@ -81,7 +99,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private void btnFormularioEditar(ActionEvent event) {
         int posicionSeleccionada = tvUsuarios.getSelectionModel().getSelectedIndex();
         if (posicionSeleccionada != -1) {
-            Usuario usuario = usuarios.get(posicionSeleccionada);
+            Usuario usuario = filteredListUsuarios.get(posicionSeleccionada);
 
             try {
                 FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
@@ -109,7 +127,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         int posicionSeleccionada = tvUsuarios.getSelectionModel().getSelectedIndex();
 
         if (posicionSeleccionada != -1) {
-            Usuario usuario = usuarios.get(posicionSeleccionada);
+            Usuario usuario = filteredListUsuarios.get(posicionSeleccionada);
             RespuestaUsuarioEscritorio mensaje = UsuarioDAO.eliminarUsuario(usuario.getIdUsuario());
 
             if (!mensaje.isError()) {
@@ -120,10 +138,6 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         } else {
             Utilidades.mostrarAlertaSimple("Selección de usuario", "Para poder eliminar debes seleccionar un usuario de la tabla", Alert.AlertType.WARNING);
         }
-    }
-
-    @FXML
-    private void btnFormularioBuscar(ActionEvent event) {
     }
 
     public void inicializarInformacion(int idUsuario) {
@@ -146,10 +160,62 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         if (!respuesta.isError()) {
             List<Usuario> listUsuarios = (List<Usuario>) respuesta.getUsuarios();
             usuarios.addAll(listUsuarios);
-            tvUsuarios.setItems(usuarios);
+            filteredListUsuarios = new FilteredList<>(usuarios);
+            tvUsuarios.setItems(filteredListUsuarios);
         } else {
             Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
+    }
+
+    private void cargarInformacionBusqueda() {
+        usuariosBusqueda.addAll(
+                new BusquedaUsuario(this.BUSQUEDA_POR_NOMBRE, "Buscar por nombre"),
+                new BusquedaUsuario(this.BUSQUEDA_POR_USERNAME, "Buscar por userName"),
+                new BusquedaUsuario(this.BUSQUEDA_POR_ROL, "Buscar por rol"));
+        cbBusqueda.setItems(usuariosBusqueda);
+    }
+
+    private void configurarSeleccionBusqueda() {
+
+        cbBusqueda.valueProperty().addListener(new ChangeListener<BusquedaUsuario>() {
+            @Override
+            public void changed(ObservableValue<? extends BusquedaUsuario> observable, BusquedaUsuario oldValue, BusquedaUsuario newValue) {
+                idBusquedaSeleccion = newValue.getIdBusqueda();
+                tfBuscarUsuario.setText("");
+            }
+        });
+    }
+
+    private void configurartfBuscarUsuario() {
+        tfBuscarUsuario.textProperty().addListener((textObservable, oldText, newText) -> {
+            if (newText.isEmpty()) {
+                filteredListUsuarios.setPredicate(null);
+            } else {
+                if (idBusquedaSeleccion == null) {
+                    tfBuscarUsuario.setText("");
+                    Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
+                } else {
+                    buscarUsuarios(idBusquedaSeleccion, newText);
+                }
+            }
+        });
+    }
+
+    private void buscarUsuarios(int idBusqueda, String busqueda) {
+        Predicate<Usuario> predicado = new Predicate<Usuario>() {
+            @Override
+            public boolean test(Usuario usuario) {
+                switch (idBusqueda) {
+                    case BUSQUEDA_POR_NOMBRE:
+                        return usuario.getNombre().equals(busqueda);
+                    case BUSQUEDA_POR_USERNAME:
+                        return usuario.getUserName().equals(busqueda);
+                    default:
+                        return usuario.getNombreRol().equals(busqueda);
+                }
+            }
+        };
+        filteredListUsuarios.setPredicate(predicado);
     }
 
 }
