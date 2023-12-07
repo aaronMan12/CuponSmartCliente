@@ -12,11 +12,12 @@ public class Usuario {
   private String contrasenia;
   private Integer idEmpresa;
   private Integer idRollUsuario;
+  private String nombreRol;
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String curp, String correo, String userName, String contrasenia, Integer idEmpresa, Integer idRollUsuario) {
+    public Usuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String curp, String correo, String userName, String contrasenia, Integer idEmpresa, Integer idRollUsuario, String nombreRol) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -27,6 +28,15 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.idEmpresa = idEmpresa;
         this.idRollUsuario = idRollUsuario;
+        this.nombreRol = nombreRol;
+    }
+
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
 
     public Integer getIdUsuario() {
