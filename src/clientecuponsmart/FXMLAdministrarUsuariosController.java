@@ -111,7 +111,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
                 Stage stage = new Stage();
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
-                stage.setTitle("Actualizar usuario");
+                stage.setTitle("Editar usuario");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (IOException e) {
