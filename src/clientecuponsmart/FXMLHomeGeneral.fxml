@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -10,39 +13,64 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLHomeGeneralController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLHomeGeneralController">
    <children>
-      <Pane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #FEDB39;">
+      <Pane prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: #FFF;">
          <children>
-            <Pane prefHeight="120.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 5px;">
-               <children>
-                  <Label fx:id="lbNombreUsuario" layoutX="26.0" layoutY="14.0" text="Nombre: ">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="628.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #FEDB39;" text="Cerrar Sesion">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="26.0" layoutY="67.0" text="Rol: ">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="76.0" layoutY="67.0" prefHeight="21.0" prefWidth="138.0" text="General">
-                     <font>
-                        <Font name="Arial" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Button layoutX="51.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionUsuarios" prefHeight="120.0" prefWidth="138.0" text="Modulo Usuario" />
-            <Button layoutX="226.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionEmpresas" prefHeight="120.0" prefWidth="138.0" text="Modulo Empresa" />
-            <Button layoutX="393.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionSucursales" prefHeight="120.0" prefWidth="138.0" text="Modulo Sucursal" />
-            <Button layoutX="581.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnGestionPromociones" prefHeight="120.0" prefWidth="138.0" text="Modulo Promocion" />
-            <Button layoutX="306.0" layoutY="386.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="138.0" text="Modulo Cupon" />
+            <ImageView fitHeight="200.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/bgHomeGeneral.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="301.0" fitWidth="603.0" layoutX="29.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/bgPanel.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnIconUsuarios" layoutX="72.0" layoutY="151.0" mnemonicParsing="false" onAction="#btnGestionUsuarios" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnIconEmpresas" layoutX="275.0" layoutY="152.0" mnemonicParsing="false" onAction="#btnGestionEmpresas" prefHeight="99.0" prefWidth="100.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnIconSucursales" layoutX="170.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnGestionSucursales" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnIconPromociones" layoutX="375.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnGestionPromociones" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnIconCupon" layoutX="464.0" layoutY="152.0" mnemonicParsing="false" onAction="#btnGestionCupon" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label fx:id="lbNombreUsuario" layoutX="433.0" layoutY="27.0" prefHeight="20.0" prefWidth="170.0" text="Nombre: ">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="433.0" layoutY="47.0" prefHeight="21.0" prefWidth="138.0" text="General">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="189.0" layoutX="85.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/logoNombre.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="36.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../componentes/logoRedondo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnIconCuenta" layoutX="383.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnGestionCuenta" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </Pane>
    </children>
