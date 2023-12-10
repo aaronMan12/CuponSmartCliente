@@ -1,6 +1,7 @@
 package clientecuponsmart;
 
 import clientecuponsmart.modelo.pojo.Usuario;
+import clientecuponsmart.utils.Constantes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class FXMLHomeGeneralController implements Initializable {
+public class FXMLHomeController implements Initializable {
 
     private Usuario usuarioSesion;
 
@@ -35,15 +36,23 @@ public class FXMLHomeGeneralController implements Initializable {
     private Button btnIconCupon;
     @FXML
     private Button btnIconCuenta;
+    @FXML
+    private Label lbRol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.cargarImagenes();
     }
 
-    public void inicializarHomeGeneral(Usuario usuarioSesion) {
+    public void inicializarHome(Usuario usuarioSesion) {
         this.usuarioSesion = usuarioSesion;
-        lbNombreUsuario.setText(usuarioSesion.getNombre() + " " + usuarioSesion.getApellidoPaterno() + " " + usuarioSesion.getApellidoMaterno());
+        lbNombreUsuario.setText(usuarioSesion.getNombre() + " " + usuarioSesion.getApellidoPaterno());
+        if (usuarioSesion.getIdRollUsuario() == Constantes.ID_ROL_GENERAL) {
+            lbRol.setText("General");
+        } else {
+            lbRol.setText("Comercial");
+            btnIconUsuarios.setVisible(false);
+        }
     }
 
     @FXML
@@ -67,6 +76,7 @@ public class FXMLHomeGeneralController implements Initializable {
 
     @FXML
     private void btnGestionEmpresas(ActionEvent event) {
+        
     }
 
     @FXML
