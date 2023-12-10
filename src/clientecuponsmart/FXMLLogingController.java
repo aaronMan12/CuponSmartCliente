@@ -91,44 +91,23 @@ public class FXMLLogingController implements Initializable {
     }
 
     private void irPantallaPrincipal(Usuario usuario) {
-        if (usuario.getIdRollUsuario() == Constantes.ID_ROL_GENERAL) {
-            try {
-                Stage stage = (Stage) tfUserName.getScene().getWindow();
+        try {
+            Stage stage = (Stage) tfUserName.getScene().getWindow();
 
-                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHomeGeneral.fxml"));
-                Parent vista = loadVista.load();
+            FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHome.fxml"));
+            Parent vista = loadVista.load();
 
-                FXMLHomeGeneralController controladorHome = loadVista.getController();
-                controladorHome.inicializarHomeGeneral(usuario);
+            FXMLHomeController controladorHome = loadVista.getController();
+            controladorHome.inicializarHome(usuario);
 
-                Scene scene = new Scene(vista);
-                stage.setScene(scene);
-                stage.setTitle("Home");
-                stage.show();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.setTitle("Home");
+            stage.show();
 
-            } catch (IOException e) {
-                Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
-            }
-        } else if (usuario.getIdRollUsuario() == Constantes.ID_ROL_COMERCIAL) {
-            try {
-                Stage stage = (Stage) tfUserName.getScene().getWindow();
-
-                FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHomeComercial.fxml"));
-                Parent vista = loadVista.load();
-
-                FXMLHomeComercialController controladorHome = loadVista.getController();
-                controladorHome.inicializarHomeComercial(usuario);
-
-                Scene scene = new Scene(vista);
-                stage.setScene(scene);
-                stage.setTitle("Home");
-                stage.show();
-
-            } catch (IOException e) {
-                Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
-            }
+        } catch (IOException e) {
+            Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
         }
-
     }
 
 }
