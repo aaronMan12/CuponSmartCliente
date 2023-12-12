@@ -76,7 +76,24 @@ public class FXMLHomeController implements Initializable {
 
     @FXML
     private void btnGestionEmpresas(ActionEvent event) {
-        
+        if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
+            try {
+                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLAdminEmpresas.fxml"));
+                Parent vista = vistaLoad.load();
+                FXMLAdminEmpresasController controlador = vistaLoad.getController();
+                controlador.inicializarInformacionGeneral();
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Empresas");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // TODO VISTA COMERCIAL
+        }
     }
 
     @FXML
