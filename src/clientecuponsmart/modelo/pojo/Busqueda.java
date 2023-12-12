@@ -1,14 +1,14 @@
 package clientecuponsmart.modelo.pojo;
 
-public class BusquedaUsuario {
+public class Busqueda {
     
     private Integer idBusqueda;
     private String nombreBusqueda;
 
-    public BusquedaUsuario() {
+    public Busqueda() {
     }
 
-    public BusquedaUsuario(Integer idBusqueda, String nombreBusqueda) {
+    public Busqueda(Integer idBusqueda, String nombreBusqueda) {
         this.idBusqueda = idBusqueda;
         this.nombreBusqueda = nombreBusqueda;
     }
