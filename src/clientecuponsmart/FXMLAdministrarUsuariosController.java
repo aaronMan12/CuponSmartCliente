@@ -1,9 +1,8 @@
 package clientecuponsmart;
 
 import clientecuponsmart.modelo.dao.UsuarioDAO;
-import clientecuponsmart.modelo.pojo.BusquedaUsuario;
+import clientecuponsmart.modelo.pojo.Busqueda;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
-import clientecuponsmart.modelo.pojo.Roll;
 import clientecuponsmart.modelo.pojo.Usuario;
 import clientecuponsmart.utils.Utilidades;
 import java.io.IOException;
@@ -41,7 +40,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private ObservableList<Usuario> usuarios;
     private FilteredList<Usuario> filteredListUsuarios;
 
-    private ObservableList<BusquedaUsuario> usuariosBusqueda;
+    private ObservableList<Busqueda> usuariosBusqueda;
     private Integer idBusquedaSeleccion;
 
     @FXML
@@ -168,18 +167,17 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     }
 
     private void cargarInformacionBusqueda() {
-        usuariosBusqueda.addAll(
-                new BusquedaUsuario(this.BUSQUEDA_POR_NOMBRE, "Buscar por nombre"),
-                new BusquedaUsuario(this.BUSQUEDA_POR_USERNAME, "Buscar por userName"),
-                new BusquedaUsuario(this.BUSQUEDA_POR_ROL, "Buscar por rol"));
+        usuariosBusqueda.addAll(new Busqueda(this.BUSQUEDA_POR_NOMBRE, "Buscar por nombre"),
+                new Busqueda(this.BUSQUEDA_POR_USERNAME, "Buscar por userName"),
+                new Busqueda(this.BUSQUEDA_POR_ROL, "Buscar por rol"));
         cbBusqueda.setItems(usuariosBusqueda);
     }
 
     private void configurarSeleccionBusqueda() {
 
-        cbBusqueda.valueProperty().addListener(new ChangeListener<BusquedaUsuario>() {
+        cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
-            public void changed(ObservableValue<? extends BusquedaUsuario> observable, BusquedaUsuario oldValue, BusquedaUsuario newValue) {
+            public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarUsuario.setText("");
             }
