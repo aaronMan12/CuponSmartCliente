@@ -83,20 +83,22 @@ public class FXMLAdminEmpresasController implements Initializable {
     @FXML
     private void btnFormularioEliminar(ActionEvent event) {
         int posicionSeleccionada = tvEmpresas.getSelectionModel().getSelectedIndex();
-        
-        if (posicionSeleccionada != -1) {
-            // FALTA VALIDAR QUE LA EMPRESA NO TENGA SUCURSALES, Y SI TIENE USUARIOS ELIMINARLOS JUNTO A ELLA.
-            Empresa empresa = filteredListEmpresas.get(posicionSeleccionada);
-            RespuestaUsuarioEscritorio mensaje = EmpresaDAO.eliminarEmpresa(empresa.getIdEmpresa());
-            
-            if (!mensaje.isError()) {
-                Utilidades.mostrarAlertaSimple("Empresa eliminado", mensaje.getContenido(), Alert.AlertType.INFORMATION);
-            } else {
-                Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
-            }
-        } else {
+
+        if (posicionSeleccionada == -1) {
             Utilidades.mostrarAlertaSimple("Selección de empresa", "Para poder eliminar debes seleccionar una empresa de la tabla", Alert.AlertType.WARNING);
+            return;
         }
+
+        // FALTA VALIDAR QUE LA EMPRESA NO TENGA SUCURSALES, Y SI TIENE USUARIOS ELIMINARLOS JUNTO A ELLA.
+        Empresa empresa = filteredListEmpresas.get(posicionSeleccionada);
+        RespuestaUsuarioEscritorio mensaje = EmpresaDAO.eliminarEmpresa(empresa.getIdEmpresa(), empresa.getIdUbicacion());
+
+        if (mensaje.isError()) {
+            Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
+            return;
+        }
+
+        Utilidades.mostrarAlertaSimple("Empresa eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
     }
 
     private void configurarColumnasTabla() {
@@ -159,7 +161,7 @@ public class FXMLAdminEmpresasController implements Initializable {
             }
         });
     }
-    
+
     private void buscarEmpresas(int idBusqueda, String busqueda) {
         Predicate<Empresa> predicado = new Predicate<Empresa>() {
             @Override
@@ -176,5 +178,5 @@ public class FXMLAdminEmpresasController implements Initializable {
         };
         filteredListEmpresas.setPredicate(predicado);
     }
-    
+
 }
