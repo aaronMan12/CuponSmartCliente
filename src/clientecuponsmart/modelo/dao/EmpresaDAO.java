@@ -9,11 +9,11 @@ import java.net.HttpURLConnection;
 
 public class EmpresaDAO {
 
-    public static RespuestaUsuarioEscritorio eliminarEmpresa(int idEmpresa) {
+    public static RespuestaUsuarioEscritorio eliminarEmpresa(int idEmpresa, int idUbicacion) {
         RespuestaUsuarioEscritorio mensaje = new RespuestaUsuarioEscritorio();
 
         String url = Constantes.URL_WS + "empresas/eliminarEmpresa";
-        String parametros = String.format("idEmpresa=%s", idEmpresa);
+        String parametros = String.format("idEmpresa=%s&idUbicacion=%s", idEmpresa, idUbicacion);
 
         CodigoHTTP respuestaWS = ConexionHTTP.peticionDELETE(url, parametros);
 
