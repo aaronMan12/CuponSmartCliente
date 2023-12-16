@@ -44,4 +44,22 @@ public class EmpresaDAO {
 
         return respuesta;
     }
+
+    public static RespuestaUsuarioEscritorio buscarEmpresaPorId(int idEmpresa) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "empresas/buscarEmpresa/"+idEmpresa;
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        }else{
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+        return respuesta;
+    }
+    
+    
 }

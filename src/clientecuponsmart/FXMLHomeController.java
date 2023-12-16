@@ -92,7 +92,24 @@ public class FXMLHomeController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            // TODO VISTA COMERCIAL
+            
+            try {
+                // TODO VISTA COMERCIAL
+                FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
+                Parent vista = vistaload.load();
+                FXMLRegistrarEmpresaController controlador = vistaload.getController();
+                controlador.inicializarUsuario(usuarioSesion.getIdEmpresa());
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Tú empresa");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            
         }
     }
 
