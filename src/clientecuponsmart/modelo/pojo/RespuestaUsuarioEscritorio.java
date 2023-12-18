@@ -9,32 +9,18 @@ public class RespuestaUsuarioEscritorio {
     private List<Usuario> usuarios;
     private List<Roll> roles;
     private List<Empresa> empresas;
+    private Empresa empresa;
     
     public RespuestaUsuarioEscritorio() {
     }
 
-    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas) {
+    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas, Empresa empresa) {
         this.error = error;
         this.contenido = contenido;
         this.usuarios = usuarios;
         this.roles = roles;
         this.empresas = empresas;
-    }
-
-    public List<Empresa> getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(List<Empresa> empresas) {
-        this.empresas = empresas;
-    }
-
-    public List<Roll> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Roll> roles) {
-        this.roles = roles;
+        this.empresa = empresa;
     }
 
     public boolean isError() {
@@ -61,4 +47,29 @@ public class RespuestaUsuarioEscritorio {
         this.usuarios = usuarios;
     }
 
+    public List<Roll> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roll> roles) {
+        this.roles = roles;
+    }
+
+    public List<Empresa> getEmpresas() {
+        return empresas;
+    }
+
+    public void setEmpresas(List<Empresa> empresas) {
+        this.empresas = empresas;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+   
 }

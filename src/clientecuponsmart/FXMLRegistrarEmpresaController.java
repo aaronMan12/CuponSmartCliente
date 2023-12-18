@@ -6,6 +6,7 @@
 package clientecuponsmart;
 
 import clientecuponsmart.modelo.dao.EmpresaDAO;
+import clientecuponsmart.modelo.pojo.Empresa;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.modelo.pojo.Usuario;
 import java.net.URL;
@@ -23,8 +24,9 @@ import javafx.scene.control.TextField;
  * @author Oscar
  */
 public class FXMLRegistrarEmpresaController implements Initializable {
-    
-    private int idEmpresa;
+
+    private Usuario usuarioSesion;
+    private Empresa empresaUsuarioSesion;
     @FXML
     private TextField tfNombreEmpresa;
     @FXML
@@ -43,17 +45,14 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private Label lbTituloEmpresa;
     @FXML
     private Label lbEstatus;
-    
+    @FXML
+    private TextField tfUbicación;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if (idEmpresa > 0){
-            inicializarComponentesUsuarioComercial();
-        }else{
-        }
-    }    
-    
-   
+
+    }
 
     @FXML
     private void btnLogo(ActionEvent event) {
@@ -66,29 +65,34 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     @FXML
     private void btnGuardarLogo(ActionEvent event) {
     }
-    
-    
-    
-     public void inicializarUsuario(int idEmpresa){
-    this.idEmpresa = idEmpresa;
-    
-    if (idEmpresa > 0){
-        inicializarUsuarioComercial(idEmpresa);
+
+    public void inicializarUsuario(Usuario usuario) {
+        this.usuarioSesion = usuario;
+        if (usuarioSesion.getIdEmpresa() > 0) {
+            lbTituloEmpresa.setText("Editar datos de la Empresa");
+            cbEstatus.setVisible(false);
+            lbEstatus.setVisible(false);
+            tfRFC.setDisable(true);
+            inicializarUsuarioComercial(usuarioSesion.getIdEmpresa());
+            inicializarComponentesUsuarioComercial();
+        } else {
+        }
+       
     }
-    }
-    
 
     private void inicializarUsuarioComercial(int idEmpresa) {
         RespuestaUsuarioEscritorio empresa = EmpresaDAO.buscarEmpresaPorId(idEmpresa);
-        
-        //tfNombreEmpresa.setText(empresa.getEmpresas().get(0).getNombre());
-        
+        this.empresaUsuarioSesion = empresa.getEmpresa();  
     }
-    
-    private void inicializarComponentesUsuarioComercial(){
-        lbTituloEmpresa.setText("");
-        lbTituloEmpresa.setText("Editar datos de la Empresa");
-        cbEstatus.setVisible(false);
-        tfRFC.setVisible(false);
+
+    private void inicializarComponentesUsuarioComercial() {
+        tfNombreEmpresa.setText(empresaUsuarioSesion.getNombre());
+        tfNombeComercialEmpresa.setText(empresaUsuarioSesion.getNombreComercial());
+        tfPaginaWeb.setText(empresaUsuarioSesion.getPaginaWeb());
+        tfEmail.setText(empresaUsuarioSesion.getEmail());
+        tfTelefono.setText(empresaUsuarioSesion.getTelefono());
+        tfRFC.setText(empresaUsuarioSesion.getRFC());
+        tfUbicación.setText(empresaUsuarioSesion.getCiudad()+" "+empresaUsuarioSesion.getDireccion());
+       
     }
 }

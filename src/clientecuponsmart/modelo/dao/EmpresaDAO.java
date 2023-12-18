@@ -54,6 +54,7 @@ public class EmpresaDAO {
             respuesta.setError(false);
             Gson gson = new Gson();
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+            
         }else{
             respuesta.setError(true);
             respuesta.setContenido(url);
