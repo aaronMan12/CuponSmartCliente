@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clientecuponsmart.FXMLRegistrarUbicacionController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarUbicacionController">
    <children>
       <ImageView fitHeight="450.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -66,17 +65,6 @@
          </font>
       </Label>
       <TextField fx:id="tfCiudad" layoutX="402.0" layoutY="202.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Xalapa" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <Label fx:id="lbColonia" layoutX="46.0" layoutY="327.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label layoutX="46.0" layoutY="270.0" text="Colonia:">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tfColonia" layoutX="46.0" layoutY="287.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Lomas Verdes" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>

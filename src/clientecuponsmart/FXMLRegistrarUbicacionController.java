@@ -27,10 +27,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     private Label lbCiudad;
     @FXML
     private TextField tfCiudad;
-    @FXML
-    private Label lbColonia;
-    @FXML
-    private TextField tfColonia;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
