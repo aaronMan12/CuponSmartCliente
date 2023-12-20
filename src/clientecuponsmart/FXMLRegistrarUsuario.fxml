@@ -26,7 +26,7 @@
                   <Image url="@../componentes/bgRegistrarUsuario.png" />
                </image>
             </ImageView>
-            <Pane prefHeight="85.0" prefWidth="900.0" style="-fx-background-color: FEDB39;">
+            <Pane prefHeight="85.0" prefWidth="900.0" style="-fx-background-color: #FEDB39;">
                <children>
                   <Label layoutX="292.0" layoutY="16.0" text="Administración de usuarios">
                      <font>
