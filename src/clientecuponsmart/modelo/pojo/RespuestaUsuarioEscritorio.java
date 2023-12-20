@@ -4,23 +4,34 @@ import java.util.List;
 
 
 public class RespuestaUsuarioEscritorio {
+    
     private boolean error;
     private String contenido;
     private List<Usuario> usuarios;
     private List<Roll> roles;
     private List<Empresa> empresas;
     private Empresa empresa;
+    private List<Sucursal> sucursales;
     
     public RespuestaUsuarioEscritorio() {
     }
 
-    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas, Empresa empresa) {
+    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas, Empresa empresa, List<Sucursal> sucursales) {
         this.error = error;
         this.contenido = contenido;
         this.usuarios = usuarios;
         this.roles = roles;
         this.empresas = empresas;
         this.empresa = empresa;
+        this.sucursales = sucursales;
+    }
+
+    public List<Sucursal> getSucursales() {
+        return sucursales;
+    }
+
+    public void setSucursales(List<Sucursal> sucursales) {
+        this.sucursales = sucursales;
     }
 
     public boolean isError() {
