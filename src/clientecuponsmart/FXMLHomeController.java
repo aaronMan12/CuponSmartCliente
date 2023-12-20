@@ -92,7 +92,7 @@ public class FXMLHomeController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            
+
             try {
                 // TODO VISTA COMERCIAL
                 FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
@@ -108,8 +108,7 @@ public class FXMLHomeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-            
+
         }
     }
 
@@ -120,7 +119,7 @@ public class FXMLHomeController implements Initializable {
 
     @FXML
     private void btnGestionPromociones(ActionEvent event) {
-
+        
     }
 
     private void cargarImagenes() {
