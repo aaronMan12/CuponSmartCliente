@@ -71,6 +71,10 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Button fx:id="btnIconLogOut" layoutX="602.0" mnemonicParsing="false" onAction="#btnSalirCuenta" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </Pane>
    </children>
