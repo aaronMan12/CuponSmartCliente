@@ -81,7 +81,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="605.0" layoutY="199.0" text="User name:">
+            <Label layoutX="605.0" layoutY="199.0" text="Nombre de usuario:">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
