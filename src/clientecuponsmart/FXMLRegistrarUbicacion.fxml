@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clientecuponsmart.FXMLRegistrarUbicacionController">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/bgUbicacion.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="189.0" layoutY="15.0" text="Administración de ubicación">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="46.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/logoRedondo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfCalle" layoutX="46.0" layoutY="124.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Av. Progreso" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="46.0" layoutY="107.0" text="Calle:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbCalle" layoutX="46.0" layoutY="164.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbNumero" layoutX="402.0" layoutY="161.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="402.0" layoutY="104.0" text="Número:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNumero" layoutX="402.0" layoutY="121.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 98" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbCodigoPostal" layoutX="46.0" layoutY="245.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="46.0" layoutY="188.0" text="Codigo postal:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfCodigoPostal" layoutX="46.0" layoutY="205.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 84756" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbCiudad" layoutX="402.0" layoutY="242.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="402.0" layoutY="185.0" text="Ciudad:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfCiudad" layoutX="402.0" layoutY="202.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Xalapa" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbColonia" layoutX="46.0" layoutY="327.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="46.0" layoutY="270.0" text="Colonia:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfColonia" layoutX="46.0" layoutY="287.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Lomas Verdes" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button layoutX="412.0" layoutY="344.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #FEDB39;" text="GUARDAR">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
