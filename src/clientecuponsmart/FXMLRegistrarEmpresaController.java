@@ -9,11 +9,13 @@ import clientecuponsmart.modelo.dao.EmpresaDAO;
 import clientecuponsmart.modelo.pojo.Empresa;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.modelo.pojo.Usuario;
+import clientecuponsmart.utils.Constantes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,7 +27,7 @@ import javafx.scene.control.TextField;
  */
 public class FXMLRegistrarEmpresaController implements Initializable {
 
-    private Usuario usuarioSesion;
+    private Usuario usuarioSesion = null;
     private Empresa empresaUsuarioSesion;
     @FXML
     private TextField tfNombreEmpresa;
@@ -46,7 +48,15 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     @FXML
     private Label lbEstatus;
     @FXML
-    private TextField tfUbicación;
+    private Button btnSeleccionarFoto;
+    @FXML
+    private Button btnGuardarLogo;
+    @FXML
+    private Button btnUbicacion;
+    @FXML
+    private Button btnGuardarInformacionEmpresa;
+    @FXML
+    private TextField tfRepresentanteLegal;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,11 +65,8 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     }
 
     @FXML
-    private void btnLogo(ActionEvent event) {
-    }
-
-    @FXML
     private void btnSubirLogo(ActionEvent event) {
+
     }
 
     @FXML
@@ -68,31 +75,48 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
     public void inicializarUsuario(Usuario usuario) {
         this.usuarioSesion = usuario;
-        if (usuarioSesion.getIdEmpresa() > 0) {
+        if (usuarioSesion.getIdRollUsuario() == Constantes.ID_ROL_COMERCIAL) {
             lbTituloEmpresa.setText("Editar datos de la Empresa");
             cbEstatus.setVisible(false);
             lbEstatus.setVisible(false);
             tfRFC.setDisable(true);
             inicializarUsuarioComercial(usuarioSesion.getIdEmpresa());
-            inicializarComponentesUsuarioComercial();
-        } else {
+            inicializarComponentes(usuarioSesion);
         }
-       
+    }
+
+    public void inicializarUsuarioGeneral(Empresa empresacb) {
+        this.empresaUsuarioSesion = empresacb;
+        lbTituloEmpresa.setText("Editar datos de la empresa");
+        cbEstatus.setVisible(true);
+        inicializarComponentes(usuarioSesion);
     }
 
     private void inicializarUsuarioComercial(int idEmpresa) {
         RespuestaUsuarioEscritorio empresa = EmpresaDAO.buscarEmpresaPorId(idEmpresa);
-        this.empresaUsuarioSesion = empresa.getEmpresa();  
+        this.empresaUsuarioSesion = empresa.getEmpresa();
     }
 
-    private void inicializarComponentesUsuarioComercial() {
-        tfNombreEmpresa.setText(empresaUsuarioSesion.getNombre());
-        tfNombeComercialEmpresa.setText(empresaUsuarioSesion.getNombreComercial());
-        tfPaginaWeb.setText(empresaUsuarioSesion.getPaginaWeb());
-        tfEmail.setText(empresaUsuarioSesion.getEmail());
-        tfTelefono.setText(empresaUsuarioSesion.getTelefono());
-        tfRFC.setText(empresaUsuarioSesion.getRFC());
-        tfUbicación.setText(empresaUsuarioSesion.getCiudad()+" "+empresaUsuarioSesion.getDireccion());
-       
+    private void inicializarComponentes(Usuario usuario) {
+        if (usuario != null) {
+            tfNombreEmpresa.setText(empresaUsuarioSesion.getNombre());
+            tfNombeComercialEmpresa.setText(empresaUsuarioSesion.getNombreComercial());
+            tfPaginaWeb.setText(empresaUsuarioSesion.getPaginaWeb());
+            tfEmail.setText(empresaUsuarioSesion.getEmail());
+            tfTelefono.setText(empresaUsuarioSesion.getTelefono());
+            tfRFC.setText(empresaUsuarioSesion.getRFC());
+        }else{
+            tfNombreEmpresa.setText(empresaUsuarioSesion.getNombre());
+            tfNombeComercialEmpresa.setText(empresaUsuarioSesion.getNombreComercial());
+            tfPaginaWeb.setText(empresaUsuarioSesion.getPaginaWeb());
+            tfEmail.setText(empresaUsuarioSesion.getEmail());
+            tfTelefono.setText(empresaUsuarioSesion.getTelefono());
+            tfRFC.setText(empresaUsuarioSesion.getRFC());
+            
+           /* if (empresaUsuarioSesion.getEstatus() == "activo"){
+                cbEstatus.setValue("activo");
+            }*/
+        }
+
     }
 }
