@@ -5,6 +5,7 @@ import clientecuponsmart.modelo.pojo.Busqueda;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.modelo.pojo.Sucursal;
 import clientecuponsmart.utils.Utilidades;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,13 +17,18 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class FXMLAdministrarSucursalesController implements Initializable {
 
@@ -72,10 +78,49 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     @FXML
     private void btnFormularioRegistrar(ActionEvent event) {
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarSucursal.fxml"));
+            Parent vista = vistaLoad.load();
+
+            FXMLRegistrarSucursalController controlador = vistaLoad.getController();
+            controlador.inicializarInformacionRegistro();
+
+            Stage stage = new Stage();
+            Scene scenaAdmin = new Scene(vista);
+            stage.setScene(scenaAdmin);
+            stage.setTitle("Registrar sucursal");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void btnFormularioEditar(ActionEvent event) {
+        int posicionSeleccionada = tvSucursales.getSelectionModel().getSelectedIndex();
+        if (posicionSeleccionada != -1) {
+            Sucursal sucursal = filteredListSucursales.get(posicionSeleccionada);
+
+            try {
+                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarSucursal.fxml"));
+                Parent vista = vistaLoad.load();
+
+                FXMLRegistrarSucursalController controlador = vistaLoad.getController();
+                controlador.inicializarInformacion(sucursal);
+
+                Stage stage = new Stage();
+                Scene scenaAdmin = new Scene(vista);
+                stage.setScene(scenaAdmin);
+                stage.setTitle("Editar sucursal");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Utilidades.mostrarAlertaSimple("Selección de sucursal", "Para poder modificar debes seleccionar una sucursal de la tabla", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -85,7 +130,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
         if (posicionSeleccionada != -1) {
             Sucursal sucursal = filteredListSucursales.get(posicionSeleccionada);
             RespuestaUsuarioEscritorio mensaje = SucursalDAO.eliminarSucursal(sucursal.getIdSucursal(), sucursal.getIdUbicacion());
-            
+
             if (!mensaje.isError()) {
                 Utilidades.mostrarAlertaSimple("Sucursal eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
             } else {
