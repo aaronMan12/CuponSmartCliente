@@ -71,7 +71,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         this.configurarColumnasTabla();
         this.cargarInformacionBusqueda();
         this.configurarSeleccionBusqueda();
-        this.configurartfBuscarUsuario();
+        this.configurarTfBuscarUsuario();
     }
 
     @FXML
@@ -184,7 +184,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         });
     }
 
-    private void configurartfBuscarUsuario() {
+    private void configurarTfBuscarUsuario() {
         tfBuscarUsuario.textProperty().addListener((textObservable, oldText, newText) -> {
             if (newText.isEmpty()) {
                 filteredListUsuarios.setPredicate(null);

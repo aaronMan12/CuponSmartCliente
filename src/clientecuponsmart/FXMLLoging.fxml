@@ -34,12 +34,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="25.0" layoutY="180.0" text="User name" textFill="#171717">
+            <Label layoutX="25.0" layoutY="180.0" text="Nombre de usuario" textFill="#171717">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="tfUserName" layoutX="65.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="User name" style="-fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: #fff;">
+            <TextField fx:id="tfUserName" layoutX="65.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="307.0" promptText="Nombre de usuario" style="-fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: #fff;">
                <font>
                   <Font size="14.0" />
                </font></TextField>

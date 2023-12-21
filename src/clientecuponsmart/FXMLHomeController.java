@@ -5,6 +5,8 @@ import clientecuponsmart.utils.Constantes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,8 @@ public class FXMLHomeController implements Initializable {
     private Button btnIconCuenta;
     @FXML
     private Label lbRol;
+    @FXML
+    private Button btnIconLogOut;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,12 +118,26 @@ public class FXMLHomeController implements Initializable {
 
     @FXML
     private void btnGestionSucursales(ActionEvent event) {
-
+        if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
+            try {
+                FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdministrarSucursales.fxml"));
+                Parent vista = vistaload.load();
+                FXMLAdministrarSucursalesController controlador = vistaload.getController();
+                controlador.inicializarInformacionGeneral();
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Sucursales");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (Exception e) {
+            }
+        }
     }
 
     @FXML
     private void btnGestionPromociones(ActionEvent event) {
-        
+
     }
 
     private void cargarImagenes() {
@@ -129,6 +147,7 @@ public class FXMLHomeController implements Initializable {
         this.cargarImagen(btnIconSucursales, "/componentes/moduloSucursal.png");
         this.cargarImagen(btnIconPromociones, "/componentes/moduloPromocion.png");
         this.cargarImagen(btnIconCuenta, "/componentes/gestionCuenta.png");
+        this.cargarImagen(btnIconLogOut, "/componentes/logout.png");
     }
 
     private void cargarImagen(Button button, String imagePath) {
@@ -158,6 +177,22 @@ public class FXMLHomeController implements Initializable {
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void btnSalirCuenta(ActionEvent event) {
+        try {
+            Stage stage = (Stage) lbNombreUsuario.getScene().getWindow();
+
+            FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLLoging.fxml"));
+            Parent vista = loadVista.load();
+            Scene scene = new Scene(vista);
+            stage.setScene(scene);
+            stage.setTitle("Inicio de sesión");
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

@@ -8,7 +8,6 @@ package clientecuponsmart;
 import clientecuponsmart.modelo.dao.LoginDAO;
 import clientecuponsmart.modelo.pojo.RespuestaLogin;
 import clientecuponsmart.modelo.pojo.Usuario;
-import clientecuponsmart.utils.Constantes;
 import clientecuponsmart.utils.Utilidades;
 import java.io.IOException;
 import java.net.URL;
