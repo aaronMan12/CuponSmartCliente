@@ -81,6 +81,20 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private Button btnGuardarInformacionEmpresa;
     @FXML
     private Label lbLogo;
+    @FXML
+    private Label lbNombre;
+    @FXML
+    private Label lbRFC;
+    @FXML
+    private Label lbNombreComercial;
+    @FXML
+    private Label lbPaginaWeb;
+    @FXML
+    private Label lbTelefono;
+    @FXML
+    private Label lbEmail;
+    @FXML
+    private Label lbRepresentanteLegal;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -234,5 +248,9 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void btnAgregarUbicacion(ActionEvent event) {
     }
 }
