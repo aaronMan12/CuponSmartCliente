@@ -16,6 +16,7 @@ public class Constantes {
     // CONSTANTES ESTATUS
     public static final String ESTATUS_ACTIVO = "activo";
     public static final String ESTATUS_INACTIVO = "inactivo";
+  
 
     // CONSTANTES TIPO PROMOCION
     public static final String PROMOCION_DESCUENTO = "descuento";

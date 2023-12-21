@@ -143,6 +143,41 @@ public class ConexionHTTP {
         
         return respuesta;
     }
+    
+     public static CodigoHTTP peticionPUTLogo(String url, byte[] imagen) {
+        CodigoHTTP respuesta = new CodigoHTTP();
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHTTP = (HttpURLConnection) urlServicio.openConnection();
+            conexionHTTP.setRequestMethod("PUT");
+            
+            conexionHTTP.setDoOutput(true);
+            //Escribir datos en el cuerpo de la petición
+            OutputStream os = conexionHTTP.getOutputStream();
+            os.write(imagen);
+            os.flush();
+            os.close();
+            //termina la escritura
+
+            int codigoRespuesta = conexionHTTP.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+                respuesta.setContenido(convertirContenido(conexionHTTP.getInputStream()));
+            } else {
+                respuesta.setContenido("CODE ERROE:" + codigoRespuesta);
+            }
+
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error:" + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error:" + iox.getMessage());
+
+        }
+
+        return respuesta;
+     }
 
     private static String convertirContenido(InputStream contenido) throws IOException {
         InputStreamReader inputLectura = new InputStreamReader(contenido);
@@ -158,5 +193,7 @@ public class ConexionHTTP {
         buffer.close();
         return cadenaBuffer.toString();
     }
+
+   
 
 }

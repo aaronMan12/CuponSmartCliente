@@ -79,6 +79,21 @@ public class FXMLAdminEmpresasController implements Initializable {
 
     @FXML
     private void btnFormularioRegistrar(ActionEvent event) {
+        try {
+                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
+                Parent vista = vistaLoad.load();
+                FXMLRegistrarEmpresaController controlador = vistaLoad.getController();
+                controlador.inicializarFormularioRegistrarEmpresa();
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Vista de usuario general");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+       
     }
 
     @FXML

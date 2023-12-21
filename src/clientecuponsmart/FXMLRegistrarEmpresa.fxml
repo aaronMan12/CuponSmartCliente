@@ -15,16 +15,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1225.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
    <children>
-      <Pane prefHeight="121.0" prefWidth="1000.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
+      <Pane maxWidth="1.7976931348623157E308" prefHeight="121.0" prefWidth="1261.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
          <children>
-            <Label layoutX="449.0" layoutY="14.0" text="Empresa">
+            <Label layoutX="549.0" layoutY="31.0" text="Empresa">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="lbTituloEmpresa" layoutX="327.0" layoutY="47.0" text="Registrar datos de la Empresa">
+            <Label fx:id="lbTituloEmpresa" layoutX="427.0" layoutY="64.0" text="Registrar datos de la Empresa">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -42,65 +42,77 @@
          </font>
       </Label>
       <TextField fx:id="tfNombreEmpresa" layoutX="74.0" layoutY="171.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre de la Empresa" />
-      <Label layoutX="82.0" layoutY="373.0" text="Email:">
+      <Label layoutX="82.0" layoutY="393.0" text="Email:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfEmail" layoutX="74.0" layoutY="401.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el email de la Empresa" />
+      <TextField fx:id="tfEmail" layoutX="74.0" layoutY="421.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el email de la Empresa" />
       <Label layoutX="83.0" layoutY="224.0" text="Nombre Comercial:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfNombeComercialEmpresa" layoutX="74.0" layoutY="253.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el nombre comercial de la Empresa" />
-      <Label layoutX="83.0" layoutY="448.0" text="Telefono:">
+      <Label layoutX="544.0" layoutY="141.0" text="Telefono:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfTelefono" layoutX="74.0" layoutY="477.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el telefono de la Empresa" />
-      <Label layoutX="83.0" layoutY="289.0" text="Pagina Web:">
+      <TextField fx:id="tfTelefono" layoutX="535.0" layoutY="170.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el telefono de la Empresa" />
+      <Label layoutX="83.0" layoutY="309.0" text="Pagina Web:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfPaginaWeb" layoutX="74.0" layoutY="318.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar la pagina web de la Empresa" />
-      <Label layoutX="79.0" layoutY="534.0" text="RFC:">
+      <TextField fx:id="tfPaginaWeb" layoutX="74.0" layoutY="338.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar la pagina web de la Empresa" />
+      <Label layoutX="547.0" layoutY="224.0" text="RFC:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfRFC" layoutX="74.0" layoutY="560.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el RFC de la Empresa" />
-      <ComboBox fx:id="cbEstatus" layoutX="74.0" layoutY="697.0" prefWidth="423.0" promptText="                                                           Activo" style="-fx-background-color: #FEDB39;" />
-      <Label fx:id="lbEstatus" layoutX="85.0" layoutY="671.0" text="Estatus:">
+      <TextField fx:id="tfRFC" layoutX="535.0" layoutY="251.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar el RFC de la Empresa" />
+      <Label fx:id="lbEstatus" layoutX="549.0" layoutY="393.0" text="Estatus:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="545.0" layoutY="151.0" text="Logo:">
+      <Label fx:id="lbLogo" layoutX="994.0" layoutY="131.0" text="Logo:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnSeleccionarFoto" layoutX="535.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnSubirLogo" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Seleccionar Logo">
+      <Button fx:id="btnSeleccionarFoto" layoutX="991.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnSubirLogo" prefHeight="23.0" prefWidth="150.0" style="-fx-background-color: #FEDB39;" text="Seleccionar Logo">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnGuardarLogo" layoutX="757.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnGuardarLogo" prefWidth="200.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+      <Button fx:id="btnGuardarLogo" layoutX="1155.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnGuardarLogo" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #FEDB39;" text="Guardar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnUbicacion" layoutX="535.0" layoutY="477.0" mnemonicParsing="false" text="Agregar ubicación" />
-      <Button fx:id="btnGuardarInformacionEmpresa" layoutX="150.0" layoutY="754.0" mnemonicParsing="false" text="Guardar la información de la empresa" />
-      <ImageView fitHeight="184.0" fitWidth="288.0" layoutX="601.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="74.0" layoutY="610.0" text="Representante legal">
+      <Button fx:id="btnUbicacion" layoutX="74.0" layoutY="540.0" mnemonicParsing="false" text="Agregar ubicación" />
+      <Button fx:id="btnGuardarInformacionEmpresa" layoutX="74.0" layoutY="480.0" mnemonicParsing="false" text="Guardar la información de la empresa" />
+      <ImageView fx:id="ivLogoEmpresa" fitHeight="184.0" fitWidth="288.0" layoutX="973.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="551.0" layoutY="309.0" text="Representante legal">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfRepresentanteLegal" layoutX="73.0" layoutY="640.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar N" />
+      <TextField fx:id="tfRepresentanteLegal" layoutX="535.0" layoutY="336.0" prefHeight="25.0" prefWidth="423.0" promptText="Ingresar N" />
+      <RadioButton fx:id="rbActivo" layoutX="532.0" layoutY="437.0" mnemonicParsing="false" text="Activo">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgEstatus" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbInactivo" layoutX="663.0" layoutY="437.0" mnemonicParsing="false" text="Inactivo" toggleGroup="$tgEstatus" />
+      <Label layoutX="74.0" layoutY="202.0" text="Label" />
+      <Label layoutX="74.0" layoutY="278.0" text="Label" />
+      <Label layoutX="74.0" layoutY="365.0" text="Label" />
+      <Label layoutX="74.0" layoutY="452.0" text="Label" />
+      <Label layoutX="533.0" layoutY="202.0" text="Label" />
+      <Label layoutX="533.0" layoutY="278.0" text="Label" />
+      <Label layoutX="533.0" layoutY="365.0" text="Label" />
    </children>
 </AnchorPane>
