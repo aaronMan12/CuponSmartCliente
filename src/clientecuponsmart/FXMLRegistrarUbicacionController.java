@@ -53,7 +53,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionEditada.setCodigoPostal(this.tfCodigoPostal.getText());
                     ubicacionEditada.setCiudad(this.tfCiudad.getText());
                     ubicacionEditada.setIdUbicacion(this.ubicacion.getIdUbicacion());
-                    
+
                     this.editarUbicacionSucursal(ubicacionEditada);
                 } else {
                     Ubicacion ubicacionNueva = new Ubicacion();
@@ -62,11 +62,30 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionNueva.setCodigoPostal(this.tfCodigoPostal.getText());
                     ubicacionNueva.setCiudad(this.tfCiudad.getText());
                     ubicacionNueva.setIdSucursal(idSucursal);
-
+                   
                     this.registrarUbicacionSucursal(ubicacionNueva);
                 }
             } else {
                 // Registro ubicacion empresa
+                if (ubicacion != null) {
+                    Ubicacion ubicacionEditadaEmpresa = new Ubicacion();
+                    ubicacionEditadaEmpresa.setCalle(this.tfCalle.getText());
+                    ubicacionEditadaEmpresa.setNumero(Integer.parseInt(this.tfNumero.getText()));
+                    ubicacionEditadaEmpresa.setCodigoPostal(this.tfCodigoPostal.getText());
+                    ubicacionEditadaEmpresa.setCiudad(this.tfCiudad.getText());
+                    ubicacionEditadaEmpresa.setIdUbicacion(this.ubicacion.getIdUbicacion());
+                    editarUbicaciónEmpresa(ubicacionEditadaEmpresa);
+                } else {
+                    Ubicacion ubicacionNueva = new Ubicacion();
+                    ubicacionNueva.setCalle(this.tfCalle.getText());
+                    ubicacionNueva.setNumero(Integer.parseInt(this.tfNumero.getText()));
+                    ubicacionNueva.setCodigoPostal(this.tfCodigoPostal.getText());
+                    ubicacionNueva.setCiudad(this.tfCiudad.getText());
+                    ubicacionNueva.setIdEmpresa(idEmpresa);
+                    registrarUbicacionEmpresa(ubicacionNueva);
+                    
+                    //condicional para no salir del menú
+                }
             }
         }
     }
@@ -81,14 +100,19 @@ public class FXMLRegistrarUbicacionController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al obtener ubicación.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
     }
-    
+
     public void inicializarRegistroSucursal(Integer idSucursal) {
         this.idSucursal = idSucursal;
     }
     
+    public void inicializarRegistroSucursalEmpresa(Integer idEmpresa){
+        this.idEmpresa = idEmpresa;
+        System.out.println(this.idEmpresa);
+    }
+
     private void editarUbicacionSucursal(Ubicacion ubicacion) {
         RespuestaUsuarioEscritorio respuesta = UbicacionDAO.editarUbicacion(ubicacion);
-        
+
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Ubicación editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
             this.cerrarPantalla();
@@ -99,7 +123,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
 
     private void registrarUbicacionSucursal(Ubicacion ubicacion) {
         RespuestaUsuarioEscritorio respuesta = UbicacionDAO.registrarUbicacionSucursal(ubicacion);
-        
+
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Ubicación registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
             this.cerrarPantalla();
@@ -108,6 +132,27 @@ public class FXMLRegistrarUbicacionController implements Initializable {
         }
     }
     
+    private void editarUbicaciónEmpresa(Ubicacion ubicacionEditadaEmpresa) {
+        RespuestaUsuarioEscritorio respuesta = UbicacionDAO.editarUbicacion(ubicacion);
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Ubicación editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            //this.cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void registrarUbicacionEmpresa(Ubicacion ubicacionNueva) {
+         RespuestaUsuarioEscritorio respuesta = UbicacionDAO.registrarUbicacionEmpresa(ubicacionNueva);
+
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Ubicación registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            this.cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
     private void cargarInformacion() {
         this.tfCalle.setText(this.ubicacion.getCalle());
         this.tfCiudad.setText(this.ubicacion.getCiudad());
@@ -155,4 +200,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
         Stage stage = (Stage) tfCalle.getScene().getWindow();
         stage.close();
     }
+
+    
 }

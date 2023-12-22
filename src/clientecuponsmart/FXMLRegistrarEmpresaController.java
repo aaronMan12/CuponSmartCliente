@@ -21,7 +21,10 @@ import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -32,6 +35,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
@@ -105,7 +109,6 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         if (fotografia != null) {
             mostarFotoSeleccioanda(fotografia);
         }
-
     }
 
     @FXML
@@ -126,6 +129,9 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
     @FXML
     private void btnAgregarUbicacion(ActionEvent event) {
+        if (empresaUsuarioSesion.getIdUbicacion() != null){
+            editarUbicacionEmpresa(empresaUsuarioSesion);
+        }
     }
 
     @FXML
@@ -147,9 +153,11 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
 
                 if (respuesta.getEmpresa().getIdEmpresa() > 0) {
+                    
                     btnUbicacion.setVisible(true);
                     Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);
-
+                    
+                    registrarUbicacionEmpresa(respuesta.getEmpresa().getIdEmpresa());
                 } else {
                     Utilidades.mostrarAlertaSimple("Error al agregar la empresa", "No se pudo agregar la empresa", Alert.AlertType.ERROR);
 
@@ -157,28 +165,28 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
             }
         } else {
-            if (validarCamposEmpresa()){
-            Empresa empresaEditada = new Empresa();
-            empresaEditada.setNombre(tfNombreEmpresa.getText());
-            empresaEditada.setNombreComercial(tfNombeComercialEmpresa.getText());
-            empresaEditada.setTelefono(tfTelefono.getText());
-            empresaEditada.setPaginaWeb(tfPaginaWeb.getText());
-            empresaEditada.setEmail(tfEmail.getText());
-            empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText());
-            empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
-            //empresaEditada.setEstatus("activo");
-             if (rbInactivo.isSelected()) {
-                empresaEditada.setEstatus("inactivo");
-            } else {
-                empresaEditada.setEstatus("activo");
-            }
-            RespuestaUsuarioEscritorio respuesta = EmpresaDAO.editarEmpresa(empresaEditada);
+            if (validarCamposEmpresa()) {
+                Empresa empresaEditada = new Empresa();
+                empresaEditada.setNombre(tfNombreEmpresa.getText());
+                empresaEditada.setNombreComercial(tfNombeComercialEmpresa.getText());
+                empresaEditada.setTelefono(tfTelefono.getText());
+                empresaEditada.setPaginaWeb(tfPaginaWeb.getText());
+                empresaEditada.setEmail(tfEmail.getText());
+                empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText());
+                empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
+                //empresaEditada.setEstatus("activo");
+                if (rbInactivo.isSelected()) {
+                    empresaEditada.setEstatus("inactivo");
+                } else {
+                    empresaEditada.setEstatus("activo");
+                }
+                RespuestaUsuarioEscritorio respuesta = EmpresaDAO.editarEmpresa(empresaEditada);
                 System.out.println(respuesta.getContenido());
-            if (!respuesta.isError()){
-                Utilidades.mostrarAlertaSimple("Actulaización Empresa", "La empresa se atualizo satisfactoriamente", Alert.AlertType.INFORMATION);
+                if (!respuesta.isError()) {
+                    Utilidades.mostrarAlertaSimple("Actulaización Empresa", "La empresa se atualizo satisfactoriamente", Alert.AlertType.INFORMATION);
+                }
             }
-            }
-             
+
         }
 
     }
@@ -187,6 +195,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         this.usuarioSesion = usuario;
         if (usuarioSesion.getIdRollUsuario() == Constantes.ID_ROL_COMERCIAL) {
             lbTituloEmpresa.setText("Editar datos de la Empresa");
+            btnUbicacion.setText("Editar ubicación");
             tfRFC.setDisable(true);
             inicializarEmpresaUsuarioComercial(usuarioSesion.getIdEmpresa());
             inicializarComponentes(usuarioSesion);
@@ -194,9 +203,12 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         }
     }
 
+    
     public void inicializarUsuarioGeneral(Empresa empresacb) {
         this.empresaUsuarioSesion = empresacb;
         lbTituloEmpresa.setText("Editar datos de la empresa");
+        tfRFC.setDisable(true);
+        btnUbicacion.setText("Editar ubicación");
         inicializarComponentes(usuarioSesion);
         obtenerFotoEmpresa(empresaUsuarioSesion.getIdEmpresa());
     }
@@ -280,6 +292,42 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             ivLogoEmpresa.setImage(image);
         }
     }
+    
+    private void registrarUbicacionEmpresa(int idEmpresa){
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUbicacion.fxml"));
+            Parent vista = vistaLoad.load();
+            FXMLRegistrarUbicacionController controlador = vistaLoad.getController();
+            controlador.inicializarRegistroSucursalEmpresa(idEmpresa);
+            Stage stage = new Stage();
+            Scene scenaAdmin = new Scene(vista);
+            stage.setScene(scenaAdmin);
+            stage.setTitle("Editar ubicación");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            this.cerrarPantalla();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void editarUbicacionEmpresa(Empresa empresa){
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUbicacion.fxml"));
+            Parent vista = vistaLoad.load();
+            FXMLRegistrarUbicacionController controlador = vistaLoad.getController();
+            controlador.inicializarEditarSucursal(empresa.getIdUbicacion());
+            Stage stage = new Stage();
+            Scene scenaAdmin = new Scene(vista);
+            stage.setScene(scenaAdmin);
+            stage.setTitle("Editar ubicación");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            this.cerrarPantalla();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private boolean validarCamposEmpresa() {
         boolean camposVacios = true;
@@ -327,6 +375,9 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         this.lbTelefono.setText("");
         this.lbRFC.setText("");
         this.lbRepresentanteLegal.setText("");
+    }
+
+    private void cerrarPantalla() {
     }
 
 }
