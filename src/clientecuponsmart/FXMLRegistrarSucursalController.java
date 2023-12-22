@@ -106,7 +106,7 @@ public class FXMLRegistrarSucursalController implements Initializable {
     @FXML
     private void btnIrAgregarUbicacion(ActionEvent event) {
         if (this.sucursal != null) {
-            System.out.println("editar ubicacion");
+            this.irPantallaUbicacionEditar(sucursal.getIdUbicacion());
         } else {
             this.irPantallaUbicacion(idSucursalRegistrado);
         }
@@ -252,6 +252,26 @@ public class FXMLRegistrarSucursalController implements Initializable {
             Utilidades.mostrarAlertaSimple("Sucursal editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void irPantallaUbicacionEditar(Integer idUbicacion) {
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUbicacion.fxml"));
+            Parent vista = vistaLoad.load();
+
+            FXMLRegistrarUbicacionController controlador = vistaLoad.getController();
+            controlador.inicializarEditarSucursal(idUbicacion);
+
+            Stage stage = new Stage();
+            Scene scenaAdmin = new Scene(vista);
+            stage.setScene(scenaAdmin);
+            stage.setTitle("Editar ubicación");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            this.cerrarPantalla();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
