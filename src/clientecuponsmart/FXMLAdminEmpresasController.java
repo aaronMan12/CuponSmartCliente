@@ -80,27 +80,26 @@ public class FXMLAdminEmpresasController implements Initializable {
     @FXML
     private void btnFormularioRegistrar(ActionEvent event) {
         try {
-                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
-                Parent vista = vistaLoad.load();
-                FXMLRegistrarEmpresaController controlador = vistaLoad.getController();
-                controlador.inicializarFormularioRegistrarEmpresa();
-                Stage stage = new Stage();
-                Scene escenaAdmin = new Scene(vista);
-                stage.setScene(escenaAdmin);
-                stage.setTitle("Vista de usuario general");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-       
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
+            Parent vista = vistaLoad.load();
+            FXMLRegistrarEmpresaController controlador = vistaLoad.getController();
+            controlador.inicializarFormularioRegistrarEmpresa();
+            Stage stage = new Stage();
+            Scene escenaAdmin = new Scene(vista);
+            stage.setScene(escenaAdmin);
+            stage.setTitle("Vista de usuario general");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            this.consultarInformacionEmpresas();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void btnFormularioEditar(ActionEvent event) {
         int posocionSeleccionada = tvEmpresas.getSelectionModel().getSelectedIndex();
-        System.out.println(posocionSeleccionada);
-        if (posocionSeleccionada != -1){
+        if (posocionSeleccionada != -1) {
             try {
                 FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
                 Parent vista = vistaLoad.load();
@@ -112,16 +111,13 @@ public class FXMLAdminEmpresasController implements Initializable {
                 stage.setTitle("Vista de usuario general");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
+                this.consultarInformacionEmpresas();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        
-        }else {
+        } else {
             Utilidades.mostrarAlertaSimple("Selección de empresa", "Para poder editar una empresa debes deleccionar una", Alert.AlertType.WARNING);
         }
-        
-        
-        
     }
 
     @FXML
@@ -133,7 +129,6 @@ public class FXMLAdminEmpresasController implements Initializable {
             return;
         }
 
-        // FALTA VALIDAR QUE LA EMPRESA NO TENGA SUCURSALES, Y SI TIENE USUARIOS ELIMINARLOS JUNTO A ELLA.
         Empresa empresa = filteredListEmpresas.get(posicionSeleccionada);
         RespuestaUsuarioEscritorio mensaje = EmpresaDAO.eliminarEmpresa(empresa.getIdEmpresa(), empresa.getIdUbicacion());
 
@@ -141,7 +136,8 @@ public class FXMLAdminEmpresasController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
             return;
         }
-
+        
+        this.consultarInformacionEmpresas();
         Utilidades.mostrarAlertaSimple("Empresa eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
     }
 
@@ -164,14 +160,11 @@ public class FXMLAdminEmpresasController implements Initializable {
     private void consultarInformacionEmpresas() {
         RespuestaUsuarioEscritorio respuesta = EmpresaDAO.buscarTodasLasEmpresas();
 
-        if (!respuesta.isError()) {
-            List<Empresa> listEmpresas = (List<Empresa>) respuesta.getEmpresas();
-            empresas.addAll(listEmpresas);
-            filteredListEmpresas = new FilteredList<>(empresas);
-            tvEmpresas.setItems(filteredListEmpresas);
-        } else {
-            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.ERROR);
-        }
+        empresas.clear();
+        List<Empresa> listEmpresas = (List<Empresa>) respuesta.getEmpresas();
+        empresas.addAll(listEmpresas);
+        filteredListEmpresas = new FilteredList<>(empresas);
+        tvEmpresas.setItems(filteredListEmpresas);
     }
 
     private void cargarInformacionBusqueda() {
@@ -195,14 +188,14 @@ public class FXMLAdminEmpresasController implements Initializable {
         tfBuscarEmpresa.textProperty().addListener((textObservable, oldText, newText) -> {
             if (newText.isEmpty()) {
                 filteredListEmpresas.setPredicate(null);
-            } else {
-                if (idBusquedaSeleccion == null) {
-                    tfBuscarEmpresa.setText("");
-                    Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
-                } else {
-                    buscarEmpresas(idBusquedaSeleccion, newText);
-                }
+                return;
             }
+            if (idBusquedaSeleccion == null) {
+                tfBuscarEmpresa.setText("");
+                Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
+                return;
+            }
+            buscarEmpresas(idBusquedaSeleccion, newText);
         });
     }
 
