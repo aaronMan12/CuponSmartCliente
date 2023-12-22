@@ -178,6 +178,10 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
             public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
+                if (filteredListUsuarios.isEmpty()) {
+                    Utilidades.mostrarAlertaSimple("Error", "No hay usuarios para buscar.", Alert.AlertType.ERROR);
+                    return;
+                }
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarUsuario.setText("");
             }
@@ -188,14 +192,14 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         tfBuscarUsuario.textProperty().addListener((textObservable, oldText, newText) -> {
             if (newText.isEmpty()) {
                 filteredListUsuarios.setPredicate(null);
-            } else {
-                if (idBusquedaSeleccion == null) {
-                    tfBuscarUsuario.setText("");
-                    Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
-                } else {
-                    buscarUsuarios(idBusquedaSeleccion, newText);
-                }
+                return;
             }
+            if (idBusquedaSeleccion == null) {
+                tfBuscarUsuario.setText("");
+                Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
+                return;
+            }
+            buscarUsuarios(idBusquedaSeleccion, newText);
         });
     }
 
