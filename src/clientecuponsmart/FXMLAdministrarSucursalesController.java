@@ -43,6 +43,8 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     private ObservableList<Busqueda> sucursalesBusqueda;
     private Integer idBusquedaSeleccion;
+    
+    private Integer idUsuario;
 
     @FXML
     private TextField tfBuscarSucursal;
@@ -96,6 +98,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
             stage.setTitle("Registrar sucursal");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            this.inicializarInformacionGeneral();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,6 +123,11 @@ public class FXMLAdministrarSucursalesController implements Initializable {
                 stage.setTitle("Editar sucursal");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
+                if (idUsuario != null) {
+                    this.cargarInformacionComercial();
+                } else {
+                    this.inicializarInformacionGeneral();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -137,6 +145,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
             RespuestaUsuarioEscritorio mensaje = SucursalDAO.eliminarSucursal(sucursal.getIdSucursal(), sucursal.getIdUbicacion());
 
             if (!mensaje.isError()) {
+                this.inicializarInformacionGeneral();
                 Utilidades.mostrarAlertaSimple("Sucursal eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
             } else {
                 Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
@@ -160,17 +169,25 @@ public class FXMLAdministrarSucursalesController implements Initializable {
     public void inicializarInformacionGeneral() {
         RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarTodasLasSucusales();
 
+        sucursales.clear();
         List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
         sucursales.addAll(listSucusales);
         filteredListSucursales = new FilteredList<>(sucursales);
         tvSucursales.setItems(filteredListSucursales);
     }
-
+    
     public void inicializarInformacionComercial(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+        this.cargarInformacionComercial();
+    }
+    
+    private void cargarInformacionComercial() {
         this.btnEliminar.setDisable(true);
         this.btnRegistrar.setDisable(true);
-        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(idUsuario);
+        
+        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(this.idUsuario);
 
+        sucursales.clear();
         List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
         sucursales.addAll(listSucusales);
         filteredListSucursales = new FilteredList<>(sucursales);
