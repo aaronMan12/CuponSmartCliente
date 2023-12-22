@@ -42,6 +42,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
 
     private ObservableList<Busqueda> usuariosBusqueda;
     private Integer idBusquedaSeleccion;
+    private Integer idUsuario;
 
     @FXML
     private TableView<Usuario> tvUsuarios;
@@ -89,6 +90,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
             stage.setTitle("Registrar usuario");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            this.consultarInformacionUsuarios();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,6 +115,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
                 stage.setTitle("Editar usuario");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
+                this.consultarInformacionUsuarios();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -130,6 +133,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
             RespuestaUsuarioEscritorio mensaje = UsuarioDAO.eliminarUsuario(usuario.getIdUsuario());
 
             if (!mensaje.isError()) {
+                this.consultarInformacionUsuarios();
                 Utilidades.mostrarAlertaSimple("Usuario eliminado", mensaje.getContenido(), Alert.AlertType.INFORMATION);
             } else {
                 Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
@@ -140,7 +144,8 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     }
 
     public void inicializarInformacion(int idUsuario) {
-        consultarInformacionUsuarios(idUsuario);
+        this.idUsuario = idUsuario;
+        this.consultarInformacionUsuarios();
     }
 
     private void configurarColumnasTabla() {
@@ -153,10 +158,11 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         colRoll.setCellValueFactory(new PropertyValueFactory("nombreRol"));
     }
 
-    private void consultarInformacionUsuarios(Integer idUsuario) {
-        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarTodosLosUsuarios(idUsuario);
+    private void consultarInformacionUsuarios() {
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarTodosLosUsuarios(this.idUsuario);
 
         if (!respuesta.isError()) {
+            usuarios.clear();
             List<Usuario> listUsuarios = (List<Usuario>) respuesta.getUsuarios();
             usuarios.addAll(listUsuarios);
             filteredListUsuarios = new FilteredList<>(usuarios);
