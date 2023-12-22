@@ -26,7 +26,7 @@ public class UsuarioDAO {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
         } else {
             respuesta.setError(true);
-            respuesta.setContenido(url);
+            respuesta.setContenido("Error en la petición buscar todos los usuarios.");
         }
 
         return respuesta;
@@ -43,7 +43,7 @@ public class UsuarioDAO {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
         } else {
             respuesta.setError(true);
-            respuesta.setContenido(url);
+            respuesta.setContenido("Error en la petición buscar los roles.");
         }
 
         return respuesta;
@@ -60,7 +60,7 @@ public class UsuarioDAO {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
         } else {
             respuesta.setError(true);
-            respuesta.setContenido(url);
+            respuesta.setContenido("Error en la petición buscar todas las empresas.");
         }
 
         return respuesta;
