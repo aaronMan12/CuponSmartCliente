@@ -31,4 +31,42 @@ public class UbicacionDAO {
         return respuesta;
     }
     
+    public static RespuestaUsuarioEscritorio editarUbicacion(Ubicacion ubicacion) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        
+        String url = Constantes.URL_WS + "ubicacion/editarUbicacion";
+        String parametros = String.format(
+                "calle=%s&numero=%s&codigoPostal=%s&ciudad=%s&idUbicacion=%s", 
+                ubicacion.getCalle(), ubicacion.getNumero(), ubicacion.getCodigoPostal(), ubicacion.getCiudad(), ubicacion.getIdUbicacion());
+        
+        CodigoHTTP respuestaWS = ConexionHTTP.peticionPUT(url, parametros);
+        if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(respuestaWS.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Error en la petición para el editar la ubicación.");
+        }
+        
+        return respuesta;
+    }
+    
+    
+    public static RespuestaUsuarioEscritorio buscarUbicacion(Integer idUbicacion) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "ubicacion/buscarUbicacion/" + idUbicacion;
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido(url);
+        }
+
+        return respuesta;
+    }
+    
 }
