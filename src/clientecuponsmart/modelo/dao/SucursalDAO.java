@@ -21,7 +21,24 @@ public class SucursalDAO {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
         } else {
             respuesta.setError(true);
-            respuesta.setContenido(url);
+            respuesta.setContenido("Hubo un error al intentar obtener las sucursales.");
+        }
+
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio buscarSucursalesUsuario(Integer idUsuario) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "sucursales/buscarSucursalesUsuario/" + idUsuario;
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta.setError(false);
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Hubo un error al intentar obtener las sucursales.");
         }
 
         return respuesta;
