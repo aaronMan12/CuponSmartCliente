@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Button layoutX="684.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Registrar">
+      <Button fx:id="btnRegistrar" layoutX="684.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Registrar">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="960.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Eliminar" textFill="#171717">
+      <Button fx:id="btnEliminar" layoutX="960.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Eliminar" textFill="#171717">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
