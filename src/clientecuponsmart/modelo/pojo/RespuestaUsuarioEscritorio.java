@@ -102,9 +102,4 @@ public class RespuestaUsuarioEscritorio {
         this.empresa = empresa;
     }
 
-<<<<<<< HEAD
-
-   
-=======
->>>>>>> 14efde948cc5b38fff9aa1ae584ebddee73fd4a9
 }
