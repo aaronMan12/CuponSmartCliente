@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -65,6 +66,10 @@ public class FXMLAdministrarSucursalesController implements Initializable {
     private TableColumn colDireccion;
     @FXML
     private TableView tvSucursales;
+    @FXML
+    private Button btnRegistrar;
+    @FXML
+    private Button btnEliminar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -155,14 +160,21 @@ public class FXMLAdministrarSucursalesController implements Initializable {
     public void inicializarInformacionGeneral() {
         RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarTodasLasSucusales();
 
-        if (!respuesta.isError()) {
-            List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
-            sucursales.addAll(listSucusales);
-            filteredListSucursales = new FilteredList<>(sucursales);
-            tvSucursales.setItems(filteredListSucursales);
-        } else {
-            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.ERROR);
-        }
+        List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
+        sucursales.addAll(listSucusales);
+        filteredListSucursales = new FilteredList<>(sucursales);
+        tvSucursales.setItems(filteredListSucursales);
+    }
+
+    public void inicializarInformacionComercial(Integer idUsuario) {
+        this.btnEliminar.setDisable(true);
+        this.btnRegistrar.setDisable(true);
+        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(idUsuario);
+
+        List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
+        sucursales.addAll(listSucusales);
+        filteredListSucursales = new FilteredList<>(sucursales);
+        tvSucursales.setItems(filteredListSucursales);
     }
 
     private void cargarInformacionBusqueda() {
@@ -176,6 +188,10 @@ public class FXMLAdministrarSucursalesController implements Initializable {
         cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
             public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
+                if (filteredListSucursales.isEmpty()) {
+                    Utilidades.mostrarAlertaSimple("Error", "No hay sucursales para buscar.", Alert.AlertType.ERROR);
+                    return;
+                }
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarSucursal.setText("");
             }
@@ -186,14 +202,14 @@ public class FXMLAdministrarSucursalesController implements Initializable {
         tfBuscarSucursal.textProperty().addListener((textObservable, oldText, newText) -> {
             if (newText.isEmpty()) {
                 filteredListSucursales.setPredicate(null);
-            } else {
-                if (idBusquedaSeleccion == null) {
-                    tfBuscarSucursal.setText("");
-                    Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
-                } else {
-                    buscarSucursales(idBusquedaSeleccion, newText);
-                }
+                return;
             }
+            if (idBusquedaSeleccion == null) {
+                tfBuscarSucursal.setText("");
+                Utilidades.mostrarAlertaSimple("Error", "Por favor selecciona un tipo de busqueda", Alert.AlertType.ERROR);
+                return;
+            }
+            buscarSucursales(idBusquedaSeleccion, newText);
         });
     }
 
