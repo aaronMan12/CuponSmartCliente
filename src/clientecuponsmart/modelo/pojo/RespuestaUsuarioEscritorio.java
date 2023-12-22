@@ -42,6 +42,7 @@ public class RespuestaUsuarioEscritorio {
         this.error = error;
     }
 
+
     public String getContenido() {
         return contenido;
     }
@@ -81,6 +82,7 @@ public class RespuestaUsuarioEscritorio {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+
 
    
 }

@@ -22,5 +22,8 @@ public class Constantes {
     public static final String PROMOCION_DESCUENTO = "descuento";
     public static final String PROMOCION_REBAJADO = "rebajado";
     
+    // VALIDACIÓN DE CAMPOS LABEL
+    public static final String CAMPO_INVALIDO = "Campo invalido.";
+    
     
 }

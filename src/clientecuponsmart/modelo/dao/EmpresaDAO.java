@@ -12,6 +12,74 @@ import java.net.HttpURLConnection;
 import java.nio.file.Files;
 
 public class EmpresaDAO {
+     public static RespuestaUsuarioEscritorio registrarEmpresa(Empresa nuevaEmpresa) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        respuesta.setError(false);
+        String url = Constantes.URL_WS+"empresas/registrarEmpresa";
+        String parametros = String.format("nombreComercial=%s&"
+                + "nombre=%s&"
+                + "email=%s&"
+                + "telefono=%s&"
+                + "paginaWeb=%s&"
+                + "RFC=%s&"
+                + "nombreRepresentante=%s&",
+                nuevaEmpresa.getNombreComercial(),
+                nuevaEmpresa.getNombre(),
+                nuevaEmpresa.getEmail(),
+                nuevaEmpresa.getTelefono(),
+                nuevaEmpresa.getPaginaWeb(),
+                nuevaEmpresa.getRFC(),
+                nuevaEmpresa.getNombreRepresentante());
+        
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionPOST(url, parametros);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+     
+        }else{
+            respuesta.setError(true);
+            respuesta.setContenido("Error:"+codigoHTTP.getCodigoRespuesta());
+        }
+       
+        return respuesta;
+    }
+     
+     
+     public static RespuestaUsuarioEscritorio editarEmpresa(Empresa empresaEditada) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        //respuesta.setError(false);
+        String url = Constantes.URL_WS+"empresas/editarEmpresa";
+        String parametros = String.format("nombreComercial=%s&"
+                + "nombre=%s&"
+                + "email=%s&"
+                + "telefono=%s&"
+                + "paginaWeb=%s&"
+                + "nombreRepresentante=%s&"
+                + "estatus=%s&"
+                + "idEmpresa=%s&",
+                empresaEditada.getNombreComercial(),
+                empresaEditada.getNombre(),
+                empresaEditada.getEmail(),
+                empresaEditada.getTelefono(),
+                empresaEditada.getPaginaWeb(),
+                empresaEditada.getNombreRepresentante(),
+                empresaEditada.getEstatus(),
+                empresaEditada.getIdEmpresa());
+        
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionPUT(url, parametros);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
+            Gson gson = new Gson();
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        
+        }else{
+            respuesta.setError(true);
+            respuesta.setContenido("Error:"+codigoHTTP.getCodigoRespuesta());
+        }
+       
+        return respuesta;
+    } 
 
     public static RespuestaUsuarioEscritorio eliminarEmpresa(int idEmpresa, int idUbicacion) {
         RespuestaUsuarioEscritorio mensaje = new RespuestaUsuarioEscritorio();
@@ -105,7 +173,6 @@ public class EmpresaDAO {
           respuesta.setContenido("El archivo selecionado no puede ser eviado para su almacenamiento");
         }
         return respuesta;
-    }
-    
+    } 
     
 }

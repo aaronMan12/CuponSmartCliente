@@ -43,7 +43,7 @@ import javax.imageio.ImageIO;
 public class FXMLRegistrarEmpresaController implements Initializable {
 
     private Usuario usuarioSesion = null;
-    private Empresa empresaUsuarioSesion;
+    private Empresa empresaUsuarioSesion = null;
     private File fotografia;
     @FXML
     private TextField tfNombreEmpresa;
@@ -77,8 +77,6 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private RadioButton rbInactivo;
     @FXML
     private ToggleGroup tgEstatus;
-    @FXML
-    private Button btnGuardarInformacionEmpresa;
     @FXML
     private Label lbLogo;
     @FXML
@@ -114,20 +112,75 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private void btnGuardarLogo(ActionEvent event) {
         if (fotografia != null) {
             RespuestaUsuarioEscritorio nuevoLogo = EmpresaDAO.actualizarLogoEmpresa(fotografia, empresaUsuarioSesion.getIdEmpresa());
-            if (!nuevoLogo.isError()){
+            if (!nuevoLogo.isError()) {
                 Utilidades.mostrarAlertaSimple("Logo guardado", nuevoLogo.getContenido(), Alert.AlertType.INFORMATION);
-            }else{
+            } else {
                 Utilidades.mostrarAlertaSimple("Error al guardar", nuevoLogo.getContenido(), Alert.AlertType.ERROR);
 
             }
-        }else{
+        } else {
             Utilidades.mostrarAlertaSimple("No hay logo seleccionado", "Para actualizar el logo antes debes elegir una nueva imagen",
                     Alert.AlertType.INFORMATION);
         }
     }
 
+    @FXML
+    private void btnAgregarUbicacion(ActionEvent event) {
+    }
+
+    @FXML
     private void btnGuardarInformacionEmpresa(ActionEvent event) {
-        ValidarCamposEmpresa();
+        //System.out.println(empresaUsuarioSesion.getNombre());
+        if (empresaUsuarioSesion == null) {
+
+            if (validarCamposEmpresa()) {
+                Empresa nuevaEmpresa = new Empresa();
+                nuevaEmpresa.setNombre(tfNombreEmpresa.getText());
+                nuevaEmpresa.setNombreComercial(tfNombeComercialEmpresa.getText());
+                nuevaEmpresa.setTelefono(tfTelefono.getText());
+                nuevaEmpresa.setPaginaWeb(tfPaginaWeb.getText());
+                nuevaEmpresa.setEmail(tfEmail.getText());
+                nuevaEmpresa.setNombreRepresentante(tfRepresentanteLegal.getText());
+                nuevaEmpresa.setRFC(tfRFC.getText());
+                nuevaEmpresa.setEstatus("activo");
+
+                RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
+
+                if (respuesta.getEmpresa().getIdEmpresa() > 0) {
+                    btnUbicacion.setVisible(true);
+                    Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);
+
+                } else {
+                    Utilidades.mostrarAlertaSimple("Error al agregar la empresa", "No se pudo agregar la empresa", Alert.AlertType.ERROR);
+
+                }
+
+            }
+        } else {
+            if (validarCamposEmpresa()){
+            Empresa empresaEditada = new Empresa();
+            empresaEditada.setNombre(tfNombreEmpresa.getText());
+            empresaEditada.setNombreComercial(tfNombeComercialEmpresa.getText());
+            empresaEditada.setTelefono(tfTelefono.getText());
+            empresaEditada.setPaginaWeb(tfPaginaWeb.getText());
+            empresaEditada.setEmail(tfEmail.getText());
+            empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText());
+            empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
+            //empresaEditada.setEstatus("activo");
+             if (rbInactivo.isSelected()) {
+                empresaEditada.setEstatus("inactivo");
+            } else {
+                empresaEditada.setEstatus("activo");
+            }
+            RespuestaUsuarioEscritorio respuesta = EmpresaDAO.editarEmpresa(empresaEditada);
+                System.out.println(respuesta.getContenido());
+            if (!respuesta.isError()){
+                Utilidades.mostrarAlertaSimple("Actulaización Empresa", "La empresa se atualizo satisfactoriamente", Alert.AlertType.INFORMATION);
+            }
+            }
+             
+        }
+
     }
 
     public void inicializarUsuarioComercial(Usuario usuario) {
@@ -148,7 +201,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         obtenerFotoEmpresa(empresaUsuarioSesion.getIdEmpresa());
     }
 
-    public void inicializarFormularioRegistrarEmpresa(){
+    public void inicializarFormularioRegistrarEmpresa() {
         lbEstatus.setVisible(false);
         rbActivo.setVisible(false);
         rbInactivo.setVisible(false);
@@ -158,7 +211,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         btnGuardarLogo.setVisible(false);
         btnUbicacion.setVisible(false);
     }
-    
+
     private void inicializarEmpresaUsuarioComercial(int idEmpresa) {
         RespuestaUsuarioEscritorio empresa = EmpresaDAO.buscarEmpresaPorId(idEmpresa);
         this.empresaUsuarioSesion = empresa.getEmpresa();
@@ -172,6 +225,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             tfEmail.setText(empresaUsuarioSesion.getEmail());
             tfTelefono.setText(empresaUsuarioSesion.getTelefono());
             tfRFC.setText(empresaUsuarioSesion.getRFC());
+            tfRepresentanteLegal.setText(empresaUsuarioSesion.getNombreRepresentante());
             if (empresaUsuarioSesion.getEstatus().equals(Constantes.ESTATUS_INACTIVO)) {
                 rbInactivo.setSelected(true);
             } else {
@@ -185,6 +239,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             tfEmail.setText(empresaUsuarioSesion.getEmail());
             tfTelefono.setText(empresaUsuarioSesion.getTelefono());
             tfRFC.setText(empresaUsuarioSesion.getRFC());
+            tfRepresentanteLegal.setText(empresaUsuarioSesion.getNombreRepresentante());
             if (empresaUsuarioSesion.getEstatus().equals(Constantes.ESTATUS_INACTIVO)) {
                 rbInactivo.setSelected(true);
             } else {
@@ -226,31 +281,52 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         }
     }
 
-    private void ValidarCamposEmpresa() {
-        if (tfNombreEmpresa.getText().isEmpty() || tfNombreEmpresa.getText() == "") {
+    private boolean validarCamposEmpresa() {
+        boolean camposVacios = true;
+        limpiarErrores();
 
+        if (tfNombreEmpresa.getText().isEmpty()) {
+            lbNombre.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
 
-        if (tfNombeComercialEmpresa.getText().isEmpty() || tfNombeComercialEmpresa.getText() == "") {
-
+        if (tfNombeComercialEmpresa.getText().isEmpty()) {
+            lbNombreComercial.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
 
-        if (tfPaginaWeb.getText().isEmpty() || tfPaginaWeb.getText() == "") {
+        if (tfPaginaWeb.getText().isEmpty() || !Utilidades.validarCadena(tfPaginaWeb.getText(), Utilidades.PAGINA_WEB_PATTERN)) {
+            lbPaginaWeb.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
 
-        if (tfEmail.getText().isEmpty() || tfEmail.getText() == "") {
+        if (tfEmail.getText().isEmpty() || !Utilidades.validarCadena(tfEmail.getText(), Utilidades.EMAIL_PATTERN)) {
+            lbEmail.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
-        if (tfEmail.getText().isEmpty() || tfTelefono.getText() == "") {
+        if (tfTelefono.getText().isEmpty() || !Utilidades.validarCadena(tfTelefono.getText(), Utilidades.TELEFONO_PATTERN)) {
+            lbTelefono.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
-        if (tfRFC.getText().isEmpty() || tfRFC.getText() == "") {
+        if (tfRFC.getText().isEmpty() || !Utilidades.validarCadena(tfRFC.getText(), Utilidades.RFC_EMPRESA_PATTERN)) {
+            lbRFC.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
-        if (tfRepresentanteLegal.getText().isEmpty() || tfRepresentanteLegal.getText() == "") {
-
+        if (tfRepresentanteLegal.getText().isEmpty()) {
+            lbRepresentanteLegal.setText(Constantes.CAMPO_INVALIDO);
+            camposVacios = false;
         }
-
+        return camposVacios;
     }
 
-    @FXML
-    private void btnAgregarUbicacion(ActionEvent event) {
+    private void limpiarErrores() {
+        this.lbNombre.setText("");
+        this.lbNombreComercial.setText("");
+        this.lbPaginaWeb.setText("");
+        this.lbEmail.setText("");
+        this.lbTelefono.setText("");
+        this.lbRFC.setText("");
+        this.lbRepresentanteLegal.setText("");
     }
+
 }
