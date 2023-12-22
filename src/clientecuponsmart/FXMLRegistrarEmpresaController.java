@@ -378,6 +378,8 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     }
 
     private void cerrarPantalla() {
+        Stage stage = (Stage) tfEmail.getScene().getWindow();
+        stage.close();
     }
 
 }

@@ -6,17 +6,20 @@ import clientecuponsmart.modelo.pojo.Ubicacion;
 import clientecuponsmart.utils.Utilidades;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class FXMLRegistrarUbicacionController implements Initializable {
 
-    private Ubicacion ubicacion;
+    private Ubicacion ubicacion = null;
     private Integer idSucursal;
     private Integer idEmpresa;
 
@@ -40,6 +43,21 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+          Platform.runLater(() -> {
+            Stage stage = (Stage) tfCalle.getScene().getWindow();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    // Verificar si la ubicación es nula y consumir el evento si es necesario
+                    if (ubicacionEsNula()) {
+                        event.consume(); // Consumir el evento para evitar que la ventana se cierre
+                        Utilidades.mostrarAlertaSimple("Error", "La ubicación no puede ser nula.", Alert.AlertType.ERROR);
+                    }
+                }
+            });
+        });
+    
+    
     }
 
     @FXML
@@ -62,7 +80,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionNueva.setCodigoPostal(this.tfCodigoPostal.getText());
                     ubicacionNueva.setCiudad(this.tfCiudad.getText());
                     ubicacionNueva.setIdSucursal(idSucursal);
-                   
+
                     this.registrarUbicacionSucursal(ubicacionNueva);
                 }
             } else {
@@ -83,7 +101,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionNueva.setCiudad(this.tfCiudad.getText());
                     ubicacionNueva.setIdEmpresa(idEmpresa);
                     registrarUbicacionEmpresa(ubicacionNueva);
-                    
+
                     //condicional para no salir del menú
                 }
             }
@@ -104,8 +122,8 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     public void inicializarRegistroSucursal(Integer idSucursal) {
         this.idSucursal = idSucursal;
     }
-    
-    public void inicializarRegistroSucursalEmpresa(Integer idEmpresa){
+
+    public void inicializarRegistroSucursalEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
         System.out.println(this.idEmpresa);
     }
@@ -131,7 +149,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
     }
-    
+
     private void editarUbicaciónEmpresa(Ubicacion ubicacionEditadaEmpresa) {
         RespuestaUsuarioEscritorio respuesta = UbicacionDAO.editarUbicacion(ubicacion);
         if (!respuesta.isError()) {
@@ -143,7 +161,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     }
 
     private void registrarUbicacionEmpresa(Ubicacion ubicacionNueva) {
-         RespuestaUsuarioEscritorio respuesta = UbicacionDAO.registrarUbicacionEmpresa(ubicacionNueva);
+        RespuestaUsuarioEscritorio respuesta = UbicacionDAO.registrarUbicacionEmpresa(ubicacionNueva);
 
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Ubicación registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
@@ -201,5 +219,16 @@ public class FXMLRegistrarUbicacionController implements Initializable {
         stage.close();
     }
 
+    private boolean ubicacionEsNula() {
+        return ubicacion == null;
+    }
     
+   private void cerrarVentana() {
+        if (!ubicacionEsNula()) {
+            Stage stage = (Stage) tfCalle.getScene().getWindow();
+            stage.close();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error", "La ubicación no puede ser nula.", Alert.AlertType.ERROR);
+        }
+    }
 }
