@@ -96,9 +96,7 @@ public class FXMLHomeController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-
             try {
-                // TODO VISTA COMERCIAL
                 FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
                 Parent vista = vistaload.load();
                 FXMLRegistrarEmpresaController controlador = vistaload.getController();
@@ -112,14 +110,13 @@ public class FXMLHomeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 
     @FXML
     private void btnGestionSucursales(ActionEvent event) {
-        if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
-            try {
+        try {
+            if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
                 FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdministrarSucursales.fxml"));
                 Parent vista = vistaload.load();
                 FXMLAdministrarSucursalesController controlador = vistaload.getController();
@@ -130,8 +127,20 @@ public class FXMLHomeController implements Initializable {
                 stage.setTitle("Sucursales");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
-            } catch (Exception e) {
+            } else {
+                FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdministrarSucursales.fxml"));
+                Parent vista = vistaload.load();
+                FXMLAdministrarSucursalesController controlador = vistaload.getController();
+                controlador.inicializarInformacionComercial(usuarioSesion.getIdUsuario());
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Sucursales");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
