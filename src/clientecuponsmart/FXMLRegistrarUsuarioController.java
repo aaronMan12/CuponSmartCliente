@@ -296,10 +296,5 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         Stage stage = (Stage) tfNombre.getScene().getWindow();
         stage.close();
     }
-    /*
-    * TODO
-    ** EN LA PANTALLA DE MODULO USUARIOS DEBO DE IMPLEMENTAR LAS BUSQUEDAS 
-    ** EN LA PANTALLA DE REGISTRAR DEBO DE IMPLEMENTAR LA CARGA DE LOS COMBO BOX
-    ** EN LA PANTALLA DE MODULO USUARIOS DEBO DE IMPLEMENTAR EL LLEVADO DE LA BUSQUEDA POR...
-     */
+    
 }

@@ -74,14 +74,14 @@
                 <Font name="Arial Bold" size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="tfLongitud" layoutX="331.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Sumidero" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="tfLongitud" layoutX="331.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. -543.6" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
         <Label fx:id="lbLongitud" layoutX="331.0" layoutY="256.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
         <Label fx:id="lbLatitud" layoutX="46.0" layoutY="256.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-        <TextField fx:id="tfLatitud" layoutX="46.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Walmart Sumidero" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="tfLatitud" layoutX="46.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 423.98" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
@@ -109,7 +109,7 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnUbicacion" layoutX="331.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnIrAgregarUbicacion" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Agregar ubicación">
+      <Button fx:id="btnUbicacion" layoutX="331.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnIrAgregarUbicacion" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Ubicación">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
