@@ -63,7 +63,7 @@ public class UbicacionDAO {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
         } else {
             respuesta.setError(true);
-            respuesta.setContenido(url);
+            respuesta.setContenido("Error en la petición para el buscar la ubicación.");
         }
 
         return respuesta;
