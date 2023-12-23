@@ -178,6 +178,72 @@ public class ConexionHTTP {
 
         return respuesta;
      }
+     
+     public static CodigoHTTP peticionPOSTJson(String url, String json){
+        CodigoHTTP respuesta = new CodigoHTTP();
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHTTP = (HttpURLConnection) urlServicio.openConnection();
+            conexionHTTP.setRequestMethod("POST");
+
+            conexionHTTP.setRequestProperty("Content-Type", "application/json");
+            conexionHTTP.setDoOutput(true);
+            OutputStream os = conexionHTTP.getOutputStream();
+            os.write(json.getBytes());
+            os.flush();
+            os.close();
+
+            int codigoRespuesta = conexionHTTP.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+                respuesta.setContenido(convertirContenido(conexionHTTP.getInputStream()));
+            } else {
+                respuesta.setContenido("CODE ERROE:" + codigoRespuesta);
+            }
+
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error:" + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error:" + iox.getMessage());
+        }
+        return respuesta;
+     }
+     
+     public static CodigoHTTP peticionPUTJson(String url, String json){
+          CodigoHTTP respuesta = new CodigoHTTP();
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHTTP = (HttpURLConnection) urlServicio.openConnection();
+            conexionHTTP.setRequestMethod("PUT");
+
+            conexionHTTP.setRequestProperty("Content-Type", "application/json");
+            conexionHTTP.setDoOutput(true);
+            OutputStream os = conexionHTTP.getOutputStream();
+            os.write(json.getBytes());
+            os.flush();
+            os.close();
+
+            int codigoRespuesta = conexionHTTP.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+                respuesta.setContenido(convertirContenido(conexionHTTP.getInputStream()));
+            } else {
+                respuesta.setContenido("CODE ERROE:" + codigoRespuesta);
+            }
+
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error:" + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error:" + iox.getMessage());
+
+        }
+
+        return respuesta;
+     }
 
     private static String convertirContenido(InputStream contenido) throws IOException {
         InputStreamReader inputLectura = new InputStreamReader(contenido);

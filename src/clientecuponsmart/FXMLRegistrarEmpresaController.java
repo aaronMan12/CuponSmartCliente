@@ -153,14 +153,10 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
 
                 if (respuesta.getEmpresa().getIdEmpresa() > 0) {
-                    
-                    btnUbicacion.setVisible(true);
-                    Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);
-                    
+                    Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);                    
                     registrarUbicacionEmpresa(respuesta.getEmpresa().getIdEmpresa());
                 } else {
                     Utilidades.mostrarAlertaSimple("Error al agregar la empresa", "No se pudo agregar la empresa", Alert.AlertType.ERROR);
-
                 }
 
             }

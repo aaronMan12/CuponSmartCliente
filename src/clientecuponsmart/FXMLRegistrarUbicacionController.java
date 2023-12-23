@@ -51,7 +51,8 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     // Verificar si la ubicación es nula y consumir el evento si es necesario
                     if (ubicacionEsNula()) {
                         event.consume(); // Consumir el evento para evitar que la ventana se cierre
-                        Utilidades.mostrarAlertaSimple("Error", "La ubicación no puede ser nula.", Alert.AlertType.ERROR);
+                        Utilidades.mostrarAlertaSimple("Error de registro", "Para poder hacer valido el registro de la empresa debes"
+                                + "agregar su ubicación", Alert.AlertType.ERROR);
                     }
                 }
             });
@@ -223,12 +224,12 @@ public class FXMLRegistrarUbicacionController implements Initializable {
         return ubicacion == null;
     }
     
-   private void cerrarVentana() {
+  /* private void cerrarVentana() {
         if (!ubicacionEsNula()) {
             Stage stage = (Stage) tfCalle.getScene().getWindow();
             stage.close();
         } else {
             Utilidades.mostrarAlertaSimple("Error", "La ubicación no puede ser nula.", Alert.AlertType.ERROR);
         }
-    }
+    }*/
 }
