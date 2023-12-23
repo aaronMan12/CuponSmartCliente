@@ -52,7 +52,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     if (ubicacionEsNula()) {
                         event.consume(); // Consumir el evento para evitar que la ventana se cierre
                         Utilidades.mostrarAlertaSimple("Error de registro", "Para poder hacer valido el registro de la empresa debes"
-                                + "agregar su ubicación", Alert.AlertType.ERROR);
+                                + "agregar su ubicación", Alert.AlertType.ERROR); 
                     }
                 }
             });
