@@ -99,6 +99,7 @@ public class FXMLRegistrarSucursalController implements Initializable {
                 sucursalNueva.setIdEmpresa(this.idEmpresa);
 
                 this.registrarSucursal(sucursalNueva);
+                this.irPantallaUbicacion(idSucursalRegistrado);
             }
         }
     }
@@ -107,8 +108,6 @@ public class FXMLRegistrarSucursalController implements Initializable {
     private void btnIrAgregarUbicacion(ActionEvent event) {
         if (this.sucursal != null) {
             this.irPantallaUbicacionEditar(sucursal.getIdUbicacion());
-        } else {
-            this.irPantallaUbicacion(idSucursalRegistrado);
         }
     }
 
@@ -123,7 +122,7 @@ public class FXMLRegistrarSucursalController implements Initializable {
     public void inicializarInformacionRegistro() {
         this.cargarInformacionEmpresas();
         this.configurarSeleccionEmpresa();
-        this.btnUbicacion.setDisable(true);
+        this.btnUbicacion.setVisible(false);
     }
 
     private void cargarInformacionEmpresas() {
@@ -237,8 +236,6 @@ public class FXMLRegistrarSucursalController implements Initializable {
 
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Sucursal registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
-            Utilidades.mostrarAlertaSimple("Registrar ubicación", "Ahora puedes registrar la ubicación de la sucursal. \n Si no la registras se perderá la sucursal.", Alert.AlertType.INFORMATION);
-            this.btnUbicacion.setDisable(false);
             this.idSucursalRegistrado = respuesta.getSucursal().getIdSucursal();
         } else {
             Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);

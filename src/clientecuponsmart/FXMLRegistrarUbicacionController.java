@@ -43,7 +43,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-          Platform.runLater(() -> {
+        Platform.runLater(() -> {
             Stage stage = (Stage) tfCalle.getScene().getWindow();
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
@@ -53,12 +53,16 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                         event.consume(); // Consumir el evento para evitar que la ventana se cierre
                         Utilidades.mostrarAlertaSimple("Error de registro", "Para poder hacer valido el registro de la empresa debes"
                                 + "agregar su ubicación", Alert.AlertType.ERROR); 
+
+                        Utilidades.mostrarAlertaSimple(
+                                "Error de registro",
+                                "Para poder hacer valido el registro de la empresa debes agregar su ubicación",
+                                Alert.AlertType.ERROR);
+
                     }
                 }
             });
         });
-    
-    
     }
 
     @FXML
@@ -126,7 +130,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
 
     public void inicializarRegistroSucursalEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
-        System.out.println(this.idEmpresa);
     }
 
     private void editarUbicacionSucursal(Ubicacion ubicacion) {
@@ -223,13 +226,5 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     private boolean ubicacionEsNula() {
         return ubicacion == null;
     }
-    
-  /* private void cerrarVentana() {
-        if (!ubicacionEsNula()) {
-            Stage stage = (Stage) tfCalle.getScene().getWindow();
-            stage.close();
-        } else {
-            Utilidades.mostrarAlertaSimple("Error", "La ubicación no puede ser nula.", Alert.AlertType.ERROR);
-        }
-    }*/
+
 }

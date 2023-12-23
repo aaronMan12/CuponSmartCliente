@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/copia/7MO%20SEMESTRE/INTEGRACIÓN%20DE%20SOLUCIONES/PROYECTO/ClienteCuponSmart/src/clientecuponsmart/FXMLRegistrarSucursalController.java</file>
             <file>file:/D:/copia/7MO%20SEMESTRE/INTEGRACIÓN%20DE%20SOLUCIONES/PROYECTO/ClienteCuponSmart/src/clientecuponsmart/FXMLRegistrarEmpresaController.java</file>
             <file>file:/D:/copia/7MO%20SEMESTRE/INTEGRACIÓN%20DE%20SOLUCIONES/PROYECTO/ClienteCuponSmart/src/clientecuponsmart/modelo/ConexionHTTP.java</file>
             <file>file:/D:/copia/7MO%20SEMESTRE/INTEGRACIÓN%20DE%20SOLUCIONES/PROYECTO/ClienteCuponSmart/src/clientecuponsmart/modelo/dao/EmpresaDAO.java</file>
             <file>file:/D:/copia/7MO%20SEMESTRE/INTEGRACIÓN%20DE%20SOLUCIONES/PROYECTO/ClienteCuponSmart/src/clientecuponsmart/FXMLRegistrarUbicacionController.java</file>
+=======
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/CuponSmartCliente/src/clientecuponsmart/modelo/pojo/Promocion.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/CuponSmartCliente/src/clientecuponsmart/FXMLAdminPromocionesController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/CuponSmartCliente/src/clientecuponsmart/FXMLAdminPromociones.fxml</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/CuponSmartCliente/src/clientecuponsmart/FXMLRegistrarPromocionController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/CuponSmartCliente/src/clientecuponsmart/modelo/dao/PromocionDAO.java</file>
+>>>>>>> 3dcf5cb951c11b5d779145e676320ac259adba43
         </group>
     </open-files>
 </project-private>
