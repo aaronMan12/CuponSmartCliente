@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clientecuponsmart.FXMLAdminPromocionesController">
+   <children>
+      <ImageView fitHeight="653.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/bgAdminUsuarios.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="39.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/logoRedondo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="442.0" layoutY="29.0" text="Módulo de promociones">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dtBuscarPromocion" layoutX="20.0" layoutY="105.0" prefHeight="39.0" prefWidth="224.0" promptText="Buscar promoción" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </DatePicker>
+      <ComboBox fx:id="cbBusqueda" layoutX="267.0" layoutY="106.0" prefHeight="39.0" prefWidth="160.0" promptText="Buscar por..." style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px;" />
+      <Button layoutX="684.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Registrar" textFill="#171717">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="822.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioEditar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Editar" textFill="#171717">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="960.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioEliminar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Eliminar" textFill="#171717">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="tbPromociones" layoutX="20.0" layoutY="163.0" prefHeight="476.0" prefWidth="1060.0">
+        <columns>
+          <TableColumn fx:id="colNombre" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Nombre" />
+            <TableColumn fx:id="colCategoria" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Categoría" />
+          <TableColumn fx:id="colFechaInicio" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Fecha inicio" />
+            <TableColumn fx:id="colFechaFin" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Fecha fin" />
+            <TableColumn fx:id="colTipoPromocion" maxWidth="148.0" minWidth="148.0" prefWidth="148.0" text="Tipo de promoción" />
+            <TableColumn fx:id="colNoCupones" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Número de cupones" />
+            <TableColumn fx:id="colCodigo" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Código" />
+            <TableColumn fx:id="colEstatus" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Estatus" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfBuscarPromocion" layoutX="20.0" layoutY="105.0" prefHeight="39.0" prefWidth="224.0" promptText="Buscar promoción" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
