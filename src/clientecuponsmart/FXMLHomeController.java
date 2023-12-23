@@ -146,7 +146,16 @@ public class FXMLHomeController implements Initializable {
 
     @FXML
     private void btnGestionPromociones(ActionEvent event) {
-
+        try {
+            if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
+                // GENERAL
+            } else {
+                // COMERCIAL
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void cargarImagenes() {
