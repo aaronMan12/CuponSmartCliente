@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
     <children>
-        <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="20.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../componentes/logoRedondo.png" />
             </image>
@@ -20,37 +20,37 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Label layoutX="20.0" layoutY="100.0" text="Nombre:">
+        <Label layoutX="61.0" layoutY="101.0" text="Nombre:">
             <font>
                 <Font name="Arial Bold" size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="tfNombrePromocion" layoutX="20.0" layoutY="117.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Martes 2x1" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="tfNombrePromocion" layoutX="61.0" layoutY="118.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Martes 2x1" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Label fx:id="lbNombrePromocion" layoutX="20.0" layoutY="157.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label fx:id="lbFechaInicio" layoutX="20.0" layoutY="330.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label layoutX="20.0" layoutY="273.0" text="Fecha de inicio:">
+        <Label fx:id="lbNombrePromocion" layoutX="61.0" layoutY="158.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbFechaInicio" layoutX="61.0" layoutY="254.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="61.0" layoutY="197.0" text="Fecha de inicio:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpFechaInicio" layoutX="20.0" layoutY="290.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/01" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <DatePicker fx:id="dpFechaFin" layoutX="20.0" layoutY="375.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/31" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="20.0" layoutY="358.0" text="Fecha de fin:">
+      <DatePicker fx:id="dpFechaInicio" layoutX="61.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/01" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <DatePicker fx:id="dpFechaFin" layoutX="334.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/31" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="334.0" layoutY="197.0" text="Fecha de fin:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lbFechaFin" layoutX="20.0" layoutY="415.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label layoutX="292.0" layoutY="273.0" text="Tipo de promoción:">
+      <Label fx:id="lbFechaFin" layoutX="334.0" layoutY="254.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="61.0" layoutY="292.0" text="Tipo de promoción:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="293.0" layoutY="301.0" mnemonicParsing="false" text="Descuento">
+      <RadioButton fx:id="rbDescuento" layoutX="61.0" layoutY="320.0" mnemonicParsing="false" text="Descuento">
          <font>
             <Font size="13.0" />
          </font>
@@ -61,7 +61,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </RadioButton>
-      <RadioButton layoutX="418.0" layoutY="301.0" mnemonicParsing="false" text="Rebaja" toggleGroup="$tgTipoDescuento">
+      <RadioButton fx:id="rbRebaja" layoutX="187.0" layoutY="320.0" mnemonicParsing="false" text="Rebaja" toggleGroup="$tgTipoDescuento">
          <font>
             <Font size="13.0" />
          </font>
@@ -69,29 +69,29 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </RadioButton>
-      <Label fx:id="lbNumeroCupones" layoutX="293.0" layoutY="157.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <TextField fx:id="tfNumeroCupones" layoutX="293.0" layoutY="117.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 100" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <Label fx:id="lbNumeroCupones" layoutX="334.0" layoutY="158.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <TextField fx:id="tfNumeroCupones" layoutX="334.0" layoutY="118.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 100" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="293.0" layoutY="100.0" text="Número de cupones:">
+      <Label layoutX="334.0" layoutY="101.0" text="Número de cupones:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="185.0" text="Código:">
+      <Label layoutX="617.0" layoutY="101.0" text="Código:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfCodigo" layoutX="20.0" layoutY="202.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2GYD764J" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="tfCodigo" layoutX="617.0" layoutY="118.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2GYD764J" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="lbCodigo" layoutX="20.0" layoutY="242.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <RadioButton layoutX="418.0" layoutY="387.0" mnemonicParsing="false" text="Inactivo">
+      <Label fx:id="lbCodigo" layoutX="617.0" layoutY="158.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <RadioButton fx:id="rbInactivo" layoutX="459.0" layoutY="320.0" mnemonicParsing="false" text="Inactivo">
          <toggleGroup>
             <ToggleGroup fx:id="tgEstatus" />
          </toggleGroup>
@@ -102,7 +102,7 @@
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="293.0" layoutY="387.0" mnemonicParsing="false" text="Activo" toggleGroup="$tgEstatus">
+      <RadioButton fx:id="rbActivo" layoutX="334.0" layoutY="320.0" mnemonicParsing="false" text="Activo" toggleGroup="$tgEstatus">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -110,39 +110,66 @@
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <Label layoutX="293.0" layoutY="358.0" text="Estatus:">
+      <Label layoutX="334.0" layoutY="292.0" text="Estatus:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbCategoria" layoutX="293.0" layoutY="202.0" prefHeight="40.0" prefWidth="250.0" promptText="Selecciona una categoría" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label fx:id="lbCategoria" layoutX="293.0" layoutY="242.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label layoutX="293.0" layoutY="185.0" text="Categoría:">
+      <ComboBox fx:id="cbCategoria" layoutX="617.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Selecciona una categoría" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label fx:id="lbCategoria" layoutX="617.0" layoutY="254.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="617.0" layoutY="197.0" text="Categoría:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea layoutX="575.0" layoutY="117.0" prefHeight="125.0" prefWidth="524.0" promptText="Ej. Descuento del 20% en todos los productos" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <TextArea fx:id="taDescripcion" layoutX="334.0" layoutY="379.0" prefHeight="125.0" prefWidth="250.0" promptText="Ej. Descuento del 20% en todos los productos" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Label layoutX="575.0" layoutY="100.0" text="Descripción:">
+      <Label layoutX="334.0" layoutY="362.0" text="Descripción:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="575.0" layoutY="273.0" text="Restricciones:">
+      <Label layoutX="61.0" layoutY="363.0" text="Restricciones:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea layoutX="575.0" layoutY="287.0" prefHeight="127.0" prefWidth="524.0" promptText="Ej. Válido solo los fines de semana" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <TextArea fx:id="taRestriccion" layoutX="61.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" promptText="Ej. Válido solo los fines de semana" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Label fx:id="lbCodigo1" layoutX="575.0" layoutY="242.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label fx:id="lbCodigo11" layoutX="575.0" layoutY="415.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbDescripcion" layoutX="334.0" layoutY="504.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbRestriccion" layoutX="61.0" layoutY="506.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="690.0" layoutY="364.0" prefHeight="40.0" prefWidth="104.0" text="Seleccionar fotografía" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="ivFotografia" fitHeight="150.0" fitWidth="250.0" layoutX="617.0" layoutY="309.0" onMouseClicked="#btnSeleccionarFoto" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="617.0" layoutY="292.0" text="Fotografía:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="687.0" layoutY="469.0" mnemonicParsing="false" onAction="#btnGuardarFoto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar fotografía">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="973.0" layoutY="523.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ListView fx:id="lvSucursales" layoutX="903.0" layoutY="118.0" prefHeight="390.0" prefWidth="250.0" />
+      <Label layoutX="903.0" layoutY="101.0" text="Selecciona sucursales validas:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
