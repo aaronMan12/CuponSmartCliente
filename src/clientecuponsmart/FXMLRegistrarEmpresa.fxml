@@ -18,25 +18,26 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
    <children>
-      <Pane maxWidth="1.7976931348623157E308" prefHeight="121.0" prefWidth="900.0" style="-fx-background-color: #FEDB39; -fx-border-color: black; -fx-border-width: 10px;">
-         <children>
-            <Label layoutX="399.0" layoutY="31.0" text="Empresa">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lbTituloEmpresa" layoutX="277.0" layoutY="64.0" text="Registrar datos de la Empresa">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../componentes/logoRedondo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/bgRegistrarUsuario.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="404.0" layoutY="14.0" text="Empresa">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTituloEmpresa" layoutX="278.0" layoutY="44.0" text="Registrar datos de la Empresa">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/logoRedondo.png" />
+         </image>
+      </ImageView>
       <Label layoutX="60.0" layoutY="139.0" text="Nombre:">
          <font>
             <Font name="Arial Bold" size="18.0" />
