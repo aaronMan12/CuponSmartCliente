@@ -11,34 +11,34 @@ public class PromocionDAO {
 
     public static RespuestaUsuarioEscritorio buscarPromocionesEmpresa(Integer idEmpresa) {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
-        String url = Constantes.URL_WS + "promociones/buscarPromocionesEmpresa/2"+idEmpresa;
-        Gson gson =  new Gson();
+        String url = Constantes.URL_WS + "promociones/buscarPromocionesEmpresa/" + idEmpresa;
+        Gson gson = new Gson();
         CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
-        
-        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
+
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
-        }else{
+        } else {
             respuesta.setError(true);
             respuesta.setContenido("Error al obtener las promociones de la empresa asociada al usuario");
         }
-           
+
         return respuesta;
     }
 
     public static RespuestaUsuarioEscritorio buscarTodasLasPromociones() {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
         String url = Constantes.URL_WS + "promociones/buscarPromociones";
-        Gson gson =  new Gson();
+        Gson gson = new Gson();
         CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
-        
-        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
+
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
             respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
-        }else{
+        } else {
             respuesta.setError(true);
             respuesta.setContenido("Error al obtener las promociones");
         }
-           
+
         return respuesta;
     }
-    
+
 }

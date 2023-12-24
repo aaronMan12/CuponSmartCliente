@@ -7,6 +7,7 @@ import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -20,14 +21,14 @@ import javafx.scene.control.TextField;
 
 public class FXMLAdminPromocionesController implements Initializable {
 
-    private ObservableList <Promocion> promociones;
-    private FilteredList <Promocion> filteredListPromociones;
-    
-    private ObservableList <Busqueda> promocionesBusqueda; 
+    private ObservableList<Promocion> promociones;
+    private FilteredList<Promocion> filteredListPromociones;
+
+    private ObservableList<Busqueda> promocionesBusqueda;
     private Integer idBusquedaselección;
-    
+
     private Integer idEmpresa;
-    
+
     @FXML
     private DatePicker dtBuscarPromocion;
     @FXML
@@ -55,8 +56,8 @@ public class FXMLAdminPromocionesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        promociones = FXCollections.observableArrayList();
+    }
 
     @FXML
     private void btnFormularioRegistrar(ActionEvent event) {
@@ -69,37 +70,37 @@ public class FXMLAdminPromocionesController implements Initializable {
     @FXML
     private void btnFormularioEliminar(ActionEvent event) {
     }
-    
-    
-    public void inicializarTablaComercial(Integer idEmpresa){
-        idEmpresa = idEmpresa;
+
+    public void inicializarTablaComercial(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
         cargarImformacionComercial(this.idEmpresa);
-        
     }
-    
-    public void inicializarTablaGeneral(){
+
+    public void inicializarTablaGeneral() {
         cargarInformacionGeneral();
     }
-    
-    private void cargarImformacionComercial (Integer idEmpresa){
+
+    private void cargarImformacionComercial(Integer idEmpresa) {
         RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarPromocionesEmpresa(idEmpresa);
-        promocionesBusqueda.clear();
-        
-        List <Promocion> listPromociones = (List<Promocion>) respuesta.getPromociones();
-        
+        promociones.clear();
+
+        List<Promocion> listPromociones = (List<Promocion>) respuesta.getPromociones();
+
         promociones.addAll(listPromociones);
         filteredListPromociones = new FilteredList<>(promociones);
-        
+        tbPromociones.setItems(filteredListPromociones);
+
     }
-    
-    private void cargarInformacionGeneral (){
+
+    private void cargarInformacionGeneral() {
         RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarTodasLasPromociones();
-        promocionesBusqueda.clear();
-        
-        List <Promocion> listPromociones = (List<Promocion>) respuesta.getPromociones();
-        
+        promociones.clear();
+
+        List<Promocion> listPromociones = (List<Promocion>) respuesta.getPromociones();
+
         promociones.addAll(listPromociones);
         filteredListPromociones = new FilteredList<>(promociones);
+        tbPromociones.setItems(filteredListPromociones);
     }
-    
+
 }

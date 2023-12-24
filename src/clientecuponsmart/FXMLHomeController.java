@@ -150,7 +150,16 @@ public class FXMLHomeController implements Initializable {
             if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
                 // GENERAL
             } else {
-                // COMERCIAL
+                FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdminPromociones.fxml"));
+                Parent vista = vistaload.load();
+                FXMLAdminPromocionesController controlador = vistaload.getController();
+                controlador.inicializarTablaComercial(usuarioSesion.getIdEmpresa());
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Promocion");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
                 
             }
         } catch (Exception e) {
