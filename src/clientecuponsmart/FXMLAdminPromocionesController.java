@@ -84,18 +84,36 @@ public class FXMLAdminPromocionesController implements Initializable {
 
     @FXML
     private void btnFormularioEliminar(ActionEvent event) {
+        int posicionSeleccionada = tbPromociones.getSelectionModel().getSelectedIndex();
+        
+        if (posicionSeleccionada != -1){
+            Promocion promocion = filteredListPromociones.get(posicionSeleccionada);
+            
+            RespuestaUsuarioEscritorio respuesta = PromocionDAO.eliminarPromocion(promocion.getIdPromocion());
+            
+            if (!respuesta.isError()){
+                Utilidades.mostrarAlertaSimple("Promocion Eliminada", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+                this.cargarInformacionComercial(idEmpresa);
+            }else{
+                Utilidades.mostrarAlertaSimple("Eliminación fallida", respuesta.getContenido(), Alert.AlertType.ERROR);
+
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Error", "Para eliminar una promoción debes seleccionar una", Alert.AlertType.ERROR);
+        }
+        
     }
 
     public void inicializarTablaComercial(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
-        cargarImformacionComercial(this.idEmpresa);
+        cargarInformacionComercial(this.idEmpresa);
     }
 
     public void inicializarTablaGeneral() {
         cargarInformacionGeneral();
     }
 
-    private void cargarImformacionComercial(Integer idEmpresa) {
+    private void cargarInformacionComercial(Integer idEmpresa) {
         RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarPromocionesEmpresa(idEmpresa);
         promociones.clear();
 

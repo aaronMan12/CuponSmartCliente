@@ -117,6 +117,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             RespuestaUsuarioEscritorio nuevoLogo = EmpresaDAO.actualizarLogoEmpresa(fotografia, empresaUsuarioSesion.getIdEmpresa());
             if (!nuevoLogo.isError()) {
                 Utilidades.mostrarAlertaSimple("Logo guardado", nuevoLogo.getContenido(), Alert.AlertType.INFORMATION);
+                cerrarPantalla();
             } else {
                 Utilidades.mostrarAlertaSimple("Error al guardar", nuevoLogo.getContenido(), Alert.AlertType.ERROR);
 
@@ -163,12 +164,12 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         } else {
             if (validarCamposEmpresa()) {
                 Empresa empresaEditada = new Empresa();
-                empresaEditada.setNombre(tfNombreEmpresa.getText());
-                empresaEditada.setNombreComercial(tfNombeComercialEmpresa.getText());
+                empresaEditada.setNombre(tfNombreEmpresa.getText().trim());
+                empresaEditada.setNombreComercial(tfNombeComercialEmpresa.getText().trim());
                 empresaEditada.setTelefono(tfTelefono.getText());
                 empresaEditada.setPaginaWeb(tfPaginaWeb.getText());
                 empresaEditada.setEmail(tfEmail.getText());
-                empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText());
+                empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText().trim());
                 empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
                 //empresaEditada.setEstatus("activo");
                 if (rbInactivo.isSelected()) {
@@ -180,6 +181,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 System.out.println(respuesta.getContenido());
                 if (!respuesta.isError()) {
                     Utilidades.mostrarAlertaSimple("Actulaización Empresa", "La empresa se atualizo satisfactoriamente", Alert.AlertType.INFORMATION);
+                    cerrarPantalla();
                 }
             }
 

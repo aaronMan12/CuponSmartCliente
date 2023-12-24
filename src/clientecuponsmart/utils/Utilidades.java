@@ -13,6 +13,8 @@ public class Utilidades {
     public static final String FECHA_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$";
     public static final String CURP_PATTERN = "^([A-Z][AEIOUX][A-Z]{2}\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\\d])(\\d)$";
     public static final String PAGINA_WEB_PATTERN = "^www\\.[a-zA-Z0-9-]+\\.(com|net|org|info|biz|gov|edu|mil|arpa|int)$";
+    public static final String ESPACIOS_INICIO_FIN_PATTERN = "^(\\s*|\\s*)$";
+
 
     public static boolean validarCadena(String cadena, String expresionRegular) {
         Pattern pattern = Pattern.compile(expresionRegular);

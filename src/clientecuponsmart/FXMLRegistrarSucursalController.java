@@ -237,6 +237,7 @@ public class FXMLRegistrarSucursalController implements Initializable {
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Sucursal registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
             this.idSucursalRegistrado = respuesta.getSucursal().getIdSucursal();
+            cerrarPantalla();
         } else {
             Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
@@ -247,6 +248,7 @@ public class FXMLRegistrarSucursalController implements Initializable {
 
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Sucursal editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            cerrarPantalla();
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
