@@ -148,19 +148,27 @@ public class FXMLHomeController implements Initializable {
     private void btnGestionPromociones(ActionEvent event) {
         try {
             if (Constantes.ID_ROL_GENERAL == usuarioSesion.getIdRollUsuario()) {
-                // GENERAL
-            } else {
                 FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdminPromociones.fxml"));
                 Parent vista = vistaload.load();
                 FXMLAdminPromocionesController controlador = vistaload.getController();
-                controlador.inicializarTablaComercial(usuarioSesion.getIdEmpresa());
+                controlador.inicializarTablaGeneral();
                 Stage stage = new Stage();
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Promocion");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
-                
+            } else {
+                FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLAdminPromociones.fxml"));
+                Parent vista = vistaload.load();
+                FXMLAdminPromocionesController controlador = vistaload.getController();
+                controlador.inicializarTablaComercial(usuarioSesion.getIdEmpresa(), usuarioSesion.getIdUsuario());
+                Stage stage = new Stage();
+                Scene escenaAdmin = new Scene(vista);
+                stage.setScene(escenaAdmin);
+                stage.setTitle("Promocion");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
             }
         } catch (Exception e) {
             e.printStackTrace();

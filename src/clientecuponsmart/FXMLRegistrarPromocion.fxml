@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
     <children>
         <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -37,8 +37,8 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpFechaInicio" layoutX="61.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/01" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <DatePicker fx:id="dpFechaFin" layoutX="334.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2023/12/31" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="61.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 24/12/2023" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <DatePicker fx:id="dpFechaFin" layoutX="334.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 26/12/2023" style="-fx-background-color: none; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
       <Label layoutX="334.0" layoutY="197.0" text="Fecha de fin:">
          <font>
             <Font name="Arial Bold" size="15.0" />
@@ -115,61 +115,93 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbCategoria" layoutX="617.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Selecciona una categoría" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <ComboBox fx:id="cbCategoria" layoutX="617.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Selecciona una categoría" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
       <Label fx:id="lbCategoria" layoutX="617.0" layoutY="254.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
       <Label layoutX="617.0" layoutY="197.0" text="Categoría:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea fx:id="taDescripcion" layoutX="334.0" layoutY="379.0" prefHeight="125.0" prefWidth="250.0" promptText="Ej. Descuento del 20% en todos los productos" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <TextArea fx:id="taDescripcion" layoutX="334.0" layoutY="455.0" prefHeight="125.0" prefWidth="250.0" promptText="Ej. Descuento del 20% en todos los productos" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Label layoutX="334.0" layoutY="362.0" text="Descripción:">
+      <Label layoutX="334.0" layoutY="438.0" text="Descripción:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="61.0" layoutY="363.0" text="Restricciones:">
+      <Label layoutX="61.0" layoutY="439.0" text="Restricciones:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea fx:id="taRestriccion" layoutX="61.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" promptText="Ej. Válido solo los fines de semana" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+      <TextArea fx:id="taRestriccion" layoutX="61.0" layoutY="454.0" prefHeight="127.0" prefWidth="250.0" promptText="Ej. Válido solo los fines de semana" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Label fx:id="lbDescripcion" layoutX="334.0" layoutY="504.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label fx:id="lbRestriccion" layoutX="61.0" layoutY="506.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbDescripcion" layoutX="334.0" layoutY="583.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbRestriccion" layoutX="61.0" layoutY="583.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
       <Label layoutX="690.0" layoutY="364.0" prefHeight="40.0" prefWidth="104.0" text="Seleccionar fotografía" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="ivFotografia" fitHeight="150.0" fitWidth="250.0" layoutX="617.0" layoutY="309.0" onMouseClicked="#btnSeleccionarFoto" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ivFotografia" fitHeight="150.0" fitWidth="250.0" layoutX="617.0" layoutY="309.0" onMouseClicked="#btnSeleccionarFoto" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
       <Label layoutX="617.0" layoutY="292.0" text="Fotografía:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="687.0" layoutY="469.0" mnemonicParsing="false" onAction="#btnGuardarFoto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar fotografía">
+      <Button fx:id="btnFoto" layoutX="686.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnGuardarFoto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar fotografía">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button layoutX="973.0" layoutY="523.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+      <Button layoutX="972.0" layoutY="552.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <ListView fx:id="lvSucursales" layoutX="903.0" layoutY="118.0" prefHeight="390.0" prefWidth="250.0" />
-      <Label layoutX="903.0" layoutY="101.0" text="Selecciona sucursales validas:">
+      <ListView fx:id="lvSucursales" layoutX="903.0" layoutY="214.0" prefHeight="294.0" prefWidth="250.0" />
+      <Label layoutX="903.0" layoutY="197.0" text="Selecciona sucursales validas:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
+      <Label layoutX="903.0" layoutY="101.0" text="Empresa:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbEmpresa" layoutX="903.0" layoutY="118.0" prefHeight="40.0" prefWidth="250.0" promptText="Selecciona una empresa" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ComboBox>
+      <Label fx:id="lbPromocion" layoutX="61.0" layoutY="339.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbEstatus" layoutX="334.0" layoutY="339.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbFoto" layoutX="617.0" layoutY="459.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbSucursal" layoutX="904.0" layoutY="511.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <TextField fx:id="tfPorcentajePrecio" layoutX="61.0" layoutY="364.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 50" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbPorcentajePrecio" layoutX="61.0" layoutY="404.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
     </children>
 </AnchorPane>

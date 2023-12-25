@@ -129,13 +129,9 @@ public class FXMLRegistrarSucursalController implements Initializable {
         empresas = FXCollections.observableArrayList();
         RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarEmpresas();
 
-        if (!respuesta.isError()) {
-            List<Empresa> empresa = respuesta.getEmpresas();
-            empresas.addAll(empresa);
-            cbEmpresa.setItems(empresas);
-        } else {
-            Utilidades.mostrarAlertaSimple("Error al mostrar las empresas.", respuesta.getContenido(), Alert.AlertType.ERROR);
-        }
+        List<Empresa> empresa = respuesta.getEmpresas();
+        empresas.addAll(empresa);
+        cbEmpresa.setItems(empresas);
     }
 
     private void configurarSeleccionEmpresa() {
