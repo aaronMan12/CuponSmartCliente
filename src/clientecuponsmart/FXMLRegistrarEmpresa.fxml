@@ -16,75 +16,70 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarEmpresaController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../componentes/bgRegistrarUsuario.png" />
          </image>
       </ImageView>
-      <Label layoutX="404.0" layoutY="14.0" text="Empresa">
+      <Label fx:id="lbTituloEmpresa" layoutX="324.0" layoutY="14.0" text="Administración de empresas">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lbTituloEmpresa" layoutX="278.0" layoutY="44.0" text="Registrar datos de la Empresa">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../componentes/logoRedondo.png" />
          </image>
       </ImageView>
-      <Label layoutX="60.0" layoutY="139.0" text="Nombre:">
+      <Label layoutX="48.0" layoutY="139.0" text="Nombre:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfNombreEmpresa" layoutX="48.0" layoutY="168.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Walmart (México) " style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="334.0" layoutY="241.0" text="Email:">
+      <Label layoutX="325.0" layoutY="241.0" text="Email:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfEmail" layoutX="326.0" layoutY="269.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. WalmartMX@email.com" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="334.0" layoutY="139.0" text="Nombre Comercial:">
+      <TextField fx:id="tfEmail" layoutX="325.0" layoutY="269.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. WalmartMX@email.com" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="325.0" layoutY="139.0" text="Nombre Comercial:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfNombeComercialEmpresa" layoutX="325.0" layoutY="168.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Wal-Mart" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="611.0" layoutY="139.0" text="Telefono:">
+      <Label layoutX="602.0" layoutY="139.0" text="Telefono:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfTelefono" layoutX="602.0" layoutY="168.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2288432354" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="60.0" layoutY="241.0" text="Pagina Web:">
+      <Label layoutX="48.0" layoutY="241.0" text="Pagina Web:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfPaginaWeb" layoutX="48.0" layoutY="269.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. www.WalmartMX.com" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="60.0" layoutY="335.0" text="RFC:">
+      <Label layoutX="48.0" layoutY="335.0" text="RFC:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfRFC" layoutX="48.0" layoutY="362.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. KIB123456LPF" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label fx:id="lbEstatus" layoutX="334.0" layoutY="337.0" text="Estatus:">
+      <Label fx:id="lbEstatus" layoutX="325.0" layoutY="337.0" text="Estatus:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbLogo" layoutX="612.0" layoutY="337.0" text="Logo:">
+      <Label fx:id="lbLogo" layoutX="602.0" layoutY="337.0" text="Logo:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnSeleccionarFoto" layoutX="603.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSubirLogo" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #FEDB39;" text="Seleccionar Logo">
+      <Button fx:id="btnSeleccionarFoto" layoutX="602.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSubirLogo" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #FEDB39;" text="Seleccionar Logo">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
@@ -100,14 +95,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnUbicacion" layoutX="332.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnAgregarUbicacion" prefHeight="40.0" style="-fx-background-color: #FEDB39;" text="Agregar ubicación">
+      <Button fx:id="btnUbicacion" layoutX="325.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnAgregarUbicacion" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #FEDB39;" text="Agregar ubicación">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="48.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnGuardarInformacionEmpresa" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #FEDB39;" text="Guardar información de empresa">
+      <Button layoutX="48.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnGuardarInformacionEmpresa" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #FEDB39;" text="Guardar empresa">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -115,13 +110,13 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <ImageView fx:id="ivLogoEmpresa" fitHeight="184.0" fitWidth="250.0" layoutX="602.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="620.0" layoutY="236.0" text="Representante legal">
+      <Label layoutX="602.0" layoutY="236.0" text="Representante legal">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfRepresentanteLegal" layoutX="602.0" layoutY="267.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Pedro Hernández Gómez" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <RadioButton fx:id="rbActivo" layoutX="326.0" layoutY="374.0" mnemonicParsing="false" text="Activo">
+      <RadioButton fx:id="rbActivo" layoutX="325.0" layoutY="374.0" mnemonicParsing="false" text="Activo">
          <toggleGroup>
             <ToggleGroup fx:id="tgEstatus" />
          </toggleGroup>
