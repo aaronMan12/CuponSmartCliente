@@ -99,7 +99,6 @@ public class FXMLRegistrarSucursalController implements Initializable {
                 sucursalNueva.setIdEmpresa(this.idEmpresa);
 
                 this.registrarSucursal(sucursalNueva);
-                this.irPantallaUbicacion(idSucursalRegistrado);
             }
         }
     }
@@ -231,8 +230,9 @@ public class FXMLRegistrarSucursalController implements Initializable {
         RespuestaUsuarioEscritorio respuesta = SucursalDAO.registrarSucursal(sucursal);
 
         if (!respuesta.isError()) {
-            Utilidades.mostrarAlertaSimple("Sucursal registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Sucursal registrada.", "Ahora debes agregar su ubicación.", Alert.AlertType.INFORMATION);
             this.idSucursalRegistrado = respuesta.getSucursal().getIdSucursal();
+            this.irPantallaUbicacion(idSucursalRegistrado);
             cerrarPantalla();
         } else {
             Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
