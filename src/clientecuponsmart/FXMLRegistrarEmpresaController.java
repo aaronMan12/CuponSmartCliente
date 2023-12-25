@@ -27,7 +27,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -49,6 +48,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private Usuario usuarioSesion = null;
     private Empresa empresaUsuarioSesion = null;
     private File fotografia;
+    
     @FXML
     private TextField tfNombreEmpresa;
     @FXML
@@ -152,7 +152,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
 
                 if (!respuesta.isError()) {
-                    Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);                    
+                    Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar su ubicación.", Alert.AlertType.INFORMATION);                    
                     registrarUbicacionEmpresa(respuesta.getEmpresa().getIdEmpresa());
                 } else {
                     Utilidades.mostrarAlertaSimple("Error al agregar la empresa", "No se pudo agregar la empresa", Alert.AlertType.ERROR);
@@ -294,7 +294,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             Stage stage = new Stage();
             Scene scenaAdmin = new Scene(vista);
             stage.setScene(scenaAdmin);
-            stage.setTitle("Editar ubicación");
+            stage.setTitle("Registrar ubicación");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.cerrarPantalla();
