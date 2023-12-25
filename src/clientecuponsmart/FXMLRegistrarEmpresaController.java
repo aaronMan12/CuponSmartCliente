@@ -137,9 +137,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
     @FXML
     private void btnGuardarInformacionEmpresa(ActionEvent event) {
-        //System.out.println(empresaUsuarioSesion.getNombre());
         if (empresaUsuarioSesion == null) {
-
             if (validarCamposEmpresa()) {
                 Empresa nuevaEmpresa = new Empresa();
                 nuevaEmpresa.setNombre(tfNombreEmpresa.getText());
@@ -153,7 +151,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
 
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
 
-                if (respuesta.getEmpresa().getIdEmpresa() > 0) {
+                if (!respuesta.isError()) {
                     Utilidades.mostrarAlertaSimple("Empresa agregada", "Ahora debes agregar una ubicación creada", Alert.AlertType.INFORMATION);                    
                     registrarUbicacionEmpresa(respuesta.getEmpresa().getIdEmpresa());
                 } else {
@@ -171,22 +169,18 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 empresaEditada.setEmail(tfEmail.getText());
                 empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText().trim());
                 empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
-                //empresaEditada.setEstatus("activo");
                 if (rbInactivo.isSelected()) {
                     empresaEditada.setEstatus("inactivo");
                 } else {
                     empresaEditada.setEstatus("activo");
                 }
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.editarEmpresa(empresaEditada);
-                System.out.println(respuesta.getContenido());
                 if (!respuesta.isError()) {
                     Utilidades.mostrarAlertaSimple("Actulaización Empresa", "La empresa se atualizo satisfactoriamente", Alert.AlertType.INFORMATION);
                     cerrarPantalla();
                 }
             }
-
         }
-
     }
 
     public void inicializarUsuarioComercial(Usuario usuario) {

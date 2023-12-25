@@ -174,7 +174,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
 
     private void cargarInformacionBusqueda() {
         usuariosBusqueda.addAll(new Busqueda(this.BUSQUEDA_POR_NOMBRE, "Buscar por nombre"),
-                new Busqueda(this.BUSQUEDA_POR_USERNAME, "Buscar por userName"),
+                new Busqueda(this.BUSQUEDA_POR_USERNAME, "Buscar por nombre de usuario"),
                 new Busqueda(this.BUSQUEDA_POR_ROL, "Buscar por rol"));
         cbBusqueda.setItems(usuariosBusqueda);
     }

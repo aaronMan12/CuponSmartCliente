@@ -88,20 +88,32 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="btnGuardarLogo" layoutX="761.0" layoutY="546.0" mnemonicParsing="false" onAction="#btnGuardarLogo" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #FEDB39;" text="Guardar">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="btnUbicacion" layoutX="332.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnAgregarUbicacion" prefHeight="40.0" style="-fx-background-color: #FEDB39;" text="Agregar ubicación">
          <font>
             <Font name="System Bold" size="15.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Button layoutX="48.0" layoutY="472.0" mnemonicParsing="false" onAction="#btnGuardarInformacionEmpresa" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #FEDB39;" text="Guardar información de empresa">
          <font>
             <Font name="System Bold" size="15.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ImageView fx:id="ivLogoEmpresa" fitHeight="184.0" fitWidth="250.0" layoutX="602.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="620.0" layoutY="236.0" text="Representante legal">
          <font>
@@ -113,8 +125,14 @@
          <toggleGroup>
             <ToggleGroup fx:id="tgEstatus" />
          </toggleGroup>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </RadioButton>
-      <RadioButton fx:id="rbInactivo" layoutX="457.0" layoutY="374.0" mnemonicParsing="false" text="Inactivo" toggleGroup="$tgEstatus" />
+      <RadioButton fx:id="rbInactivo" layoutX="457.0" layoutY="374.0" mnemonicParsing="false" text="Inactivo" toggleGroup="$tgEstatus">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></RadioButton>
       <Label fx:id="lbNombre" layoutX="48.0" layoutY="209.0" prefHeight="17.0" prefWidth="130.0" />
       <Label fx:id="lbRFC" layoutX="48.0" layoutY="396.0" prefHeight="17.0" prefWidth="130.0" />
       <Label fx:id="lbNombreComercial" layoutX="325.0" layoutY="209.0" prefHeight="17.0" prefWidth="130.0" />

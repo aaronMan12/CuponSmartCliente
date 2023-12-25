@@ -1,23 +1,56 @@
 package clientecuponsmart;
 
+import clientecuponsmart.modelo.dao.PromocionDAO;
+import clientecuponsmart.modelo.dao.SucursalDAO;
+import clientecuponsmart.modelo.dao.UsuarioDAO;
+import clientecuponsmart.modelo.pojo.Categoria;
+import clientecuponsmart.modelo.pojo.Empresa;
+import clientecuponsmart.modelo.pojo.Promocion;
+import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
+import clientecuponsmart.modelo.pojo.Sucursal;
+import clientecuponsmart.utils.Constantes;
+import clientecuponsmart.utils.Utilidades;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+import javafx.stage.Stage;
 
 public class FXMLRegistrarPromocionController implements Initializable {
+
+    // OBJETOS GLOBALES
+    private Promocion promocion;
+
+    // TODOS LOS OBSERVABLELIST
+    private ObservableList<Categoria> categorias;
+    private ObservableList<Sucursal> sucursales;
+    private ObservableList<Empresa> empresas;
+
+    // TODOS LOS IDS EN CLASES Y LISTAS
+    private Integer idUsuario;
+    private Integer idCategoria;
+    private Integer idEmpresa;
+    private List<Integer> IdSucursalesValidas;
 
     @FXML
     private TextField tfNombrePromocion;
@@ -52,7 +85,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
     @FXML
     private RadioButton rbActivo;
     @FXML
-    private ComboBox<?> cbCategoria;
+    private ComboBox cbCategoria;
     @FXML
     private Label lbCategoria;
     @FXML
@@ -66,11 +99,37 @@ public class FXMLRegistrarPromocionController implements Initializable {
     @FXML
     private ImageView ivFotografia;
     @FXML
-    private ListView<?> lvSucursales;
+    private ListView lvSucursales;
+    @FXML
+    private Button btnFoto;
+    @FXML
+    private ComboBox cbEmpresa;
+    @FXML
+    private Label lbPromocion;
+    @FXML
+    private Label lbEstatus;
+    @FXML
+    private Label lbFoto;
+    @FXML
+    private Label lbSucursal;
+    @FXML
+    private TextField tfPorcentajePrecio;
+    @FXML
+    private Label lbPorcentajePrecio;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+        // INICIALIZACIÓN DE OBSERVADORES
+        this.categorias = FXCollections.observableArrayList();
+        this.sucursales = FXCollections.observableArrayList();
+        this.empresas = FXCollections.observableArrayList();
+
+        // INICIALIZARCIÓN DE LISTAS
+        this.IdSucursalesValidas = new ArrayList<>();
+
+        // CONFIGURACIÓN DE COMPONENTE LISTVIEW *MULTIPLE SELECCIÓN*
+        this.lvSucursales.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
     @FXML
     private void btnSeleccionarFoto(MouseEvent event) {
@@ -82,6 +141,242 @@ public class FXMLRegistrarPromocionController implements Initializable {
 
     @FXML
     private void btnGuardar(ActionEvent event) {
+        this.obtenerSucursalesValidas();
+
+        if (!this.camposVacios()) {
+            return;
+        }
+
+        if (this.promocion == null) {
+            this.registrarPromocion(this.obtenerDatosDeLosComponentes());
+        } else {
+            // EDICION
+        }
+    }
+
+    // INICIALIZADORES
+    public void inicializarInformacionComercialRegistro(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+        this.desabilitarComponentesComercialRegistro();
+        this.obtenerTodasLasCategorias();
+        this.configurarEventoCategoria();
+        this.obtenerSucursalesValidasComercialRegistro();
+    }
+
+    public void inicializarInformacionGeneralRegistro() {
+        this.desabilitarComponentesGeneralRegistro();
+        this.obtenerTodasLasCategorias();
+        this.configurarEventoCategoria();
+        this.obtenerTodasLasEmpresas();
+        this.configurarEventoEmpresa();
+    }
+
+    // MÉTODOS PARA DESCARGAR LOS DATOS DE LA API
+    private void obtenerTodasLasCategorias() {
+        RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarTodasLasCategorias();
+
+        this.categorias.addAll(respuesta.getCategorias());
+        this.cbCategoria.setItems(this.categorias);
+    }
+
+    private void obtenerSucursalesValidasComercialRegistro() {
+        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(this.idUsuario);
+
+        this.sucursales.addAll(respuesta.getSucursales());
+        this.lvSucursales.setItems(this.sucursales);
+    }
+
+    private void obtenerTodasLasEmpresas() {
+        RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarEmpresas();
+
+        this.empresas.addAll(respuesta.getEmpresas());
+        this.cbEmpresa.setItems(this.empresas);
     }
     
+    private void obtenerSucursalesValidasGeneralRegistro() {
+        RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarSucursalesEmpresa(this.idEmpresa);
+        
+        this.sucursales.clear();
+        this.sucursales.addAll(respuesta.getSucursales());
+        this.lvSucursales.setItems(this.sucursales);
+    }
+
+    // MÉTODOS DE CONFIGURACIÓN DE EVENTOS
+    private void configurarEventoCategoria() {
+        cbCategoria.valueProperty().addListener(new ChangeListener<Categoria>() {
+            @Override
+            public void changed(ObservableValue<? extends Categoria> observable, Categoria oldValue, Categoria newValue) {
+                idCategoria = newValue.getIdCategoria();
+            }
+        });
+    }
+    
+    private void configurarEventoEmpresa() {
+        cbEmpresa.valueProperty().addListener(new ChangeListener<Empresa>() {
+            @Override
+            public void changed(ObservableValue<? extends Empresa> observable, Empresa oldValue, Empresa newValue) {
+                idEmpresa = newValue.getIdEmpresa();
+                obtenerSucursalesValidasGeneralRegistro();
+            }
+        });
+    }
+
+    // MÉTODOS PARA GUARDAR Y EDITAR
+    private void registrarPromocion(Promocion promocionNueva) {
+        RespuestaUsuarioEscritorio respuesta = PromocionDAO.registrarPromocion(promocionNueva);
+
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Promoción registrada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
+
+    // MÉTODOS PARA OCULTAR COMPONENTES
+    private void desabilitarComponentesComercialRegistro() {
+        this.rbActivo.setDisable(true);
+        this.rbInactivo.setDisable(true);
+        this.ivFotografia.setDisable(true);
+        this.btnFoto.setDisable(true);
+        this.cbEmpresa.setDisable(true);
+    }
+
+    private void desabilitarComponentesGeneralRegistro() {
+        this.rbActivo.setDisable(true);
+        this.rbInactivo.setDisable(true);
+        this.ivFotografia.setDisable(true);
+        this.btnFoto.setDisable(true);
+    }
+
+    // MÉTODOS PARA OBTENER LOS DATOS DE LOS INPUTS
+    private Promocion obtenerDatosDeLosComponentes() {
+        Promocion promocion = new Promocion();
+
+        promocion.setIdCategoria(this.idCategoria);
+        promocion.setNombre(this.tfNombrePromocion.getText());
+        promocion.setDescripcion(this.taDescripcion.getText());
+        promocion.setRestriccion(this.taRestriccion.getText());
+        promocion.setNoCuponesMaximo(Integer.parseInt(this.tfNumeroCupones.getText()));
+        promocion.setCodigo(this.tfCodigo.getText());
+        promocion.setIdSucursales(this.IdSucursalesValidas);
+        promocion.setFechaInicio(this.dpFechaInicio.getValue().toString());
+        promocion.setFechaFin(this.dpFechaFin.getValue().toString());
+
+        if (this.rbDescuento.isSelected()) {
+            promocion.setTipoPromocion(Constantes.PROMOCION_DESCUENTO);
+            promocion.setPorcentajeDescuento(Float.parseFloat(this.tfPorcentajePrecio.getText()));
+        } else {
+            promocion.setTipoPromocion(Constantes.PROMOCION_REBAJADO);
+            promocion.setPrecioRebajado(Float.parseFloat(this.tfPorcentajePrecio.getText()));
+        }
+
+        return promocion;
+    }
+
+    // MÉTODOS GENERALES
+    private void limpiarErrores() {
+        this.lbNombrePromocion.setText("");
+        this.lbNumeroCupones.setText("");
+        this.lbCodigo.setText("");
+        this.lbFechaInicio.setText("");
+        this.lbFechaFin.setText("");
+        this.lbCategoria.setText("");
+        this.lbRestriccion.setText("");
+        this.lbDescripcion.setText("");
+        this.lbSucursal.setText("");
+        this.lbEstatus.setText("");
+        this.lbPromocion.setText("");
+        lbPorcentajePrecio.setText("");
+    }
+
+    private void cerrarPantalla() {
+        Stage stage = (Stage) tfNombrePromocion.getScene().getWindow();
+        stage.close();
+    }
+
+    private void obtenerSucursalesValidas() {
+        this.IdSucursalesValidas.clear();
+        List<Sucursal> listSucursales = lvSucursales.getSelectionModel().getSelectedItems();
+
+        for (Sucursal sucursal : listSucursales) {
+            this.IdSucursalesValidas.add(sucursal.getIdSucursal());
+        }
+    }
+
+    private boolean camposVacios() {
+        this.limpiarErrores();
+        Boolean hayCamposVacios = true;
+
+        if (tfNombrePromocion.getText().isEmpty()) {
+            lbNombrePromocion.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (tfNumeroCupones.getText().isEmpty() || !Utilidades.validarCadena(tfNumeroCupones.getText(), Utilidades.NUMERO_PATTERN)) {
+            lbNumeroCupones.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (tfCodigo.getText().isEmpty() || !Utilidades.validarCadena(tfCodigo.getText(), Utilidades.CODIGO_PATTERN)) {
+            lbCodigo.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (dpFechaInicio.getValue() == null) {
+            lbFechaInicio.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (dpFechaFin.getValue() == null) {
+            lbFechaFin.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (dpFechaInicio.getValue() != null && dpFechaFin.getValue() != null && Utilidades.validarFechas(dpFechaInicio.getValue(), dpFechaFin.getValue())) {
+            lbFechaInicio.setText(Constantes.CAMPO_INVALIDO);
+            lbFechaFin.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (idCategoria == null) {
+            lbCategoria.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (IdSucursalesValidas.isEmpty()) {
+            lbSucursal.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (tgTipoDescuento.getSelectedToggle() == null) {
+            lbPromocion.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (promocion != null) {
+            if (tgEstatus.getSelectedToggle() == null) {
+                lbEstatus.setText(Constantes.CAMPO_INVALIDO);
+                hayCamposVacios = false;
+            }
+        }
+
+        if (tfPorcentajePrecio.getText().isEmpty() || !Utilidades.validarCadena(tfPorcentajePrecio.getText(), Utilidades.NUMERO_PATTERN)) {
+            lbPorcentajePrecio.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (taRestriccion.getText().isEmpty()) {
+            lbRestriccion.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        if (taDescripcion.getText().isEmpty()) {
+            lbDescripcion.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+
+        return hayCamposVacios;
+    }
+
 }

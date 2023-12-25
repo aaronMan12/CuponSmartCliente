@@ -2,12 +2,32 @@ package clientecuponsmart.modelo.dao;
 
 import clientecuponsmart.modelo.ConexionHTTP;
 import clientecuponsmart.modelo.pojo.CodigoHTTP;
+import clientecuponsmart.modelo.pojo.Promocion;
 import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.utils.Constantes;
 import com.google.gson.Gson;
 import java.net.HttpURLConnection;
 
 public class PromocionDAO {
+    
+    public static RespuestaUsuarioEscritorio registrarPromocion(Promocion promocion) {
+        RespuestaUsuarioEscritorio mensaje = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "promociones/registrarPromocion";
+        
+        Gson gson = new Gson();
+        String parametros = gson.toJson(promocion);
+        
+        CodigoHTTP respuesta = ConexionHTTP.peticionPOSTJson(url, parametros);
+        
+        if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            mensaje = gson.fromJson(respuesta.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            mensaje.setError(true);
+            mensaje.setContenido("Error en la petición para registrar la promoción.");
+        }
+        
+        return mensaje;
+    }
 
     public static RespuestaUsuarioEscritorio buscarPromocionesEmpresa(Integer idEmpresa) {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
@@ -24,6 +44,22 @@ public class PromocionDAO {
 
         return respuesta;
     }
+    
+    public static RespuestaUsuarioEscritorio buscarSucursalesEmpresa(Integer idEmpresa) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "promociones/buscarSucursalesEmpresa/" + idEmpresa;
+        Gson gson = new Gson();
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Error al obtener las sucursales");
+        }
+
+        return respuesta;
+    }
 
     public static RespuestaUsuarioEscritorio buscarTodasLasPromociones() {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
@@ -36,6 +72,22 @@ public class PromocionDAO {
         } else {
             respuesta.setError(true);
             respuesta.setContenido("Error al obtener las promociones");
+        }
+
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio buscarTodasLasCategorias() {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "promociones/buscarCategorias";
+        Gson gson = new Gson();
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("Error al obtener las categorias.");
         }
 
         return respuesta;

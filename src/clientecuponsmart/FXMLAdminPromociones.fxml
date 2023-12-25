@@ -25,7 +25,10 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbBusqueda" layoutX="267.0" layoutY="106.0" prefHeight="39.0" prefWidth="230.0" promptText="Buscar por..." style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px;" />
+      <ComboBox fx:id="cbBusqueda" layoutX="267.0" layoutY="106.0" prefHeight="39.0" prefWidth="230.0" promptText="Buscar por..." style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
       <Button layoutX="684.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnFormularioRegistrar" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Registrar" textFill="#171717">
          <font>
             <Font name="System Bold" size="18.0" />
