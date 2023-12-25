@@ -59,7 +59,7 @@
         </TextField>
         <Label fx:id="lbTelefono" layoutX="620.0" layoutY="157.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
         <Label fx:id="lbEncargado" layoutX="620.0" layoutY="256.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-        <TextField fx:id="tfEncargado" layoutX="620.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2281987865" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
+        <TextField fx:id="tfEncargado" layoutX="620.0" layoutY="216.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Luis Alberto Amaro Lopez" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
             <font>
                 <Font size="14.0" />
             </font>
