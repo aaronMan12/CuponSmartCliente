@@ -42,7 +42,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         Platform.runLater(() -> {
             Stage stage = (Stage) tfCalle.getScene().getWindow();
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -51,14 +50,15 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     // Verificar si la ubicación es nula y consumir el evento si es necesario
                     if (ubicacionEsNula()) {
                         event.consume(); // Consumir el evento para evitar que la ventana se cierre
-                        Utilidades.mostrarAlertaSimple("Error de registro", "Para poder hacer valido el registro de la empresa debes"
-                                + "agregar su ubicación", Alert.AlertType.ERROR); 
-
                         Utilidades.mostrarAlertaSimple(
                                 "Error de registro",
                                 "Para poder hacer valido el registro de la empresa debes agregar su ubicación",
                                 Alert.AlertType.ERROR);
 
+                        Utilidades.mostrarAlertaSimple(
+                                "Error de registro",
+                                "Para poder hacer valido el registro de la empresa debes agregar su ubicación",
+                                Alert.AlertType.ERROR);
                     }
                 }
             });
@@ -89,7 +89,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     this.registrarUbicacionSucursal(ubicacionNueva);
                 }
             } else {
-                // Registro ubicacion empresa
                 if (ubicacion != null) {
                     Ubicacion ubicacionEditadaEmpresa = new Ubicacion();
                     ubicacionEditadaEmpresa.setCalle(this.tfCalle.getText());
@@ -107,7 +106,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionNueva.setIdEmpresa(idEmpresa);
                     registrarUbicacionEmpresa(ubicacionNueva);
 
-                    //condicional para no salir del menú
                 }
             }
         }
@@ -137,7 +135,6 @@ public class FXMLRegistrarUbicacionController implements Initializable {
 
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Ubicación editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
-            this.cerrarPantalla();
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
@@ -155,10 +152,9 @@ public class FXMLRegistrarUbicacionController implements Initializable {
     }
 
     private void editarUbicaciónEmpresa(Ubicacion ubicacionEditadaEmpresa) {
-        RespuestaUsuarioEscritorio respuesta = UbicacionDAO.editarUbicacion(ubicacion);
+        RespuestaUsuarioEscritorio respuesta = UbicacionDAO.editarUbicacion(ubicacionEditadaEmpresa);
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Ubicación editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
-            //this.cerrarPantalla();
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
