@@ -28,6 +28,25 @@ public class PromocionDAO {
         
         return mensaje;
     }
+    
+    public static RespuestaUsuarioEscritorio editarPromocion(Promocion promocion) {
+        RespuestaUsuarioEscritorio mensaje = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "promociones/editarPromocion";
+        
+        Gson gson = new Gson();
+        String parametros = gson.toJson(promocion);
+        
+        CodigoHTTP respuesta = ConexionHTTP.peticionPUTJson(url, parametros);
+        
+        if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            mensaje = gson.fromJson(respuesta.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            mensaje.setError(true);
+            mensaje.setContenido(respuesta.getContenido());
+        }
+        
+        return mensaje;
+    }
 
     public static RespuestaUsuarioEscritorio buscarPromocionesEmpresa(Integer idEmpresa) {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
@@ -56,6 +75,22 @@ public class PromocionDAO {
         } else {
             respuesta.setError(true);
             respuesta.setContenido("Error al obtener las sucursales");
+        }
+
+        return respuesta;
+    }
+    
+    public static RespuestaUsuarioEscritorio buscarSucursalesValidasGeneralRegistro(Integer idPromocion) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+        String url = Constantes.URL_WS + "promociones/buscarSucursalesValidas/" + idPromocion;
+        Gson gson = new Gson();
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionGET(url);
+        
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        } else {
+            respuesta.setError(true);
+            respuesta.setContenido("No hay sucursales registradas validas.");
         }
 
         return respuesta;
