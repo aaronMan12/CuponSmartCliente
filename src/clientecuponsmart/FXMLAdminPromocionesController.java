@@ -113,6 +113,42 @@ public class FXMLAdminPromocionesController implements Initializable {
 
     @FXML
     private void btnFormularioEditar(ActionEvent event) {
+        int posicionSeleccionada = tbPromociones.getSelectionModel().getSelectedIndex();
+
+        if (posicionSeleccionada != -1) {
+            Promocion promocion = filteredListPromociones.get(posicionSeleccionada);
+            try {
+                if (idEmpresa != null) {
+                    FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLRegistrarPromocion.fxml"));
+                    Parent vista = vistaload.load();
+                    FXMLRegistrarPromocionController controlador = vistaload.getController();
+                    controlador.inicializarInformacionComercialEditar(promocion, idUsuario);
+                    Stage stage = new Stage();
+                    Scene escenaAdmin = new Scene(vista);
+                    stage.setScene(escenaAdmin);
+                    stage.setTitle("Editar promoción");
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.showAndWait();
+                    this.cargarInformacionComercial(idEmpresa);
+                } else {
+                    FXMLLoader vistaload = new FXMLLoader(getClass().getResource("FXMLRegistrarPromocion.fxml"));
+                    Parent vista = vistaload.load();
+                    FXMLRegistrarPromocionController controlador = vistaload.getController();
+                    controlador.inicializarInformacionGeneralEditar(promocion);
+                    Stage stage = new Stage();
+                    Scene escenaAdmin = new Scene(vista);
+                    stage.setScene(escenaAdmin);
+                    stage.setTitle("Editar promoción");
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.showAndWait();
+                    this.cargarInformacionGeneral();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Utilidades.mostrarAlertaSimple("Error", "Para editar una promoción debes seleccionar una.", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -135,7 +171,7 @@ public class FXMLAdminPromocionesController implements Initializable {
                 Utilidades.mostrarAlertaSimple("Eliminación fallida", respuesta.getContenido(), Alert.AlertType.ERROR);
             }
         } else {
-            Utilidades.mostrarAlertaSimple("Error", "Para eliminar una promoción debes seleccionar una", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error", "Para eliminar una promoción debes seleccionar una", Alert.AlertType.WARNING);
         }
     }
 
