@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLCuponesController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@../componentes/bgLogin.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tvCupones" layoutX="25.0" layoutY="86.0" prefHeight="502.0" prefWidth="750.0">
+        <columns>
+          <TableColumn fx:id="colCategoria" prefWidth="111.0" text="Categoria" />
+          <TableColumn fx:id="colNombre" prefWidth="145.0" text="Nombre" />
+            <TableColumn fx:id="colTipoPromocion" prefWidth="180.0" text="Tipo promoción" />
+            <TableColumn fx:id="colFechaFin" prefWidth="98.0" text="Fecha fin" />
+            <TableColumn fx:id="colNoCupones" prefWidth="100.0" text="No.Cupones" />
+            <TableColumn fx:id="colCodigo" prefWidth="115.0" text="Código" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfCodigoCupon" layoutX="316.0" layoutY="14.0" prefHeight="40.0" promptText="Ej. XD43F6" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="236.0" layoutY="16.0" text="Cupones">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="62.0" fitWidth="73.0" layoutX="25.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../componentes/logoRedondo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="256.0" layoutY="58.0" text="Ingresa el Código del cupon para acerlo valido" />
+      <Button layoutX="514.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnCanjearCupon" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5px;" text="Canjear">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

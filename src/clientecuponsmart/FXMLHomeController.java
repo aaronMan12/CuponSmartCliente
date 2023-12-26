@@ -193,6 +193,38 @@ public class FXMLHomeController implements Initializable {
 
     @FXML
     private void btnGestionCupon(ActionEvent event) {
+        if (usuarioSesion.getIdEmpresa()  != null) {
+            try {
+                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLCupones.fxml"));
+                Parent vista = vistaLoad.load();
+
+                FXMLCuponesController controlador = vistaLoad.getController();
+                controlador.inicializarUsuarioComercial(usuarioSesion.getIdEmpresa());
+                Stage stage = new Stage();
+                Scene scenaAdmin = new Scene(vista);
+                stage.setScene(scenaAdmin);
+                stage.setTitle("Cupones");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+                try {
+                FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLCupones.fxml"));
+                Parent vista = vistaLoad.load();
+                FXMLCuponesController controlador = vistaLoad.getController();
+                controlador.inicializarUsuarioGeneral();
+                Stage stage = new Stage();
+                Scene scenaAdmin = new Scene(vista);
+                stage.setScene(scenaAdmin);
+                stage.setTitle("Cupones");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
