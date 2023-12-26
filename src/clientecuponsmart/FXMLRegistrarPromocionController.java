@@ -11,8 +11,10 @@ import clientecuponsmart.modelo.pojo.Sucursal;
 import clientecuponsmart.utils.Constantes;
 import clientecuponsmart.utils.Utilidades;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,6 +47,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
     private ObservableList<Categoria> categorias;
     private ObservableList<Sucursal> sucursales;
     private ObservableList<Empresa> empresas;
+    private ObservableList<Sucursal> sucursalesRegistradasValidas;
 
     // TODOS LOS IDS EN CLASES Y LISTAS
     private Integer idUsuario;
@@ -116,6 +119,8 @@ public class FXMLRegistrarPromocionController implements Initializable {
     private TextField tfPorcentajePrecio;
     @FXML
     private Label lbPorcentajePrecio;
+    @FXML
+    private ListView lvSucursalesValidas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -150,7 +155,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
         if (this.promocion == null) {
             this.registrarPromocion(this.obtenerDatosDeLosComponentes());
         } else {
-            // EDICION
+            this.editarPromocion(this.obtenerDatosDeLosComponentes());
         }
     }
 
@@ -169,6 +174,30 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.configurarEventoCategoria();
         this.obtenerTodasLasEmpresas();
         this.configurarEventoEmpresa();
+    }
+    
+    public void inicializarInformacionComercialEditar(Promocion promocion, Integer idUsuario) {
+        this.sucursalesRegistradasValidas = FXCollections.observableArrayList();
+        this.promocion = promocion;
+        this.idUsuario = idUsuario;
+        this.desabilitarComponentesComercialEditar();
+        this.obtenerTodasLasCategorias();
+        this.configurarEventoCategoria();
+        this.cargarDatosEnLosComponentes();
+        this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
+        this.obtenerSucursalesValidasComercialRegistro();
+    }
+    
+    public void inicializarInformacionGeneralEditar(Promocion promocion) {
+        this.sucursalesRegistradasValidas = FXCollections.observableArrayList();
+        this.promocion = promocion;
+        this.desabilitarComponentesGeneralEditar();
+        this.obtenerTodasLasCategorias();
+        this.configurarEventoCategoria();
+        this.cargarDatosEnLosComponentes();
+        this.obtenerTodasLasEmpresas();
+        this.configurarEventoEmpresa();
+        this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
     }
 
     // MÉTODOS PARA DESCARGAR LOS DATOS DE LA API
@@ -201,6 +230,16 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.lvSucursales.setItems(this.sucursales);
     }
 
+    private void obtenerSucursalesRegistradasValidas(Integer idPromocion) {
+        RespuestaUsuarioEscritorio respuesta = PromocionDAO.buscarSucursalesValidasGeneralRegistro(idPromocion);
+        if (!respuesta.isError()) {
+            this.sucursalesRegistradasValidas.addAll(respuesta.getSucursales());
+            this.lvSucursalesValidas.setItems(this.sucursalesRegistradasValidas);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.WARNING);
+        }
+    }
+    
     // MÉTODOS DE CONFIGURACIÓN DE EVENTOS
     private void configurarEventoCategoria() {
         cbCategoria.valueProperty().addListener(new ChangeListener<Categoria>() {
@@ -232,6 +271,17 @@ public class FXMLRegistrarPromocionController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar.", respuesta.getContenido(), Alert.AlertType.ERROR);
         }
     }
+    
+    private void editarPromocion(Promocion promocionEditada) {
+        RespuestaUsuarioEscritorio respuesta = PromocionDAO.editarPromocion(promocionEditada);
+        
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Promoción editada.", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            cerrarPantalla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al editar.", respuesta.getContenido(), Alert.AlertType.ERROR);
+        }
+    }
 
     // MÉTODOS PARA OCULTAR COMPONENTES
     private void desabilitarComponentesComercialRegistro() {
@@ -240,6 +290,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.ivFotografia.setDisable(true);
         this.btnFoto.setDisable(true);
         this.cbEmpresa.setDisable(true);
+        this.lvSucursalesValidas.setDisable(true);
     }
 
     private void desabilitarComponentesGeneralRegistro() {
@@ -247,6 +298,16 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.rbInactivo.setDisable(true);
         this.ivFotografia.setDisable(true);
         this.btnFoto.setDisable(true);
+        this.lvSucursalesValidas.setDisable(true);
+    }
+    
+    private void desabilitarComponentesComercialEditar() {
+        this.cbEmpresa.setDisable(true);
+        this.lvSucursalesValidas.setDisable(true);
+    }
+    
+    private void desabilitarComponentesGeneralEditar() {
+        this.lvSucursalesValidas.setDisable(true);
     }
 
     // MÉTODOS PARA OBTENER LOS DATOS DE LOS INPUTS
@@ -271,9 +332,54 @@ public class FXMLRegistrarPromocionController implements Initializable {
             promocion.setPrecioRebajado(Float.parseFloat(this.tfPorcentajePrecio.getText()));
         }
 
+        if (this.promocion != null) {
+            promocion.setIdPromocion(this.promocion.getIdPromocion());
+            if (this.rbActivo.isSelected()) {
+                promocion.setEstatus(Constantes.ESTATUS_ACTIVO);
+            } else {
+                promocion.setEstatus(Constantes.ESTATUS_INACTIVO);
+            }
+        }
+        
         return promocion;
     }
 
+    // MÉTODOS PARA CARGAR LOS DATOS EN LOS INPUTS
+    private void cargarDatosEnLosComponentes() {
+        this.tfNombrePromocion.setText(this.promocion.getNombre());
+        this.tfNumeroCupones.setText(String.valueOf(this.promocion.getNoCuponesMaximo()));
+        this.tfCodigo.setText(this.promocion.getCodigo());
+        this.dpFechaInicio.setValue(LocalDate.parse(this.promocion.getFechaInicio()));
+        this.dpFechaFin.setValue(LocalDate.parse(this.promocion.getFechaFin()));
+        this.taRestriccion.setText(this.promocion.getRestriccion());
+        this.taDescripcion.setText(this.promocion.getDescripcion());
+        if (this.promocion.getTipoPromocion().equals(Constantes.PROMOCION_DESCUENTO)) {
+            this.rbDescuento.setSelected(true);
+            this.tfPorcentajePrecio.setText(String.valueOf(this.promocion.getPorcentajeDescuento()));
+        } else {
+            this.rbRebaja.setSelected(true);
+            this.tfPorcentajePrecio.setText(String.valueOf(this.promocion.getPrecioRebajado()));
+        }
+        if (this.promocion.getEstatus().equals(Constantes.ESTATUS_ACTIVO)) {
+            this.rbActivo.setSelected(true);
+        } else {
+            this.rbInactivo.setSelected(true);
+        }
+        this.seleccionarCategoriaEdicion(this.promocion.getIdCategoria());
+    }
+    
+    private void seleccionarCategoriaEdicion(Integer idCategoria) {
+        if (!this.categorias.isEmpty()) {
+            Optional<Categoria> categoriaSeleccionada = this.categorias.stream()
+                    .filter(categoria -> categoria.getIdCategoria() == idCategoria)
+                    .findFirst();
+            categoriaSeleccionada.ifPresent(categoria -> {
+                this.cbCategoria.getSelectionModel().select(categoria);
+                this.idCategoria = categoria.getIdCategoria();
+            });
+        }
+    }
+    
     // MÉTODOS GENERALES
     private void limpiarErrores() {
         this.lbNombrePromocion.setText("");
