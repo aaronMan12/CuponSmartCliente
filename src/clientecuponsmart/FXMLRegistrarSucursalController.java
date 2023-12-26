@@ -264,7 +264,6 @@ public class FXMLRegistrarSucursalController implements Initializable {
             stage.setTitle("Editar ubicación");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            this.cerrarPantalla();
         } catch (IOException e) {
             e.printStackTrace();
         }
