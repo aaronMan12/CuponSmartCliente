@@ -51,5 +51,20 @@ public class CuponDAO {
         }
         return respuesta;
     }
+
+    public static RespuestaUsuarioEscritorio canjearCuponComercial(String codigo, Integer idEmpresa) {
+        RespuestaUsuarioEscritorio respuesta  = new RespuestaUsuarioEscritorio();
+        Gson gson = new Gson();
+        String parametros = String.format("codigo=%s&"
+                + "idEmpresa=%s",codigo, idEmpresa);
+        CodigoHTTP codigoHTTP = ConexionHTTP.peticionPUT(Constantes.URL_WS+"cupones/canjearCuponComercial", parametros);
+
+        if (codigoHTTP.getCodigoRespuesta() == HttpURLConnection.HTTP_OK){
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        }else{
+            respuesta = gson.fromJson(codigoHTTP.getContenido(), RespuestaUsuarioEscritorio.class);
+        }
+        return respuesta;
+    }
     
 }

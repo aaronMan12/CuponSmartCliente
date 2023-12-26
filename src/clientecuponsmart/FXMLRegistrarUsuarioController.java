@@ -81,24 +81,24 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         if (this.validarCampos()) {
             if (this.usuario != null) {
                 Usuario usuarioEditado = new Usuario();
-                usuarioEditado.setNombre(this.tfNombre.getText());
-                usuarioEditado.setApellidoPaterno(this.tfApellidoPaterno.getText());
-                usuarioEditado.setApellidoMaterno(this.tfApellidoMaterno.getText());
+                usuarioEditado.setNombre(this.tfNombre.getText().trim());
+                usuarioEditado.setApellidoPaterno(this.tfApellidoPaterno.getText().trim());
+                usuarioEditado.setApellidoMaterno(this.tfApellidoMaterno.getText().trim());
                 usuarioEditado.setCorreo(this.tfEmail.getText());
                 usuarioEditado.setCurp(this.tfCurp.getText());
-                usuarioEditado.setUserName(this.tfUserName.getText());
+                usuarioEditado.setUserName(this.tfUserName.getText().trim());
                 usuarioEditado.setContrasenia(this.tfContrasenia.getText());
                 usuarioEditado.setIdUsuario(this.usuario.getIdUsuario());
 
                 editarUsuario(usuarioEditado);
             } else {
                 Usuario usuarioNuevo = new Usuario();
-                usuarioNuevo.setNombre(this.tfNombre.getText());
-                usuarioNuevo.setApellidoPaterno(this.tfApellidoPaterno.getText());
-                usuarioNuevo.setApellidoMaterno(this.tfApellidoMaterno.getText());
+                usuarioNuevo.setNombre(this.tfNombre.getText().trim());
+                usuarioNuevo.setApellidoPaterno(this.tfApellidoPaterno.getText().trim());
+                usuarioNuevo.setApellidoMaterno(this.tfApellidoMaterno.getText().trim());
                 usuarioNuevo.setCorreo(this.tfEmail.getText());
                 usuarioNuevo.setCurp(this.tfCurp.getText());
-                usuarioNuevo.setUserName(this.tfUserName.getText());
+                usuarioNuevo.setUserName(this.tfUserName.getText().trim());
                 usuarioNuevo.setContrasenia(this.tfContrasenia.getText());
                 usuarioNuevo.setIdRollUsuario(idRoll);
 

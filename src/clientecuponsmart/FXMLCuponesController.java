@@ -65,15 +65,17 @@ public class FXMLCuponesController implements Initializable {
     @FXML
     private void btnCanjearCupon(ActionEvent event) {
         if (tfCodigoCupon.getText().length() == 8) {
-            canjearCupon(tfCodigoCupon.getText());
-            tfCodigoCupon.setText("");
-            if (idEmpresa != null){
+            if (idEmpresa != null) {
+                canjearCuponComercial(tfCodigoCupon.getText(), idEmpresa);
                 cargarInformacionComercial(idEmpresa);
-            }else{
+            } else {
+                canjearCupon(tfCodigoCupon.getText());
+                tfCodigoCupon.setText("");
                 cargarInformacionGeneral();
             }
+
         } else {
-            Utilidades.mostrarAlertaSimple("Erroe de código", "EL codigo debe de tener 8 caracteres", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error de código", "El código debe de tener 8 caracteres", Alert.AlertType.ERROR);
         }
     }
 
@@ -83,7 +85,6 @@ public class FXMLCuponesController implements Initializable {
     }
 
     void inicializarUsuarioGeneral() {
-        System.out.println("vista cupones General");
         cargarInformacionGeneral();
     }
 
@@ -92,7 +93,19 @@ public class FXMLCuponesController implements Initializable {
 
         respuesta = CuponDAO.canjearCupon(codigo);
         if (!respuesta.isError()) {
-            Utilidades.mostrarAlertaSimple("Canjeaste un cupon", "El cupón es valido", Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Canjeaste un cupón", "Cupón valido aplico el descuento", Alert.AlertType.INFORMATION);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error de canje", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+
+        }
+    }
+
+    private void canjearCuponComercial(String codigo, Integer idEmpresa) {
+        RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
+
+        respuesta = CuponDAO.canjearCuponComercial(codigo, idEmpresa);
+        if (!respuesta.isError()) {
+            Utilidades.mostrarAlertaSimple("Canjeaste un cupón", "Cupón valido aplico el descuento", Alert.AlertType.INFORMATION);
         } else {
             Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.INFORMATION);
 

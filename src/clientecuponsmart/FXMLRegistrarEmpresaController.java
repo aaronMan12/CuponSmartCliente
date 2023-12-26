@@ -140,12 +140,12 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         if (empresaUsuarioSesion == null) {
             if (validarCamposEmpresa()) {
                 Empresa nuevaEmpresa = new Empresa();
-                nuevaEmpresa.setNombre(tfNombreEmpresa.getText());
-                nuevaEmpresa.setNombreComercial(tfNombeComercialEmpresa.getText());
+                nuevaEmpresa.setNombre(tfNombreEmpresa.getText().trim());
+                nuevaEmpresa.setNombreComercial(tfNombeComercialEmpresa.getText().trim());
                 nuevaEmpresa.setTelefono(tfTelefono.getText());
                 nuevaEmpresa.setPaginaWeb(tfPaginaWeb.getText());
                 nuevaEmpresa.setEmail(tfEmail.getText());
-                nuevaEmpresa.setNombreRepresentante(tfRepresentanteLegal.getText());
+                nuevaEmpresa.setNombreRepresentante(tfRepresentanteLegal.getText().trim());
                 nuevaEmpresa.setRFC(tfRFC.getText());
                 nuevaEmpresa.setEstatus("activo");
 

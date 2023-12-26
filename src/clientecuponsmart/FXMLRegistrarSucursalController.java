@@ -80,22 +80,22 @@ public class FXMLRegistrarSucursalController implements Initializable {
                 Sucursal sucursalEditada = new Sucursal();
                 sucursalEditada.setIdSucursal(this.sucursal.getIdSucursal());
                 sucursalEditada.setIdEmpresa(this.idEmpresa);
-                sucursalEditada.setNombre(this.tfNombre.getText());
-                sucursalEditada.setColonia(this.tfColonia.getText());
+                sucursalEditada.setNombre(this.tfNombre.getText().trim());
+                sucursalEditada.setColonia(this.tfColonia.getText().trim());
                 sucursalEditada.setTelefono(this.tfTelefono.getText());
                 sucursalEditada.setLatitud(Float.parseFloat(this.tfLatitud.getText()));
                 sucursalEditada.setLongitud(Float.parseFloat(this.tfLongitud.getText()));
-                sucursalEditada.setNombreEncargado(this.tfEncargado.getText());
+                sucursalEditada.setNombreEncargado(this.tfEncargado.getText().trim());
 
                 this.editarSucursal(sucursalEditada);
             } else {
                 Sucursal sucursalNueva = new Sucursal();
-                sucursalNueva.setNombre(this.tfNombre.getText());
-                sucursalNueva.setColonia(this.tfColonia.getText());
+                sucursalNueva.setNombre(this.tfNombre.getText().trim());
+                sucursalNueva.setColonia(this.tfColonia.getText().trim());
                 sucursalNueva.setTelefono(this.tfTelefono.getText());
                 sucursalNueva.setLatitud(Float.parseFloat(this.tfLatitud.getText()));
                 sucursalNueva.setLongitud(Float.parseFloat(this.tfLongitud.getText()));
-                sucursalNueva.setNombreEncargado(this.tfEncargado.getText());
+                sucursalNueva.setNombreEncargado(this.tfEncargado.getText().trim());
                 sucursalNueva.setIdEmpresa(this.idEmpresa);
 
                 this.registrarSucursal(sucursalNueva);

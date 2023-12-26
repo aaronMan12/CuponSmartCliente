@@ -71,19 +71,19 @@ public class FXMLRegistrarUbicacionController implements Initializable {
             if (idSucursal != null) {
                 if (ubicacion != null) {
                     Ubicacion ubicacionEditada = new Ubicacion();
-                    ubicacionEditada.setCalle(this.tfCalle.getText());
+                    ubicacionEditada.setCalle(this.tfCalle.getText().trim());
                     ubicacionEditada.setNumero(Integer.parseInt(this.tfNumero.getText()));
                     ubicacionEditada.setCodigoPostal(this.tfCodigoPostal.getText());
-                    ubicacionEditada.setCiudad(this.tfCiudad.getText());
+                    ubicacionEditada.setCiudad(this.tfCiudad.getText().trim());
                     ubicacionEditada.setIdUbicacion(this.ubicacion.getIdUbicacion());
 
                     this.editarUbicacionSucursal(ubicacionEditada);
                 } else {
                     Ubicacion ubicacionNueva = new Ubicacion();
-                    ubicacionNueva.setCalle(this.tfCalle.getText());
+                    ubicacionNueva.setCalle(this.tfCalle.getText().trim());
                     ubicacionNueva.setNumero(Integer.parseInt(this.tfNumero.getText()));
                     ubicacionNueva.setCodigoPostal(this.tfCodigoPostal.getText());
-                    ubicacionNueva.setCiudad(this.tfCiudad.getText());
+                    ubicacionNueva.setCiudad(this.tfCiudad.getText().trim());
                     ubicacionNueva.setIdSucursal(idSucursal);
 
                     this.registrarUbicacionSucursal(ubicacionNueva);
