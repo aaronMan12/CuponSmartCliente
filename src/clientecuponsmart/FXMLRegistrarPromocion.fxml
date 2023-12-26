@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLRegistrarPromocionController">
     <children>
         <ImageView fitHeight="75.0" fitWidth="56.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -161,7 +161,7 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnFoto" layoutX="686.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnGuardarFoto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar fotografía">
+      <Button fx:id="btnFoto" layoutX="686.0" layoutY="538.0" mnemonicParsing="false" onAction="#btnGuardarFoto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar fotografía">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -169,7 +169,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="972.0" layoutY="552.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar">
+      <Button layoutX="972.0" layoutY="606.0" mnemonicParsing="false" onAction="#btnGuardar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FEDB39;" text="Guardar">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -177,7 +177,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ListView fx:id="lvSucursales" layoutX="903.0" layoutY="214.0" prefHeight="294.0" prefWidth="250.0" />
+      <ListView fx:id="lvSucursales" layoutX="903.0" layoutY="214.0" prefHeight="170.0" prefWidth="250.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ListView>
       <Label layoutX="903.0" layoutY="197.0" text="Selecciona sucursales validas:">
          <font>
             <Font name="Arial Bold" size="15.0" />
@@ -196,12 +199,18 @@
       <Label fx:id="lbPromocion" layoutX="61.0" layoutY="339.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
       <Label fx:id="lbEstatus" layoutX="334.0" layoutY="339.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
       <Label fx:id="lbFoto" layoutX="617.0" layoutY="459.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label fx:id="lbSucursal" layoutX="904.0" layoutY="511.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label fx:id="lbSucursal" layoutX="903.0" layoutY="384.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
       <TextField fx:id="tfPorcentajePrecio" layoutX="61.0" layoutY="364.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 50" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
       <Label fx:id="lbPorcentajePrecio" layoutX="61.0" layoutY="404.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
+      <Label layoutX="903.0" layoutY="413.0" text="Sucursales validas registradas:">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lvSucursalesValidas" layoutX="903.0" layoutY="430.0" prefHeight="150.0" prefWidth="250.0" />
     </children>
 </AnchorPane>
