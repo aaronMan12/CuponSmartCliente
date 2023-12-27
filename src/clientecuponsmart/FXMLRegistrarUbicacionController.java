@@ -53,12 +53,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                         Utilidades.mostrarAlertaSimple(
                                 "Error de registro",
                                 "Para poder hacer valido el registro de la empresa debes agregar su ubicación",
-                                Alert.AlertType.ERROR);
-
-                        Utilidades.mostrarAlertaSimple(
-                                "Error de registro",
-                                "Para poder hacer valido el registro de la empresa debes agregar su ubicación",
-                                Alert.AlertType.ERROR);
+                                Alert.AlertType.WARNING);
                     }
                 }
             });
@@ -76,8 +71,8 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionEditada.setCodigoPostal(this.tfCodigoPostal.getText());
                     ubicacionEditada.setCiudad(this.tfCiudad.getText().trim());
                     ubicacionEditada.setIdUbicacion(this.ubicacion.getIdUbicacion());
-
                     this.editarUbicacionSucursal(ubicacionEditada);
+                    this.cerrarPantalla();
                 } else {
                     Ubicacion ubicacionNueva = new Ubicacion();
                     ubicacionNueva.setCalle(this.tfCalle.getText().trim());
@@ -85,8 +80,8 @@ public class FXMLRegistrarUbicacionController implements Initializable {
                     ubicacionNueva.setCodigoPostal(this.tfCodigoPostal.getText());
                     ubicacionNueva.setCiudad(this.tfCiudad.getText().trim());
                     ubicacionNueva.setIdSucursal(idSucursal);
-
                     this.registrarUbicacionSucursal(ubicacionNueva);
+                    this.cerrarPantalla();
                 }
             } else {
                 if (ubicacion != null) {
@@ -199,7 +194,7 @@ public class FXMLRegistrarUbicacionController implements Initializable {
             isCamposVacios = false;
         }
 
-        if (tfNumero.getText().isEmpty()) {
+        if (tfNumero.getText().isEmpty() || !Utilidades.validarCadena(tfNumero.getText().trim(), Utilidades.NUMERO_CASA_PATTERN)) {
             lbNumero.setText(errorMensaje);
             isCamposVacios = false;
         }

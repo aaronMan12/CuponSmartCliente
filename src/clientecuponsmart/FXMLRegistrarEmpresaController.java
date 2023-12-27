@@ -124,7 +124,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             }
         } else {
             Utilidades.mostrarAlertaSimple("No hay logo seleccionado", "Para actualizar el logo antes debes elegir una nueva imagen",
-                    Alert.AlertType.INFORMATION);
+                    Alert.AlertType.WARNING);
         }
     }
 
