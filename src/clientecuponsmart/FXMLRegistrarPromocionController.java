@@ -10,9 +10,14 @@ import clientecuponsmart.modelo.pojo.RespuestaUsuarioEscritorio;
 import clientecuponsmart.modelo.pojo.Sucursal;
 import clientecuponsmart.utils.Constantes;
 import clientecuponsmart.utils.Utilidades;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -20,6 +25,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,14 +40,18 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 public class FXMLRegistrarPromocionController implements Initializable {
 
     // OBJETOS GLOBALES
     private Promocion promocion;
+    private File fotografia;
 
     // TODOS LOS OBSERVABLELIST
     private ObservableList<Categoria> categorias;
@@ -138,10 +148,27 @@ public class FXMLRegistrarPromocionController implements Initializable {
 
     @FXML
     private void btnSeleccionarFoto(MouseEvent event) {
+        fotografia = cargarFoto();
+        if (fotografia != null){
+            mostarFotoSeleccioanda(fotografia);
+        }
     }
 
     @FXML
     private void btnGuardarFoto(ActionEvent event) {
+         if (fotografia != null) {
+            RespuestaUsuarioEscritorio nuevaFoto = PromocionDAO.actualizarFoto(fotografia, promocion.getIdPromocion());
+            if (!nuevaFoto.isError()) {
+                Utilidades.mostrarAlertaSimple("Foto guardado", nuevaFoto.getContenido(), Alert.AlertType.INFORMATION);
+                cerrarPantalla();
+            } else {
+                Utilidades.mostrarAlertaSimple("Error al guardar", nuevaFoto.getContenido(), Alert.AlertType.ERROR);
+
+            }
+        } else {
+            Utilidades.mostrarAlertaSimple("No hay fotografía seleccionado", "Para actualizar el logo antes debes elegir una nueva imagen",
+                    Alert.AlertType.INFORMATION);
+        }
     }
 
     @FXML
@@ -173,7 +200,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.obtenerTodasLasCategorias();
         this.configurarEventoCategoria();
         this.obtenerTodasLasEmpresas();
-        this.configurarEventoEmpresa();
+        this.configurarEventoEmpresa();    
     }
     
     public void inicializarInformacionComercialEditar(Promocion promocion, Integer idUsuario) {
@@ -186,6 +213,8 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.cargarDatosEnLosComponentes();
         this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
         this.obtenerSucursalesValidasComercialRegistro();
+        System.out.println(promocion.getIdPromocion());
+        this.obtenerFotoPromocion(this.promocion.getIdPromocion());
     }
     
     public void inicializarInformacionGeneralEditar(Promocion promocion) {
@@ -198,6 +227,8 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.obtenerTodasLasEmpresas();
         this.configurarEventoEmpresa();
         this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
+           System.out.println(promocion.getIdPromocion());
+        this.obtenerFotoPromocion(this.promocion.getIdPromocion());
     }
 
     // MÉTODOS PARA DESCARGAR LOS DATOS DE LA API
@@ -353,6 +384,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.dpFechaFin.setValue(LocalDate.parse(this.promocion.getFechaFin()));
         this.taRestriccion.setText(this.promocion.getRestriccion());
         this.taDescripcion.setText(this.promocion.getDescripcion());
+        this.obtenerFotoPromocion(this.promocion.getIdPromocion());
         if (this.promocion.getTipoPromocion().equals(Constantes.PROMOCION_DESCUENTO)) {
             this.rbDescuento.setSelected(true);
             this.tfPorcentajePrecio.setText(String.valueOf(this.promocion.getPorcentajeDescuento()));
@@ -484,5 +516,34 @@ public class FXMLRegistrarPromocionController implements Initializable {
 
         return hayCamposVacios;
     }
+    
+    private File cargarFoto() {
+        FileChooser seleccionImg = new FileChooser();
+        seleccionImg.setTitle("Seleccione un logo para su empresa");
+        FileChooser.ExtensionFilter filtroArchivos
+                = new FileChooser.ExtensionFilter("archivos PNG (*.png, *.jpg, *.jpeg)", "*.PNG", "*.JPG", "*.JPEG");
+        seleccionImg.getExtensionFilters().add(filtroArchivos);
+        Stage esccenarioActual = (Stage) tfCodigo.getScene().getWindow();
+        return seleccionImg.showOpenDialog(esccenarioActual);
+    }
 
+    private void mostarFotoSeleccioanda(File fotografia) {
+        try {
+            BufferedImage buffer = ImageIO.read(fotografia);
+            Image image = SwingFXUtils.toFXImage(buffer, null);
+            ivFotografia.setImage(image);
+        } catch (IOException e) {
+            Utilidades.mostrarAlertaSimple("Error al cargar el logo", "Error al intentar visualizar el logo", Alert.AlertType.ERROR);
+        }
+    }
+    
+    private void obtenerFotoPromocion(int idPromocion) {
+        Promocion promocionFoto = PromocionDAO.obtenerFotoPromocion(idPromocion);
+        if (promocionFoto != null && promocionFoto.getFotografiaBase64()!= null && promocionFoto.getFotografiaBase64().length() > 0) {
+            System.out.println(promocionFoto.getFotografiaBase64());
+            byte[] decodeImg = Base64.getDecoder().decode(promocionFoto.getFotografiaBase64().replaceAll("\\n", ""));
+            Image image = new Image(new ByteArrayInputStream(decodeImg));
+            ivFotografia.setImage(image);
+        }
+    }
 }

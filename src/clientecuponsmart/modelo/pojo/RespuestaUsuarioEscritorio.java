@@ -15,11 +15,12 @@ public class RespuestaUsuarioEscritorio {
     private Ubicacion ubicacion;
     private List<Promocion> promociones;
     private List<Categoria> categorias;
+    private Promocion promocion;
 
     public RespuestaUsuarioEscritorio() {
     }
 
-    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas, Empresa empresa, List<Sucursal> sucursales, Sucursal sucursal, Ubicacion ubicacion, List<Promocion> promociones, List<Categoria> categorias) {
+    public RespuestaUsuarioEscritorio(boolean error, String contenido, List<Usuario> usuarios, List<Roll> roles, List<Empresa> empresas, Empresa empresa, List<Sucursal> sucursales, Sucursal sucursal, Ubicacion ubicacion, List<Promocion> promociones, List<Categoria> categorias, Promocion promocion) {
         this.error = error;
         this.contenido = contenido;
         this.usuarios = usuarios;
@@ -31,8 +32,18 @@ public class RespuestaUsuarioEscritorio {
         this.ubicacion = ubicacion;
         this.promociones = promociones;
         this.categorias = categorias;
+        this.promocion = promocion;
     }
 
+    public Promocion getPromocion() {
+        return promocion;
+    }
+
+    public void setPromocion(Promocion promocion) {
+        this.promocion = promocion;
+    }
+
+   
     public List<Categoria> getCategorias() {
         return categorias;
     }

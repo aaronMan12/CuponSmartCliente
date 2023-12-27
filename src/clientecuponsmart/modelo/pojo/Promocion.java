@@ -1,9 +1,9 @@
 package clientecuponsmart.modelo.pojo;
 
+import java.io.File;
 import java.util.List;
 
 public class Promocion {
-    
     private Integer idPromocion;
     private Integer idCategoria;
     private String nombre;
