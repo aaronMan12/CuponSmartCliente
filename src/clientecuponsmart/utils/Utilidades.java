@@ -17,6 +17,7 @@ public class Utilidades {
     public static final String ESPACIOS_INICIO_FIN_PATTERN = "^(\\s*|\\s*)$";
     public static final String NUMERO_PATTERN = "^[1-9]\\d*$";
     public static final String CODIGO_PATTERN = "^[a-zA-Z0-9]{8}$";
+    public static final String NUMERO_CASA_PATTERN = "^[0-9]+$";
 
     public static boolean validarCadena(String cadena, String expresionRegular) {
         Pattern pattern = Pattern.compile(expresionRegular);

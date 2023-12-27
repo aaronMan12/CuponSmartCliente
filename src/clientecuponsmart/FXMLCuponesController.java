@@ -59,6 +59,7 @@ public class FXMLCuponesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         promociones = FXCollections.observableArrayList();
+       
         configurarColumnasTabla();
     }
 
@@ -67,6 +68,7 @@ public class FXMLCuponesController implements Initializable {
         if (tfCodigoCupon.getText().length() == 8) {
             if (idEmpresa != null) {
                 canjearCuponComercial(tfCodigoCupon.getText(), idEmpresa);
+                tfCodigoCupon.setText("");
                 cargarInformacionComercial(idEmpresa);
             } else {
                 canjearCupon(tfCodigoCupon.getText());
@@ -75,7 +77,7 @@ public class FXMLCuponesController implements Initializable {
             }
 
         } else {
-            Utilidades.mostrarAlertaSimple("Error de código", "El código debe de tener 8 caracteres", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error de código", "El código debe de tener 8 caracteres", Alert.AlertType.WARNING);
         }
     }
 
