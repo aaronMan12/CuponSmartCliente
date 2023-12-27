@@ -64,6 +64,8 @@ public class FXMLAdministrarUsuariosController implements Initializable {
     private TextField tfBuscarUsuario;
     @FXML
     private TableColumn colRoll;
+    @FXML
+    private TableColumn colEmpresa;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -156,6 +158,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory("correo"));
         colCurp.setCellValueFactory(new PropertyValueFactory("curp"));
         colRoll.setCellValueFactory(new PropertyValueFactory("nombreRol"));
+        colEmpresa.setCellValueFactory(new PropertyValueFactory("nombreEmpresa"));
     }
 
     private void consultarInformacionUsuarios() {
