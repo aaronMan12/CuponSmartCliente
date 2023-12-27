@@ -1,23 +1,24 @@
 package clientecuponsmart.modelo.pojo;
 
-
 public class Usuario {
-  private Integer idUsuario;
-  private String nombre;
-  private String apellidoPaterno;
-  private String apellidoMaterno;
-  private String curp;
-  private String correo;
-  private String userName;
-  private String contrasenia;
-  private Integer idEmpresa;
-  private Integer idRollUsuario;
-  private String nombreRol;
+
+    private Integer idUsuario;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private String curp;
+    private String correo;
+    private String userName;
+    private String contrasenia;
+    private Integer idEmpresa;
+    private Integer idRollUsuario;
+    private String nombreRol;
+    private String nombreEmpresa;
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String curp, String correo, String userName, String contrasenia, Integer idEmpresa, Integer idRollUsuario, String nombreRol) {
+    public Usuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String curp, String correo, String userName, String contrasenia, Integer idEmpresa, Integer idRollUsuario, String nombreRol, String nombreEmpresa) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -29,6 +30,15 @@ public class Usuario {
         this.idEmpresa = idEmpresa;
         this.idRollUsuario = idRollUsuario;
         this.nombreRol = nombreRol;
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
     }
 
     public String getNombreRol() {
@@ -118,6 +128,5 @@ public class Usuario {
     public void setIdRollUsuario(Integer idRollUsuario) {
         this.idRollUsuario = idRollUsuario;
     }
-  
-  
+
 }
