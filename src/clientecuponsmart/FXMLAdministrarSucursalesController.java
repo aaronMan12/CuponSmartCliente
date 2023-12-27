@@ -43,7 +43,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     private ObservableList<Busqueda> sucursalesBusqueda;
     private Integer idBusquedaSeleccion;
-    
+
     private Integer idUsuario;
 
     @FXML
@@ -168,30 +168,47 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     public void inicializarInformacionGeneral() {
         RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarTodasLasSucusales();
-
         sucursales.clear();
+        
         List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
+        
         sucursales.addAll(listSucusales);
         filteredListSucursales = new FilteredList<>(sucursales);
         tvSucursales.setItems(filteredListSucursales);
+        
+        this.desabilitarBusqueda();
     }
-    
+
     public void inicializarInformacionComercial(Integer idUsuario) {
         this.idUsuario = idUsuario;
         this.cargarInformacionComercial();
     }
-    
+
     private void cargarInformacionComercial() {
         this.btnEliminar.setDisable(true);
         this.btnRegistrar.setDisable(true);
-        
-        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(this.idUsuario);
 
+        RespuestaUsuarioEscritorio respuesta = SucursalDAO.buscarSucursalesUsuario(this.idUsuario);
         sucursales.clear();
+        
         List<Sucursal> listSucusales = (List<Sucursal>) respuesta.getSucursales();
+        
         sucursales.addAll(listSucusales);
         filteredListSucursales = new FilteredList<>(sucursales);
         tvSucursales.setItems(filteredListSucursales);
+        
+        this.desabilitarBusqueda();
+    }
+    
+    private void desabilitarBusqueda() {
+        
+        if (sucursales.isEmpty()) {
+            this.tfBuscarSucursal.setDisable(true);
+            this.cbBusqueda.setDisable(true);
+        } else {
+            this.tfBuscarSucursal.setDisable(false);
+            this.cbBusqueda.setDisable(false);
+        }
     }
 
     private void cargarInformacionBusqueda() {
@@ -205,10 +222,6 @@ public class FXMLAdministrarSucursalesController implements Initializable {
         cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
             public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
-                if (filteredListSucursales.isEmpty()) {
-                    Utilidades.mostrarAlertaSimple("Error", "No hay sucursales para buscar.", Alert.AlertType.ERROR);
-                    return;
-                }
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarSucursal.setText("");
             }

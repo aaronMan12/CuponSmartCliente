@@ -160,15 +160,24 @@ public class FXMLAdministrarUsuariosController implements Initializable {
 
     private void consultarInformacionUsuarios() {
         RespuestaUsuarioEscritorio respuesta = UsuarioDAO.buscarTodosLosUsuarios(this.idUsuario);
+        usuarios.clear();
+        
+        List<Usuario> listUsuarios = (List<Usuario>) respuesta.getUsuarios();
+        
+        usuarios.addAll(listUsuarios);
+        filteredListUsuarios = new FilteredList<>(usuarios);
+        tvUsuarios.setItems(filteredListUsuarios);
+        this.desabilitarBusqueda();
+    }
 
-        if (!respuesta.isError()) {
-            usuarios.clear();
-            List<Usuario> listUsuarios = (List<Usuario>) respuesta.getUsuarios();
-            usuarios.addAll(listUsuarios);
-            filteredListUsuarios = new FilteredList<>(usuarios);
-            tvUsuarios.setItems(filteredListUsuarios);
+    private void desabilitarBusqueda() {
+
+        if (usuarios.isEmpty()) {
+            this.tfBuscarUsuario.setDisable(true);
+            this.cbBusqueda.setDisable(true);
         } else {
-            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.ERROR);
+            this.tfBuscarUsuario.setDisable(false);
+            this.cbBusqueda.setDisable(false);
         }
     }
 
@@ -184,10 +193,6 @@ public class FXMLAdministrarUsuariosController implements Initializable {
         cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
             public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
-                if (filteredListUsuarios.isEmpty()) {
-                    Utilidades.mostrarAlertaSimple("Error", "No hay usuarios para buscar.", Alert.AlertType.ERROR);
-                    return;
-                }
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarUsuario.setText("");
             }

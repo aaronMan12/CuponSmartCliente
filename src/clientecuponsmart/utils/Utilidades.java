@@ -37,4 +37,18 @@ public class Utilidades {
         return fechaInicio.isAfter(fechaFin);
     }
     
+    public static boolean validarFechaActual(LocalDate fechaInicio) {
+        LocalDate fechaActual = LocalDate.now();
+        
+        return fechaInicio.isBefore(fechaActual);
+    }
+    
+    public static boolean validarNumero(String porcentajePrecio) {
+        try {
+            Float.parseFloat(porcentajePrecio);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
 }

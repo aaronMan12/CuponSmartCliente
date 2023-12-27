@@ -194,6 +194,7 @@ public class FXMLAdminPromocionesController implements Initializable {
         promociones.addAll(listPromociones);
         filteredListPromociones = new FilteredList<>(promociones);
         tbPromociones.setItems(filteredListPromociones);
+        this.desabilitarBusqueda();
     }
 
     private void cargarInformacionGeneral() {
@@ -205,6 +206,18 @@ public class FXMLAdminPromocionesController implements Initializable {
         promociones.addAll(listPromociones);
         filteredListPromociones = new FilteredList<>(promociones);
         tbPromociones.setItems(filteredListPromociones);
+        this.desabilitarBusqueda();
+    }
+    
+    private void desabilitarBusqueda() {
+        
+        if (promociones.isEmpty()) {
+            this.tfBuscarPromocion.setDisable(true);
+            this.cbBusqueda.setDisable(true);
+        } else {
+            this.tfBuscarPromocion.setDisable(false);
+            this.cbBusqueda.setDisable(false);
+        }
     }
 
     private void configurarColumnasTabla() {
@@ -224,15 +237,11 @@ public class FXMLAdminPromocionesController implements Initializable {
                 new Busqueda(this.BUSQUEDA_POR_FECHA_FIN, "Buscar por fecha fin"));
         cbBusqueda.setItems(promocionesBusqueda);
     }
-
+    
     private void configurarSeleccioBusquedaComboBox() {
         cbBusqueda.valueProperty().addListener(new ChangeListener<Busqueda>() {
             @Override
             public void changed(ObservableValue<? extends Busqueda> observable, Busqueda oldValue, Busqueda newValue) {
-                if (filteredListPromociones.isEmpty()) {
-                    Utilidades.mostrarAlertaSimple("Error", "No hay promociones para buscar.", Alert.AlertType.ERROR);
-                    return;
-                }
                 idBusquedaSeleccion = newValue.getIdBusqueda();
                 tfBuscarPromocion.setText("");
             }
@@ -247,7 +256,7 @@ public class FXMLAdminPromocionesController implements Initializable {
             }
             if (idBusquedaSeleccion == null) {
                 tfBuscarPromocion.setText("");
-                Utilidades.mostrarAlertaSimple("Error", "por favor seleccione un tipo de busqueda", Alert.AlertType.ERROR);
+                Utilidades.mostrarAlertaSimple("Error", "Por favor seleccione un tipo de busqueda", Alert.AlertType.ERROR);
                 return;
             }
             buscarpromociones(idBusquedaSeleccion, newText);
