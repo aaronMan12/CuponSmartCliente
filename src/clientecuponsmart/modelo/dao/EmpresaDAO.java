@@ -48,7 +48,6 @@ public class EmpresaDAO {
 
     public static RespuestaUsuarioEscritorio editarEmpresa(Empresa empresaEditada) {
         RespuestaUsuarioEscritorio respuesta = new RespuestaUsuarioEscritorio();
-        //respuesta.setError(false);
         String url = Constantes.URL_WS + "empresas/editarEmpresa";
         String parametros = String.format("nombreComercial=%s&"
                 + "nombre=%s&"

@@ -207,27 +207,26 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.sucursalesRegistradasValidas = FXCollections.observableArrayList();
         this.promocion = promocion;
         this.idUsuario = idUsuario;
-        this.desabilitarComponentesComercialEditar();
+        this.desabilitarComponentesEditar();
         this.obtenerTodasLasCategorias();
         this.configurarEventoCategoria();
         this.cargarDatosEnLosComponentes();
         this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
         this.obtenerSucursalesValidasComercialRegistro();
-        System.out.println(promocion.getIdPromocion());
         this.obtenerFotoPromocion(this.promocion.getIdPromocion());
     }
     
     public void inicializarInformacionGeneralEditar(Promocion promocion) {
         this.sucursalesRegistradasValidas = FXCollections.observableArrayList();
         this.promocion = promocion;
-        this.desabilitarComponentesGeneralEditar();
+        this.desabilitarComponentesEditar();
         this.obtenerTodasLasCategorias();
         this.configurarEventoCategoria();
         this.cargarDatosEnLosComponentes();
-        this.obtenerTodasLasEmpresas();
-        this.configurarEventoEmpresa();
         this.obtenerSucursalesRegistradasValidas(this.promocion.getIdPromocion());
-           System.out.println(promocion.getIdPromocion());
+        this.obtenerTodasLasEmpresas();
+        this.seleccionarEmpresa();
+        this.obtenerSucursalesValidasGeneralRegistro(); // idEmpresa
         this.obtenerFotoPromocion(this.promocion.getIdPromocion());
     }
 
@@ -266,6 +265,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
         if (!respuesta.isError()) {
             this.sucursalesRegistradasValidas.addAll(respuesta.getSucursales());
             this.lvSucursalesValidas.setItems(this.sucursalesRegistradasValidas);
+            this.idEmpresa = this.sucursalesRegistradasValidas.get(0).getIdEmpresa();
         } else {
             Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.WARNING);
         }
@@ -332,14 +332,11 @@ public class FXMLRegistrarPromocionController implements Initializable {
         this.lvSucursalesValidas.setDisable(true);
     }
     
-    private void desabilitarComponentesComercialEditar() {
+    private void desabilitarComponentesEditar() {
         this.cbEmpresa.setDisable(true);
         this.lvSucursalesValidas.setDisable(true);
     }
     
-    private void desabilitarComponentesGeneralEditar() {
-        this.lvSucursalesValidas.setDisable(true);
-    }
 
     // MÉTODOS PARA OBTENER LOS DATOS DE LOS INPUTS
     private Promocion obtenerDatosDeLosComponentes() {
@@ -412,6 +409,17 @@ public class FXMLRegistrarPromocionController implements Initializable {
         }
     }
     
+    private void seleccionarEmpresa() {
+        if (!this.empresas.isEmpty()) {
+            Optional<Empresa> empresaSeleccionada = this.empresas.stream()
+                    .filter(empresa -> empresa.getIdEmpresa() == this.idEmpresa)
+                    .findFirst();
+            empresaSeleccionada.ifPresent(empresa -> {
+                this.cbEmpresa.getSelectionModel().select(empresa);
+            });
+        }
+    }
+    
     // MÉTODOS GENERALES
     private void limpiarErrores() {
         this.lbNombrePromocion.setText("");
@@ -471,12 +479,17 @@ public class FXMLRegistrarPromocionController implements Initializable {
             hayCamposVacios = false;
         }
 
+        if (dpFechaInicio.getValue() != null && Utilidades.validarFechaActual(dpFechaInicio.getValue())) {
+            lbFechaInicio.setText(Constantes.CAMPO_INVALIDO);
+            hayCamposVacios = false;
+        }
+        
         if (dpFechaInicio.getValue() != null && dpFechaFin.getValue() != null && Utilidades.validarFechas(dpFechaInicio.getValue(), dpFechaFin.getValue())) {
             lbFechaInicio.setText(Constantes.CAMPO_INVALIDO);
             lbFechaFin.setText(Constantes.CAMPO_INVALIDO);
             hayCamposVacios = false;
         }
-
+        
         if (idCategoria == null) {
             lbCategoria.setText(Constantes.CAMPO_INVALIDO);
             hayCamposVacios = false;
@@ -499,7 +512,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
             }
         }
 
-        if (tfPorcentajePrecio.getText().isEmpty() || !Utilidades.validarCadena(tfPorcentajePrecio.getText(), Utilidades.NUMERO_PATTERN)) {
+        if (tfPorcentajePrecio.getText().isEmpty() || Utilidades.validarNumero(tfPorcentajePrecio.getText())) {
             lbPorcentajePrecio.setText(Constantes.CAMPO_INVALIDO);
             hayCamposVacios = false;
         }

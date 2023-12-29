@@ -120,7 +120,6 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 cerrarPantalla();
             } else {
                 Utilidades.mostrarAlertaSimple("Error al guardar", nuevoLogo.getContenido(), Alert.AlertType.ERROR);
-
             }
         } else {
             Utilidades.mostrarAlertaSimple("No hay logo seleccionado", "Para actualizar el logo antes debes elegir una nueva imagen",
@@ -147,7 +146,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 nuevaEmpresa.setEmail(tfEmail.getText());
                 nuevaEmpresa.setNombreRepresentante(tfRepresentanteLegal.getText().trim());
                 nuevaEmpresa.setRFC(tfRFC.getText());
-                nuevaEmpresa.setEstatus("activo");
+                nuevaEmpresa.setEstatus(Constantes.ESTATUS_ACTIVO);
 
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.registrarEmpresa(nuevaEmpresa);
 
@@ -170,9 +169,9 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 empresaEditada.setNombreRepresentante(tfRepresentanteLegal.getText().trim());
                 empresaEditada.setIdEmpresa(empresaUsuarioSesion.getIdEmpresa());
                 if (rbInactivo.isSelected()) {
-                    empresaEditada.setEstatus("inactivo");
+                    empresaEditada.setEstatus(Constantes.ESTATUS_INACTIVO);
                 } else {
-                    empresaEditada.setEstatus("activo");
+                    empresaEditada.setEstatus(Constantes.ESTATUS_ACTIVO);
                 }
                 RespuestaUsuarioEscritorio respuesta = EmpresaDAO.editarEmpresa(empresaEditada);
                 if (!respuesta.isError()) {

@@ -136,7 +136,7 @@ public class FXMLAdminEmpresasController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
             return;
         }
-        
+
         this.consultarInformacionEmpresas();
         Utilidades.mostrarAlertaSimple("Empresa eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
     }
@@ -159,12 +159,26 @@ public class FXMLAdminEmpresasController implements Initializable {
 
     private void consultarInformacionEmpresas() {
         RespuestaUsuarioEscritorio respuesta = EmpresaDAO.buscarTodasLasEmpresas();
-
         empresas.clear();
+
         List<Empresa> listEmpresas = (List<Empresa>) respuesta.getEmpresas();
+
         empresas.addAll(listEmpresas);
         filteredListEmpresas = new FilteredList<>(empresas);
         tvEmpresas.setItems(filteredListEmpresas);
+
+        this.desabilitarBusqueda();
+    }
+
+    private void desabilitarBusqueda() {
+        
+        if (empresas.isEmpty()) {
+            this.tfBuscarEmpresa.setDisable(true);
+            this.cbBusqueda.setDisable(true);
+        } else {
+            this.tfBuscarEmpresa.setDisable(false);
+            this.cbBusqueda.setDisable(false);
+        }
     }
 
     private void cargarInformacionBusqueda() {
