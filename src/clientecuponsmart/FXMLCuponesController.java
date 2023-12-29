@@ -62,7 +62,7 @@ public class FXMLCuponesController implements Initializable {
        
         configurarColumnasTabla();
     }
-
+    // modificación, no se debe dejar canjear el cupón cuando su estatus sea inactivo --------
     @FXML
     private void btnCanjearCupon(ActionEvent event) {
         if (tfCodigoCupon.getText().length() == 8) {
