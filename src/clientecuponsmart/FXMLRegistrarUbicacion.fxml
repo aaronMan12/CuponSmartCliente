@@ -48,7 +48,7 @@
          </font>
       </TextField>
       <Label fx:id="lbCodigoPostal" layoutX="46.0" layoutY="245.0" prefHeight="17.0" prefWidth="137.0" textFill="#171717" />
-      <Label layoutX="46.0" layoutY="188.0" text="Codigo postal:">
+      <Label layoutX="46.0" layoutY="188.0" text="Código postal:">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>

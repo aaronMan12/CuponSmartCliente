@@ -294,6 +294,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             Scene scenaAdmin = new Scene(vista);
             stage.setScene(scenaAdmin);
             stage.setTitle("Registrar ubicación");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.cerrarPantalla();
@@ -312,6 +313,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             Scene scenaAdmin = new Scene(vista);
             stage.setScene(scenaAdmin);
             stage.setTitle("Editar ubicación");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.cerrarPantalla();

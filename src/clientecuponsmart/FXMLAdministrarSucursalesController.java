@@ -95,6 +95,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
             Scene scenaAdmin = new Scene(vista);
             stage.setScene(scenaAdmin);
             stage.setTitle("Registrar sucursal");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.inicializarInformacionGeneral();
@@ -120,6 +121,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
                 stage.setTitle("Editar sucursal");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 if (idUsuario != null) {
@@ -146,6 +148,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
             if (!mensaje.isError()) {
                 this.inicializarInformacionGeneral();
                 Utilidades.mostrarAlertaSimple("Sucursal eliminada", mensaje.getContenido(), Alert.AlertType.INFORMATION);
+                
             } else {
                 Utilidades.mostrarAlertaSimple("Error al eliminar", mensaje.getContenido(), Alert.AlertType.ERROR);
             }

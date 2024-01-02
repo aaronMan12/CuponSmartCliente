@@ -71,6 +71,7 @@ public class FXMLHomeController implements Initializable {
             Scene escenaAdmin = new Scene(vista);
             stage.setScene(escenaAdmin);
             stage.setTitle("Usuarios");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException e) {
@@ -90,6 +91,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Empresas");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (IOException e) {
@@ -105,6 +107,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Tú empresa");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (Exception e) {
@@ -125,6 +128,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Sucursales");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } else {
@@ -136,6 +140,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Sucursales");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             }
@@ -156,6 +161,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Promocion");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } else {
@@ -167,6 +173,7 @@ public class FXMLHomeController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Promocion");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             }
@@ -174,24 +181,29 @@ public class FXMLHomeController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+     @FXML
+    private void btnGestionCuenta(ActionEvent event) {
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
+            Parent vista = vistaLoad.load();
 
-    private void cargarImagenes() {
-        this.cargarImagen(btnIconUsuarios, "/componentes/moduloUsuario.png");
-        this.cargarImagen(btnIconEmpresas, "/componentes/moduloEmpresa.png");
-        this.cargarImagen(btnIconCupon, "/componentes/moduloCupon.png");
-        this.cargarImagen(btnIconSucursales, "/componentes/moduloSucursal.png");
-        this.cargarImagen(btnIconPromociones, "/componentes/moduloPromocion.png");
-        this.cargarImagen(btnIconCuenta, "/componentes/gestionCuenta.png");
-        this.cargarImagen(btnIconLogOut, "/componentes/logout.png");
+            FXMLRegistrarUsuarioController controlador = vistaLoad.getController();
+            controlador.inicializarInformacion(usuarioSesion);
+
+            Stage stage = new Stage();
+            Scene scenaAdmin = new Scene(vista);
+            stage.setScene(scenaAdmin);
+            stage.setTitle("Editar usuario");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void cargarImagen(Button button, String imagePath) {
-        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-        ImageView imageView = new ImageView(image);
-        button.setGraphic(imageView);
-    }
-
-    @FXML
+     @FXML
     private void btnGestionCupon(ActionEvent event) {
         if (usuarioSesion.getIdEmpresa()  != null) {
             try {
@@ -204,6 +216,7 @@ public class FXMLHomeController implements Initializable {
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
                 stage.setTitle("Cupones");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (IOException e) {
@@ -219,6 +232,7 @@ public class FXMLHomeController implements Initializable {
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
                 stage.setTitle("Cupones");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (IOException e) {
@@ -226,27 +240,7 @@ public class FXMLHomeController implements Initializable {
             }
         }
     }
-
-    @FXML
-    private void btnGestionCuenta(ActionEvent event) {
-        try {
-            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
-            Parent vista = vistaLoad.load();
-
-            FXMLRegistrarUsuarioController controlador = vistaLoad.getController();
-            controlador.inicializarInformacion(usuarioSesion);
-
-            Stage stage = new Stage();
-            Scene scenaAdmin = new Scene(vista);
-            stage.setScene(scenaAdmin);
-            stage.setTitle("Editar usuario");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     @FXML
     private void btnSalirCuenta(ActionEvent event) {
         try {
@@ -257,10 +251,29 @@ public class FXMLHomeController implements Initializable {
             Scene scene = new Scene(vista);
             stage.setScene(scene);
             stage.setTitle("Inicio de sesión");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             Logger.getLogger(FXMLLogingController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+    
+    
+
+    private void cargarImagenes() {
+        this.cargarImagen(btnIconUsuarios, "/componentes/moduloUsuario.png");
+        this.cargarImagen(btnIconEmpresas, "/componentes/moduloEmpresa.png");
+        this.cargarImagen(btnIconCupon, "/componentes/moduloCupon.png");
+        this.cargarImagen(btnIconSucursales, "/componentes/moduloSucursal.png");
+        this.cargarImagen(btnIconPromociones, "/componentes/moduloPromocion.png");
+        this.cargarImagen(btnIconCuenta, "/componentes/gestionCuenta.png");
+        this.cargarImagen(btnIconLogOut, "/componentes/logout.png");
+    }
+
+    private void cargarImagen(Button button, String imagePath) {
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        ImageView imageView = new ImageView(image);
+        button.setGraphic(imageView);
     }
 
 }

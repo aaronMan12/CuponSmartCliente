@@ -51,13 +51,13 @@
          </font>
       </Label>
       <TextField fx:id="tfNombeComercialEmpresa" layoutX="325.0" layoutY="168.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. Wal-Mart" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="602.0" layoutY="139.0" text="Telefono:">
+      <Label layoutX="602.0" layoutY="139.0" text="Teléfono:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="tfTelefono" layoutX="602.0" layoutY="168.0" prefHeight="40.0" prefWidth="250.0" promptText="Ej. 2288432354" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="48.0" layoutY="241.0" text="Pagina Web:">
+      <Label layoutX="48.0" layoutY="241.0" text="Página Web:">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

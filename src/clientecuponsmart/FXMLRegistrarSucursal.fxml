@@ -15,7 +15,7 @@
                 <Image url="@../componentes/bgRegistrarUsuario.png" />
             </image>
         </ImageView>
-        <Label layoutX="292.0" layoutY="16.0" text="Administracion de sucursales">
+        <Label layoutX="292.0" layoutY="16.0" text="Administración de sucursales">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>

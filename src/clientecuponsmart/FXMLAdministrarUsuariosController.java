@@ -90,6 +90,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
             Scene scene = new Scene(vista);
             stage.setScene(scene);
             stage.setTitle("Registrar usuario");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.consultarInformacionUsuarios();
@@ -115,6 +116,7 @@ public class FXMLAdministrarUsuariosController implements Initializable {
                 Scene scenaAdmin = new Scene(vista);
                 stage.setScene(scenaAdmin);
                 stage.setTitle("Editar usuario");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 this.consultarInformacionUsuarios();

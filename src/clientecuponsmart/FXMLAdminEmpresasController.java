@@ -88,6 +88,7 @@ public class FXMLAdminEmpresasController implements Initializable {
             Scene escenaAdmin = new Scene(vista);
             stage.setScene(escenaAdmin);
             stage.setTitle("Vista de usuario general");
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             this.consultarInformacionEmpresas();
@@ -109,6 +110,7 @@ public class FXMLAdminEmpresasController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Vista de usuario general");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 this.consultarInformacionEmpresas();

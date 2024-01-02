@@ -17,7 +17,7 @@
       </ImageView>
       <TableView fx:id="tvCupones" layoutX="25.0" layoutY="86.0" prefHeight="502.0" prefWidth="750.0">
         <columns>
-          <TableColumn fx:id="colCategoria" prefWidth="111.0" text="Categoria" />
+          <TableColumn fx:id="colCategoria" prefWidth="111.0" text="Categoría" />
           <TableColumn fx:id="colNombre" prefWidth="145.0" text="Nombre" />
             <TableColumn fx:id="colTipoPromocion" prefWidth="180.0" text="Tipo promoción" />
             <TableColumn fx:id="colFechaFin" prefWidth="98.0" text="Fecha fin" />
@@ -26,7 +26,7 @@
         </columns>
       </TableView>
       <TextField fx:id="tfCodigoCupon" layoutX="316.0" layoutY="14.0" prefHeight="40.0" promptText="Ej. XD43F6" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label layoutX="236.0" layoutY="16.0" text="Cupones">
+      <Label layoutX="236.0" layoutY="16.0" text="Cupón">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -36,7 +36,7 @@
             <Image url="@../componentes/logoRedondo.png" />
          </image>
       </ImageView>
-      <Label layoutX="256.0" layoutY="58.0" text="Ingresa el Código del cupon para acerlo valido" />
+      <Label layoutX="251.0" layoutY="58.0" text="Ingresa el código del cupón para hacerlo valido" />
       <Button layoutX="514.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnCanjearCupon" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #171717; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5px;" text="Canjear">
          <font>
             <Font name="System Bold" size="18.0" />

@@ -101,6 +101,7 @@ public class FXMLLogingController implements Initializable {
 
             Scene scene = new Scene(vista);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.setTitle("Home");
             stage.show();
 

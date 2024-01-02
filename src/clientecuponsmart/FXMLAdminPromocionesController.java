@@ -90,6 +90,7 @@ public class FXMLAdminPromocionesController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Registrar promoción");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 this.cargarInformacionComercial(idEmpresa);
@@ -102,6 +103,7 @@ public class FXMLAdminPromocionesController implements Initializable {
                 Scene escenaAdmin = new Scene(vista);
                 stage.setScene(escenaAdmin);
                 stage.setTitle("Registrar promoción");
+                stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 this.cargarInformacionGeneral();
@@ -127,6 +129,7 @@ public class FXMLAdminPromocionesController implements Initializable {
                     Scene escenaAdmin = new Scene(vista);
                     stage.setScene(escenaAdmin);
                     stage.setTitle("Editar promoción");
+                    stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.showAndWait();
                     this.cargarInformacionComercial(idEmpresa);
@@ -139,6 +142,7 @@ public class FXMLAdminPromocionesController implements Initializable {
                     Scene escenaAdmin = new Scene(vista);
                     stage.setScene(escenaAdmin);
                     stage.setTitle("Editar promoción");
+                    stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.showAndWait();
                     this.cargarInformacionGeneral();
