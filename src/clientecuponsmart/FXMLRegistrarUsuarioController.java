@@ -149,7 +149,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
             isCamposVacios = false;
         }
 
-        if (tfContrasenia.getText().isEmpty()) {
+        if (tfContrasenia.getText().isEmpty() || tfContrasenia.getText().length() != 8) {
             lbContrasenia.setText(errorMensaje);
             isCamposVacios = false;
         }

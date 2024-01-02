@@ -35,8 +35,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     // CONSTANTES PARA FILTRAR
     private final int BUSQUEDA_POR_NOMBRE = 1;
-    private final int BUSQUEDA_POR_CALLE = 2;
-    private final int BUSQUEDA_POR_NUMERO = 3;
+    private final int BUSQUEDA_POR_DIRECCION = 2;
 
     private ObservableList<Sucursal> sucursales;
     private FilteredList<Sucursal> filteredListSucursales;
@@ -213,8 +212,7 @@ public class FXMLAdministrarSucursalesController implements Initializable {
 
     private void cargarInformacionBusqueda() {
         sucursalesBusqueda.addAll(new Busqueda(this.BUSQUEDA_POR_NOMBRE, "Buscar por nombre"),
-                new Busqueda(this.BUSQUEDA_POR_CALLE, "Buscar por calle"),
-                new Busqueda(this.BUSQUEDA_POR_NUMERO, "Buscar por número"));
+                new Busqueda(this.BUSQUEDA_POR_DIRECCION, "Buscar por dirección"));
         cbBusqueda.setItems(sucursalesBusqueda);
     }
 
@@ -250,10 +248,9 @@ public class FXMLAdministrarSucursalesController implements Initializable {
                 switch (idBusqueda) {
                     case BUSQUEDA_POR_NOMBRE:
                         return sucursal.getNombre().equals(busqueda);
-                    case BUSQUEDA_POR_CALLE:
-                        return sucursal.getCalle().equals(busqueda);
                     default:
-                        return sucursal.getNumero().equals(busqueda);
+                        System.out.println(sucursal.getDireccion());
+                        return sucursal.getDireccion().equals(busqueda);
                 }
             }
         };
