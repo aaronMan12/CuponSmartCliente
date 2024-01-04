@@ -97,7 +97,7 @@ public class FXMLCuponesController implements Initializable {
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Canjeaste un cupón", "Cupón valido aplico el descuento", Alert.AlertType.INFORMATION);
         } else {
-            Utilidades.mostrarAlertaSimple("Error de canje", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Error de canje", respuesta.getContenido(), Alert.AlertType.WARNING);
 
         }
     }
@@ -109,7 +109,7 @@ public class FXMLCuponesController implements Initializable {
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Canjeaste un cupón", "Cupón valido aplico el descuento", Alert.AlertType.INFORMATION);
         } else {
-            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Error", respuesta.getContenido(), Alert.AlertType.WARNING);
 
         }
     }

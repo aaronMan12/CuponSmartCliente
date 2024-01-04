@@ -336,10 +336,13 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             camposVacios = false;
         }
 
-        if (tfPaginaWeb.getText().isEmpty() || !Utilidades.validarCadena(tfPaginaWeb.getText(), Utilidades.PAGINA_WEB_PATTERN)) {
+        if (!tfPaginaWeb.getText().isEmpty()){
+            if (!Utilidades.validarCadena(tfPaginaWeb.getText(), Utilidades.PAGINA_WEB_PATTERN)){
             lbPaginaWeb.setText(Constantes.CAMPO_INVALIDO);
             camposVacios = false;
+            }
         }
+        
 
         if (tfEmail.getText().isEmpty() || !Utilidades.validarCadena(tfEmail.getText(), Utilidades.EMAIL_PATTERN)) {
             lbEmail.setText(Constantes.CAMPO_INVALIDO);
